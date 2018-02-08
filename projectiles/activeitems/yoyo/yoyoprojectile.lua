@@ -2,7 +2,6 @@ require "/scripts/vec2.lua"
 
 function init()
   self.returning = config.getParameter("returning", false)
-  self.returnOnHit = config.getParameter("returnOnHit", false)
   self.controlMovement = config.getParameter("controlMovement")
   self.pickupDistance = config.getParameter("pickupDistance")
   self.timeToLive = config.getParameter("timeToLive")
@@ -21,6 +20,7 @@ function init()
     end)
   message.setHandler("updateHolding", function(_, _, hoverTime)
       self.hoverTime = hoverTime
+	  self.holdingClick = true
       return entity.id()
     end)
   message.setHandler("notClicking", function(_, _, isClicking)
@@ -43,7 +43,7 @@ function update(dt)
     if not self.returning then
       if self.hoverTimer then
 		if not self.isTooFar then
-		controlTo(self.aimPosition)
+		controlTo(self.aimPosition, 1)
 		end
         self.hoverTimer = math.max(0, self.hoverTimer - dt)
       end
@@ -56,10 +56,10 @@ function update(dt)
 	  end
 	  
 	  if self.isTooFar == true then
-		controlTo(self.ownerPos)
+		controlTo(self.ownerPos, 0.5)
 		self.isTooFar = false
 	  end
-      if mcontroller.isColliding() or self.hoverTimer == 0 then
+      if self.hoverTimer == 0 then
         self.returning = true
       elseif self.hoverTimer then
         --mcontroller.approachVelocity({0,0}, 1000)
@@ -85,15 +85,32 @@ function update(dt)
   else
     projectile.die()
   end
+  
+  local cursorRange = world.distance(self.aimPosition, mcontroller.position())
+  
+  if self.holdingClick == true then
+	self.holdingClick = false
+	if vec2.mag(cursorRange) < 1 then
+		controlTo(self.aimPosition, 0.25)
+	else
+	end
+  
+  end
+  
+  if mcontroller.isColliding() then
+	controlTo(self.ownerPos, 0.25)
+  end
+  
+  if self.returning then
+	mcontroller.setRotation(mcontroller.rotation() + (32 * dt))
+  else
+	mcontroller.setRotation(mcontroller.rotation() - (32 * dt))
+  end
 end
 
-function controlTo(position)
+function controlTo(position, speedMult)
   local offset = world.distance(position, mcontroller.position())
-  mcontroller.approachVelocity(vec2.mul(vec2.norm(offset), self.controlMovement.maxSpeed), self.controlMovement.controlForce)
-end
-
-function hit(entityId)
-  if self.returnOnHit then self.returning = true end
+  mcontroller.approachVelocity(vec2.mul(vec2.norm(offset), (self.controlMovement.maxSpeed * speedMult)), self.controlMovement.controlForce)
 end
 
 function projectileIds()

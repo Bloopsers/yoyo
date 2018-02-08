@@ -1,0 +1,19 @@
+[
+  {
+    "op": "add",
+    "path": "/yoyo",
+    "value": {
+      "gravityMultiplier" : 0.0,
+    "bounceFactor" : 1.0,
+    "stopOnFirstBounce" : true,
+    "maxMovementPerStep" : 0.4,
+    "collisionPoly" : [ [-0.25, -0.25], [0.25, -0.25], [0.25, 0.25], [-0.25, 0.25] ],
+    "ignorePlatformCollision" : true,
+    "groundFriction" : 0,
+    "airFriction" : 0.0,
+    "liquidFriction" : 0.0,
+    "speedLimit" : null,
+    "maximumCorrection" : 0.75
+    }
+  }
+]

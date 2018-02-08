@@ -1,31 +1,32 @@
 {
-  "itemName" : "basicyoyo",
+  "itemName" : "woodenyoyo",
   "price" : 3000,
-  "inventoryIcon" : "basicyoyoicon.png",
+  "inventoryIcon" : "woodenyoyoicon.png",
   "rarity" : "Legendary",
   "maxStack" : 1,
-  "description" : "Oh my god, whee! This is so fun!",
+  "description" : "It goes up, down, all around and comes right back!",
   "shortdescription" : "Basic Yoyo",
-  "largeImage" : "basicyoyobig.png",
-  "category" : "Tool",
+  "largeImage" : "woodenyoyoicon.png",
+  "category" : "Weapon",
   "fireTime" : 0,
   "twoHanded" : false,
 
   "scripts" : ["/items/active/weapons/yoyos/yoyo.lua"],
   "animationScripts" : ["/items/active/effects/renderyoyorope.lua"],
-
-  "animation" : "chakram.animation",
-  "animationParts" : {
-    "chakram" : "neochakram.png"
-  },
-
+  "animation" : "/items/active/weapons/yoyos/yoyo.animation",
+  "animationParts" : { "chakram" : "woodenyoyo.png" },
   "fireOffset" : [0, 0],
   "ropeOffset" : [0, 0],
   "ropeVisualOffset" : [0, 0],
+  
+  "ropeWidth" : 1.0,
+  "ropeColor" : [255, 255, 255, 255],
 
-  "consumeOnUse" : false,
+  "overrideHoverTime" : 3.0,
+  "level" : 1,
+  "maxLength" : 10,
 
-  "projectileType" : "neochakram",
+  "projectileType" : "woodenyoyo",
   "projectileParameters" : {
     "knockback" : 2,
     "power" : 2,
@@ -38,17 +39,13 @@
     "returnOnHit" : false,
     "pickupDistance" : 1.0,
 
-    "hoverMaxDistance" : 15,
+    "hoverMaxDistance" : 10,
     "hoverTime" : 0.0
   },
-  
-  "overrideHoverTime" : 3.0,
-  
-  "level" : 5,
 
   "stances" : {
     "idle" : {
-      "armRotation" : -20,
+      "armRotation" : 0,
       "animationState" : {
         "weapon" : "visible"
       },
@@ -59,7 +56,7 @@
       "duration" : 0.2,
       "transition" : "throw",
       "transitionFunction" : "fire",
-      "armRotation" : 30,
+      "armRotation" : 35,
       "animationState" : {
         "weapon" : "visible"
       },
@@ -74,29 +71,26 @@
       "allowRotate" : true,
       "allowFlip" : true
     },
-    "catch" : {
-      "duration" : 0.2,
-      "transition" : "idle",
-      "armRotation" : -30,
+	"precatch" : {
+      "duration" : 0.1,
+      "transition" : "catch",
+      "armRotation" : -15,
       "animationState" : {
         "weapon" : "hidden"
       },
       "allowRotate" : false,
       "allowFlip" : true
+    },
+    "catch" : {
+      "duration" : 0.1,
+      "transition" : "idle",
+      "armRotation" : -35,
+      "animationState" : {
+        "weapon" : "visible"
+      },
+      "allowRotate" : false,
+      "allowFlip" : true
     }
-  },
+  }
 
-  "ropeWidth" : 1.0,
-  "ropeColor" : [120, 80, 30, 255],
-
-  "reelInDistance" : 3.5,
-  "reelOutLength" : 50,
-  "breakLength" : 10,
-
-  "minSwingDistance" : 1.5,
-
-  "reelSpeed" : 15,
-  "controlForce" : 1000,
-
-  "groundLagTime" : 0.2
 }
