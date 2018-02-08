@@ -1,0 +1,102 @@
+{
+  "itemName" : "basicyoyo",
+  "price" : 3000,
+  "inventoryIcon" : "basicyoyoicon.png",
+  "rarity" : "Legendary",
+  "maxStack" : 1,
+  "description" : "Oh my god, whee! This is so fun!",
+  "shortdescription" : "Basic Yoyo",
+  "largeImage" : "basicyoyobig.png",
+  "category" : "Tool",
+  "fireTime" : 0,
+  "twoHanded" : false,
+
+  "scripts" : ["/items/active/weapons/yoyos/yoyo.lua"],
+  "animationScripts" : ["/items/active/effects/renderyoyorope.lua"],
+
+  "animation" : "chakram.animation",
+  "animationParts" : {
+    "chakram" : "neochakram.png"
+  },
+
+  "fireOffset" : [0, 0],
+  "ropeOffset" : [0, 0],
+  "ropeVisualOffset" : [0, 0],
+
+  "consumeOnUse" : false,
+
+  "projectileType" : "neochakram",
+  "projectileParameters" : {
+    "knockback" : 2,
+    "power" : 2,
+    "damageRepeatTimeout" : 0.2,
+	"controlMovement" : {
+		"maxSpeed" : 15,
+		"controlForce" : 80
+	},
+
+    "returnOnHit" : false,
+    "pickupDistance" : 1.0,
+
+    "hoverMaxDistance" : 15,
+    "hoverTime" : 0.0
+  },
+  
+  "overrideHoverTime" : 3.0,
+  
+  "level" : 5,
+
+  "stances" : {
+    "idle" : {
+      "armRotation" : -20,
+      "animationState" : {
+        "weapon" : "visible"
+      },
+      "allowRotate" : true,
+      "allowFlip" : true
+    },
+    "windup" : {
+      "duration" : 0.2,
+      "transition" : "throw",
+      "transitionFunction" : "fire",
+      "armRotation" : 30,
+      "animationState" : {
+        "weapon" : "visible"
+      },
+      "allowRotate" : false,
+      "allowFlip" : false
+    },
+    "throw" : {
+      "armRotation" : 0,
+      "animationState" : {
+        "weapon" : "hidden"
+      },
+      "allowRotate" : true,
+      "allowFlip" : true
+    },
+    "catch" : {
+      "duration" : 0.2,
+      "transition" : "idle",
+      "armRotation" : -30,
+      "animationState" : {
+        "weapon" : "hidden"
+      },
+      "allowRotate" : false,
+      "allowFlip" : true
+    }
+  },
+
+  "ropeWidth" : 1.0,
+  "ropeColor" : [120, 80, 30, 255],
+
+  "reelInDistance" : 3.5,
+  "reelOutLength" : 50,
+  "breakLength" : 10,
+
+  "minSwingDistance" : 1.5,
+
+  "reelSpeed" : 15,
+  "controlForce" : 1000,
+
+  "groundLagTime" : 0.2
+}

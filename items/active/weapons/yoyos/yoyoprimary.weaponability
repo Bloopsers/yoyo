@@ -1,0 +1,17 @@
+{
+  "ability" : {
+    "type" : "yoyoprimary",
+    "name" : "Fire Bouncer",
+    "scripts" : ["/items/active/weapons/yoyos/yoyo.lua"],
+    "class" : "yoyo",
+
+    "energyCost" : 75,
+
+    "maxCastRange" : 25,
+
+    "projectileType" : "firebouncer",
+    "projectileParameters" : {
+      "baseDamage" : 6
+    }
+  }
+}

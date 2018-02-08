@@ -1,0 +1,7 @@
+[
+  {
+    "op": "add",
+    "path": "/yoyo",
+    "value": "/items/active/weapons/yoyos/yoyoprimary.weaponability"
+  }
+]
