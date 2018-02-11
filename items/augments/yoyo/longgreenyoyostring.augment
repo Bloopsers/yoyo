@@ -1,0 +1,15 @@
+{
+  "itemName" : "longgreenyoyostring",
+  "price" : 30,
+  "rarity" : "Uncommon",
+  "category" : "Yoyo String",
+  "inventoryIcon" : "longyoyostring.png?replace;b6b6b6=51bd3b;373737=247824",
+  "description" : "A long, green yoyo string.\nLength: +8",
+  "shortdescription" : "Long Green Yoyo String",
+
+  "extraLength" : 8,
+  "stringDirectives" : "b6b6b6=51bd3b;373737=247824",
+  "ropeColor" : [81, 189, 59, 255],
+
+  "scripts" : [ "/scripts/augments/yoyo.lua" ]
+}

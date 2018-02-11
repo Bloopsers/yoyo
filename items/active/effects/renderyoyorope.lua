@@ -21,7 +21,7 @@ function update()
         width = config.getParameter("ropeWidth"),
         color = animationConfig.animationParameter("ropeColor", config.getParameter("ropeColor")),
         fullbright = config.getParameter("ropeFullbright")
-      }, "projectile-1")
+      }, "monster+1")
 
     if ropeParticle and ropeParticleDensity and ropeParticleDensity > 0 then
       local segment = vec2.sub(relativeNextPoint, lastPoint)

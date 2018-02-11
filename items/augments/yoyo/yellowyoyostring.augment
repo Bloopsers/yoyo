@@ -1,0 +1,15 @@
+{
+  "itemName" : "yellowyoyostring",
+  "price" : 15,
+  "rarity" : "Common",
+  "category" : "Yoyo String",
+  "inventoryIcon" : "yoyostring.png?replace;b6b6b6=e2c344;373737=a46e06",
+  "description" : "A yellow yoyo string.\nLength: +2",
+  "shortdescription" : "Yellow Yoyo String",
+
+  "extraLength" : 2,
+  "stringDirectives" : "b6b6b6=e2c344;373737=a46e06",
+  "ropeColor" : [226, 195, 68, 255],
+
+  "scripts" : [ "/scripts/augments/yoyo.lua" ]
+}

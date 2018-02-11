@@ -1,0 +1,15 @@
+{
+  "itemName" : "longpinkyoyostring",
+  "price" : 30,
+  "rarity" : "Uncommon",
+  "category" : "Yoyo String",
+  "inventoryIcon" : "longyoyostring.png?replace;b6b6b6=eab3db;373737=d35eae",
+  "description" : "A long, pink yoyo string.\nLength: +8",
+  "shortdescription" : "Long Pink Yoyo String",
+
+  "extraLength" : 8,
+  "stringDirectives" : "b6b6b6=eab3db;373737=d35eae",
+  "ropeColor" : [234, 179, 219, 255],
+
+  "scripts" : [ "/scripts/augments/yoyo.lua" ]
+}

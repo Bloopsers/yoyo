@@ -9,9 +9,22 @@ function init()
   self.ropeOffset = config.getParameter("ropeOffset")
   self.ropeVisualOffset = config.getParameter("ropeVisualOffset")
   self.projectileType = config.getParameter("projectileType")
+  self.oldString = config.getParameter("oldString")
+  self.currentString = config.getParameter("currentString")
+  self.noMore = false
+  if self.currentString and not self.noMore then
+  self.noMore = true
+  activeItem.setInstanceValue("oldString", self.currentString)
+  end
+  self.shouldGiveString = config.getParameter("shouldGiveString")
   self.projectileParameters = config.getParameter("projectileParameters")
+  activeItem.setInstanceValue("shouldGiveString", false)
 
-  self.maxLength = config.getParameter("maxLength")
+  activeItem.setInstanceValue("description", config.getParameter("originalDescription") .. "\nLength: " .. config.getParameter("maxLength") + config.getParameter("extraLength"))
+
+
+  self.extraLength = config.getParameter("extraLength", 0)
+  self.maxLength = config.getParameter("maxLength") + self.extraLength
 
   self.rope = {}
   self.ropeLength = 0
@@ -49,6 +62,13 @@ function update(dt, fireMode, shiftHeld, moves)
   self.aimAngle, self.facingDirection = activeItem.aimAngleAndDirection(self.fireOffset[2], activeItem.ownerAimPosition())
   activeItem.setFacingDirection(self.facingDirection)
   
+  if self.shouldGiveString == true then
+	self.shouldGiveString = false
+	activeItem.setInstanceValue("shouldGiveString", false)
+
+	player.giveItem(self.oldString)
+  end
+  
   trackProjectile()
 
   if self.projectileId then
@@ -63,6 +83,13 @@ function update(dt, fireMode, shiftHeld, moves)
 	  elseif firemode ~= "primary" then
 		world.sendEntityMessage(self.projectileId, "notClicking", false)
 	  end
+	  
+	  if fireMode == "primary" then
+		world.sendEntityMessage(self.projectileId, "leftClicking", true)
+	  elseif firemode ~= "primary" then
+		world.sendEntityMessage(self.projectileId, "leftClicking", false)
+	  end
+	  
 	  world.sendEntityMessage(self.projectileId, "ownerPos", position)
 
       local newRope
@@ -81,9 +108,16 @@ function update(dt, fireMode, shiftHeld, moves)
       cancel()
     end
   end
+  
+  activeItem.setInstanceValue("description", config.getParameter("originalDescription") .. "\nLength: " .. config.getParameter("maxLength") + config.getParameter("extraLength"))
 
   if self.ropeLength > self.maxLength then
     world.sendEntityMessage(self.projectileId, "tooFar", true)
+  end
+  
+  self.tooFarLength = self.maxLength + 1
+  if self.ropeLength > self.tooFarLength then
+    world.sendEntityMessage(self.projectileId, "wayTooFar", true)
   end
   
   updateStance(dt)
