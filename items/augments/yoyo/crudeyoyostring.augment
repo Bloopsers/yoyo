@@ -2,13 +2,13 @@
   "itemName" : "crudeyoyostring",
   "price" : 0,
   "rarity" : "Common",
-  "category" : "Yoyo String",
-  "inventoryIcon" : "yoyostring.png?replace;b6b6b6=c0b17c;373737=a49355",
-  "description" : "A crude yoyo string.\nLength: +1",
+  "category" : "yoyostring",
+  "inventoryIcon" : "/items/augments/yoyo/yoyostring.png?replace;6f2919=655650;a85636=c6a99d",
+  "description" : "A crude yoyo string. Increases your yoyo length by 1.",
   "shortdescription" : "Crude Yoyo String",
 
   "extraLength" : 1,
-  "stringDirectives" : "b6b6b6=c0b17c;373737=a49355",
+  "stringDirectives" : "?replace;6f2919=655650;a85636=c6a99d",
   "ropeColor" : [192, 177, 124, 255],
 
   "scripts" : [ "/scripts/augments/yoyo.lua" ]

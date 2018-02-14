@@ -2,8 +2,8 @@
   "background" : {
     "type" : "background",
     "fileHeader" : "/interface/tooltips/header.png",
-    "fileBody" : "/interface/tooltips/bodyobject.png",
-    "fileFooter" : "/interface/tooltips/footerobject.png"
+    "fileBody" : "/interface/tooltips/bodyyoyo.png",
+    "fileFooter" : "/interface/tooltips/footerobject2.png"
   },
   "moneyIcon" : {
     "type" : "image",
@@ -14,22 +14,26 @@
     "type" : "label",
     "position" : [110, 23],
     "hAnchor" : "left",
-    "value" : "0"
+    "value" : "tree"
   },
   "descriptionLabel" : {
     "type" : "label",
-    "position" : [11, 69],
+    "position" : [11, 92],
     "hAnchor" : "left",
     "vAnchor" : "top",
     "wrapWidth" : 123
   },
+  "lengthTitleLabel" : {
+    "type" : "label",
+    "position" : [9, 62],
+    "hAnchor" : "left",
+    "value" : "String Length:"
+  },
   "lengthLabel" : {
     "type" : "label",
-    "position" : [11, 59],
-    "hAnchor" : "left",
-    "vAnchor" : "top",
-	"value" : "",
-    "wrapWidth" : 123
+    "position" : [130, 62],
+    "hAnchor" : "right",
+    "wrapWidth" : 126
   },
   "rarityLabel" : {
     "type" : "label",
@@ -38,12 +42,31 @@
     "centered" : true,
     "wrapWidth" : 126
   },
-  "largeImage" : {
+  "damageKindImage" : {
     "type" : "image",
-    "position" : [70, 100],
+    "position" : [120, 110],
+    "file" : "",
     "centered" : true,
-    "file" : "/interface/money.png",
-    "maxSize" : [100, 52],
-    "minSize" : [100, 52]
+    "maxSize" : [16, 16],
+    "minSize" : [16, 16]
+  },
+  "objectImage" : {
+    "type" : "image",
+    "position" : [70, 129],
+    "file" : "",
+    "centered" : true,
+    "maxSize" : [75, 45],
+    "minSize" : [65, 35]
+  },
+  "counterWeightIconImage" : {
+    "type" : "image",
+    "position" : [6, 38],
+    "zlevel" : 3,
+    "file" : "/interface/tooltips/augment.png"
+  },
+  "counterWeightNameLabel" : {
+    "type" : "label",
+    "position" : [33, 42],
+    "value" : ""
   }
 }

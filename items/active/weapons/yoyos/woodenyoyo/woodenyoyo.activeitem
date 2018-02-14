@@ -1,27 +1,25 @@
 {
   "itemName" : "woodenyoyo",
   "price" : 50,
-  "inventoryIcon" : "woodenyoyoicon.png?replace;b6b6b6=c0b17c;373737=a49355",
-  "originalInventoryIcon" : "woodenyoyoicon.png",
+  "inventoryIcon" : "woodenyoyoicon.png",
   "rarity" : "Common",
   "maxStack" : 1,
-  "description" : "It's simple, but it's still fun as heck!\nLength: 10",
-  "originalDescription" : "It's simple, but it's still fun as heck!",
+  "description" : "It's simple, but still fun as heck!",
   "shortdescription" : "Wooden Yoyo",
   "largeImage" : "woodenyoyoicon.png",
-  "originalLargeImage" : "woodenyoyoicon.png",
-  "category" : "Weapon",
+  "tooltipKind" : "yoyo",
+  "category" : "yoyo",
   "fireTime" : 0,
   "twoHanded" : false,
 
   "scripts" : ["/items/active/weapons/yoyos/yoyo.lua"],
   "animationScripts" : ["/items/active/effects/renderyoyorope.lua"],
   "animation" : "/items/active/weapons/yoyos/yoyo.animation",
-  "animationParts" : { "yoyo" : "woodenyoyo.png" },
+  "animationParts" : { "yoyo" : "/projectiles/activeitems/yoyo/woodenyoyo.png" },
   "fireOffset" : [0, 0],
   "ropeOffset" : [0, 0],
   "ropeVisualOffset" : [0, 0],
-  
+
   "ropeWidth" : 0.75,
   "ropeColor" : [192, 177, 124, 255],
   "usesYoyoUpgrades" : true,
@@ -31,45 +29,39 @@
   "level" : 1,
   "maxLength" : 10,
   "extraLength" : 1,
-  "currentString" : "crudeyoyostring",
-  
+
+  // string
+  "currentStringType" : "crudeyoyostring",
+  //"currentStringIcon" : "/items/augments/yoyo/yoyostring.png?replace;6f2919=655650;a85636=c6a99d",
+  //"currentStringName" : "Crude Yoyo String",
+  "stringColor" : "?replace;6f2919=373737;a85636=b6b6b6",
+
+  // counterweight
+  "counterWeightType" : "",
+  "counterWeightIcon" : "",
+  "counterWeightName" : "",
+
   "secondary" : true,
   "secondaryTimer" : 5,
   "secondaryMode" : "aim",
   "secondaryIdleMode" : "aim",
   "secProjectileType" : "flamethrower",
   "secProjectileParameters" : {
-	"power" : 3,
-	"speed" : 25
+	  "power" : 3,
+	  "speed" : 25
   },
 
+  "builder" : "/items/buildscripts/buildyoyo.lua",
 
   "projectileType" : "woodenyoyo",
   "projectileParameters" : {
     "knockback" : 2,
     "power" : 7,
     "damageRepeatTimeout" : 0.2,
-	"controlMovement" : {
-		"maxSpeed" : 25,
-		"controlForce" : 80
-	},
-	
-	// if the cursor is within a certain range to the yoyo, slow it down by this multiplier. 
-	// useful for precise movements. try and keep it to scale with the "maxSpeed"
-	"shortSpeedMultiplier" : 0.2,
-	"midSpeedMultiplier" : 0.4,
-	"farSpeedMultiplier" : 0.65,
-	
-	// this is needed or else the yoyo can break if it collides. change it based on the "hoverMaxDistance" param.
-	// example: hoverMaxDistance is 10, timeBeforeNoCollide should be 20. doubling seems to work alright.
-	"timeBeforeNoCollide" : 20,
-
-    "returnOnHit" : false,
-    "pickupDistance" : 1.0,
-
-	//i suggest keeping hoverMaxDistance at 10
-    "hoverMaxDistance" : 10,
-    "hoverTime" : 0.0
+	  "controlMovement" : {
+		  "maxSpeed" : 40,
+		  "controlForce" : 100
+	  }
   },
 
   "stances" : {
@@ -100,7 +92,7 @@
       "allowRotate" : true,
       "allowFlip" : true
     },
-	"precatch" : {
+	  "precatch" : {
       "duration" : 0.1,
       "transition" : "catch",
       "armRotation" : -15,

@@ -11,10 +11,14 @@
   "speed" : 70,
   "renderLayer" : "monster+2",	
   "damageKind" : "yoyo",
-  "physics" : "yoyo",
+  "physics" : "hover",
   "bounces" : -1,
   "piercing" : true,
-  "timeToLive" : 5,
+  "timeToLive" : 100,
+  
+  "pickupDistance" : 2,
+  "maxDistance" : 10,
+  "maxYoyoTime" : 5,
 
   "scripts" : [ "yoyoprojectile.lua" ]
 }

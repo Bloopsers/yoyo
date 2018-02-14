@@ -10,27 +10,26 @@ function init()
   self.ropeVisualOffset = config.getParameter("ropeVisualOffset")
   self.projectileType = config.getParameter("projectileType")
   self.oldString = config.getParameter("oldString")
-  self.currentString = config.getParameter("currentString")
+  self.currentStringType = config.getParameter("currentStringType")
   self.secondaryInterval = config.getParameter("secondaryTimer")
   self.secondaryTimer = self.secondaryInterval
   self.secondaryIdleMode = config.getParameter("secondaryIdleMode")
   self.secondary = config.getParameter("secondary")
   self.secProjectileType = config.getParameter("secProjectileType")
   self.secondaryMode = config.getParameter("secondaryMode")
+  self.leftClicking = false
   self.secProjectileParameters = config.getParameter("secProjectileParameters")
   self.secProjectileParameters.power = self.secProjectileParameters.power * root.evalFunction("weaponDamageLevelMultiplier", config.getParameter("level", 1)) / 2
   self.noMore = false
   self.projectileIdle = false
-  if self.currentString and not self.noMore then
-  self.noMore = true
-  activeItem.setInstanceValue("oldString", self.currentString)
+
+  if self.currentStringType and not self.noMore then
+    self.noMore = true
+    activeItem.setInstanceValue("oldString", self.currentStringType)
   end
   self.shouldGiveString = config.getParameter("shouldGiveString")
   self.projectileParameters = config.getParameter("projectileParameters")
   activeItem.setInstanceValue("shouldGiveString", false)
-
-  activeItem.setInstanceValue("description", config.getParameter("originalDescription") .. "\nLength: " .. config.getParameter("maxLength") + config.getParameter("extraLength"))
-
 
   self.extraLength = config.getParameter("extraLength", 0)
   self.maxLength = config.getParameter("maxLength") + self.extraLength
@@ -59,15 +58,6 @@ function init()
   else
     setStance("idle")
   end
-  message.setHandler("rotation", function(_, _, rotation)
-      self.projectileRotation = rotation
-    end)
-  message.setHandler("velocity", function(_, _, velocity)
-      self.projectileVelocity = velocity
-    end)
-  message.setHandler("disableSecondary", function(_, _, disableSecondary)
-      self.disableSecondary = disableSecondary
-    end)
 end
 
 function uninit()
@@ -77,17 +67,18 @@ end
 function update(dt, fireMode, shiftHeld, moves)
   self.previousFireMode = fireMode
 
-  
+  self.leftClicking = fireMode == "primary"
+
   self.aimAngle, self.facingDirection = activeItem.aimAngleAndDirection(self.fireOffset[2], activeItem.ownerAimPosition())
   activeItem.setFacingDirection(self.facingDirection)
-  
-  if self.shouldGiveString == true then
-	self.shouldGiveString = false
-	activeItem.setInstanceValue("shouldGiveString", false)
 
-	player.giveItem(self.oldString)
+  if self.shouldGiveString == true then
+	   self.shouldGiveString = false
+	    activeItem.setInstanceValue("shouldGiveString", false)
+
+	     player.giveItem(self.oldString)
   end
-  
+
   trackProjectile()
 
   if self.projectileId then
@@ -119,34 +110,22 @@ function update(dt, fireMode, shiftHeld, moves)
 	  elseif self.secondaryMode == "aim" then
 		self.secondaryDirection = aimVector()
 	  end
-	  if self.secondary == true and self.secondaryTimer <= 0 and fireMode == "primary" and not self.projectileIdle then 
+	  if self.secondary == true and self.secondaryTimer <= 0 and fireMode == "primary" and not self.projectileIdle then
 	    self.secondaryTimer = self.secondaryInterval
-		self.secProjectileId = world.spawnProjectile(
-		self.secProjectileType,
-		self.projectilePosition,
-		activeItem.ownerEntityId(),
-		self.secondaryDirection,
-		false,
-		secParams
+      
+		  self.secProjectileId = world.spawnProjectile(
+		  self.secProjectileType,
+		  self.projectilePosition,
+		  activeItem.ownerEntityId(),
+		  self.secondaryDirection,
+		  false,
+		  secParams
 		)
 	  end
       local position = mcontroller.position()
       local handPosition = vec2.add(position, activeItem.handPosition(self.ropeOffset))
-	  world.sendEntityMessage(self.projectileId, "updateProjectile", activeItem.ownerAimPosition())
-	  
-	  if fireMode == "primary" then
-		world.sendEntityMessage(self.projectileId, "updateHolding", self.overrideHoverTime)
-	  elseif firemode ~= "primary" then
-		world.sendEntityMessage(self.projectileId, "notClicking", false)
-	  end
-	  
-	  if fireMode == "primary" then
-		world.sendEntityMessage(self.projectileId, "leftClicking", true)
-	  elseif firemode ~= "primary" then
-		world.sendEntityMessage(self.projectileId, "leftClicking", false)
-	  end
-	  
-	  world.sendEntityMessage(self.projectileId, "ownerPos", position)
+	    world.sendEntityMessage(self.projectileId, "updateProjectile", activeItem.ownerAimPosition())
+      world.sendEntityMessage(self.projectileId, "leftClicking", self.leftClicking)
 
       local newRope
       if #self.rope == 0 then
@@ -159,23 +138,11 @@ function update(dt, fireMode, shiftHeld, moves)
 
       windRope(newRope)
       updateRope(newRope)
-
     else
       cancel()
     end
   end
-  
-  activeItem.setInstanceValue("description", config.getParameter("originalDescription") .. "\nLength: " .. config.getParameter("maxLength") + config.getParameter("extraLength"))
 
-  if self.ropeLength > self.maxLength then
-    world.sendEntityMessage(self.projectileId, "tooFar", true)
-  end
-  
-  self.tooFarLength = self.maxLength + 1
-  if self.ropeLength > self.tooFarLength then
-    world.sendEntityMessage(self.projectileId, "wayTooFar", true)
-  end
-  
   updateStance(dt)
   checkProjectiles()
 
@@ -193,7 +160,7 @@ function update(dt, fireMode, shiftHeld, moves)
   end
 
   updateAim()
-  
+
 end
 
 function trackProjectile()
@@ -219,19 +186,22 @@ function fire()
   local params = copy(self.projectileParameters)
   params.powerMultiplier = activeItem.ownerPowerMultiplier()
   params.ownerAimPosition = activeItem.ownerAimPosition()
+  params.maxDistance = self.maxLength
+
   if self.aimDirection < 0 then params.processing = "?flipx" end
   self.projectileId = world.spawnProjectile(
-      self.projectileType,
-      firePosition(),
-      activeItem.ownerEntityId(),
-      aimVector(),
-      false,
-      params
-    )
+    self.projectileType,
+    firePosition(),
+    activeItem.ownerEntityId(),
+    aimVector(),
+    false,
+    params
+  )
+
   if self.projectileId then
     storage.projectileIds = {projectileId}
   end
-  
+
   animator.playSound("throw")
 end
 

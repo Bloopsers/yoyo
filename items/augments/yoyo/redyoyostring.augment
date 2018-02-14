@@ -2,14 +2,14 @@
   "itemName" : "redyoyostring",
   "price" : 15,
   "rarity" : "Common",
-  "category" : "Yoyo String",
-  "inventoryIcon" : "yoyostring.png?replace;b6b6b6=d93a3a;373737=932625",
-  "description" : "A red yoyo string.\nLength: +2",
+  "category" : "yoyostring",
+  "inventoryIcon" : "/items/augments/yoyo/yoyostring.png?replace;6f2919=932625;a85636=d93a3a",
+  "description" : "A red yoyo string. Increases your yoyo length by 2.",
   "shortdescription" : "Red Yoyo String",
 
-  "stringDirectives" : "b6b6b6=d93a3a;373737=932625",
   "extraLength" : 2,
   "ropeColor" : [217, 58, 58, 255],
+  "stringColor" : "?replace;6f2919=601119;a85636=d93a3a",
 
   "scripts" : [ "/scripts/augments/yoyo.lua" ]
 }

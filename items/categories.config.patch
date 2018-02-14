@@ -1,0 +1,12 @@
+[
+  {
+    "op": "add",
+    "path": "/labels/yoyo",
+    "value": "Yoyo"
+  },
+  {
+    "op": "add",
+    "path": "/labels/yoyostring",
+    "value": "Yoyo String"
+  }
+]
