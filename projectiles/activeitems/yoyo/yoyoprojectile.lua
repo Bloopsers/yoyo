@@ -10,6 +10,7 @@ function init()
   self.midSpeedMultiplier = config.getParameter("midSpeedMultiplier")
   self.farSpeedMultiplier = config.getParameter("farSpeedMultiplier")
   self.timeBeforeNoCollide = config.getParameter("timeBeforeNoCollide")
+  self.disableMainControl = false
   self.ownerId = projectile.sourceEntity()
 
   self.hoverMaxDistance = config.getParameter("hoverMaxDistance")
@@ -55,16 +56,18 @@ function init()
 end
 
 function update(dt)
-sb.logInfo(tostring(self.leftClicking))
   if self.ownerId and world.entityExists(self.ownerId) then
     if not self.returning then
       if self.hoverTimer then
-		if not self.isTooFar then
+		if not self.isTooFar and not self.disableMainControl then
 		controlTo(self.aimPosition, 1)
 		end
         self.hoverTimer = math.max(0, self.hoverTimer - dt)
       end
 
+	  world.sendEntityMessage(self.ownerId, "rotation", mcontroller.rotation())
+	  world.sendEntityMessage(self.ownerId, "velocity", mcontroller.velocity())
+	  
 	  if self.isClicking == false then
 		if self.hoverTimer then
 			self.returning = true
@@ -88,8 +91,8 @@ sb.logInfo(tostring(self.leftClicking))
         local distanceToHover = self.hoverDistance - world.magnitude(mcontroller.position(), self.initialPosition)
         if distanceToHover < 0.5 then
           self.hoverTimer = self.hoverTime
-		  self.newX = mcontroller.xVelocity() / 2
-		  self.newY = mcontroller.yVelocity() / 2
+		  self.newX = mcontroller.xVelocity() / 25
+		  self.newY = mcontroller.yVelocity() / 25
           mcontroller.setVelocity({self.newX,self.newY})
           --mcontroller.setPosition(self.hoverPosition)
         elseif distanceToHover < 5 then
@@ -128,31 +131,30 @@ sb.logInfo(tostring(self.leftClicking))
   end
   
   local cursorRange = world.distance(self.aimPosition, mcontroller.position())
+  
   if self.holdingClick == true then
 	self.holdingClick = false
-	if vec2.mag(cursorRange) < 2.5 then
+	self.disableMainControl = true
+	if vec2.mag(cursorRange) < 0.05 then
+		controlTo(self.aimPosition, 0.0001)
+		world.sendEntityMessage(self.ownerId, "disableSecondary", true)
+	elseif vec2.mag(cursorRange) < 2.5 then
 		controlTo(self.aimPosition, self.shortSpeedMultiplier)
-	else
-	end
-  
-  end
-  
-  if self.holdingClick == true then
-	self.holdingClick = false
-	if vec2.mag(cursorRange) < 5 then
+		world.sendEntityMessage(self.ownerId, "disableSecondary", false)
+	elseif vec2.mag(cursorRange) < 5 then
 		controlTo(self.aimPosition, self.midSpeedMultiplier)
-	else
-	end
-  
-  end
-  if self.holdingClick == true then
-	self.holdingClick = false
-	if vec2.mag(cursorRange) < 8 then
+		world.sendEntityMessage(self.ownerId, "disableSecondary", false)
+	elseif vec2.mag(cursorRange) < 8 then
 		controlTo(self.aimPosition, self.farSpeedMultiplier)
+		world.sendEntityMessage(self.ownerId, "disableSecondary", false)
 	else
+	self.disableMainControl = false
+	world.sendEntityMessage(self.ownerId, "disableSecondary", false)
 	end
-  
+	
   end
+  
+ sb.logInfo(sb.printJson(mcontroller.velocity()))
   
   if self.returning then
 	mcontroller.setRotation(mcontroller.rotation() + (32 * dt))

@@ -32,6 +32,17 @@
   "maxLength" : 10,
   "extraLength" : 1,
   "currentString" : "crudeyoyostring",
+  
+  "secondary" : true,
+  "secondaryTimer" : 5,
+  "secondaryMode" : "aim",
+  "secondaryIdleMode" : "aim",
+  "secProjectileType" : "flamethrower",
+  "secProjectileParameters" : {
+	"power" : 3,
+	"speed" : 25
+  },
+
 
   "projectileType" : "woodenyoyo",
   "projectileParameters" : {

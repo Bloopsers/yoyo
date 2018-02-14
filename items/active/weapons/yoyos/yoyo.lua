@@ -11,7 +11,16 @@ function init()
   self.projectileType = config.getParameter("projectileType")
   self.oldString = config.getParameter("oldString")
   self.currentString = config.getParameter("currentString")
+  self.secondaryInterval = config.getParameter("secondaryTimer")
+  self.secondaryTimer = self.secondaryInterval
+  self.secondaryIdleMode = config.getParameter("secondaryIdleMode")
+  self.secondary = config.getParameter("secondary")
+  self.secProjectileType = config.getParameter("secProjectileType")
+  self.secondaryMode = config.getParameter("secondaryMode")
+  self.secProjectileParameters = config.getParameter("secProjectileParameters")
+  self.secProjectileParameters.power = self.secProjectileParameters.power * root.evalFunction("weaponDamageLevelMultiplier", config.getParameter("level", 1)) / 2
   self.noMore = false
+  self.projectileIdle = false
   if self.currentString and not self.noMore then
   self.noMore = true
   activeItem.setInstanceValue("oldString", self.currentString)
@@ -50,6 +59,15 @@ function init()
   else
     setStance("idle")
   end
+  message.setHandler("rotation", function(_, _, rotation)
+      self.projectileRotation = rotation
+    end)
+  message.setHandler("velocity", function(_, _, velocity)
+      self.projectileVelocity = velocity
+    end)
+  message.setHandler("disableSecondary", function(_, _, disableSecondary)
+      self.disableSecondary = disableSecondary
+    end)
 end
 
 function uninit()
@@ -59,6 +77,7 @@ end
 function update(dt, fireMode, shiftHeld, moves)
   self.previousFireMode = fireMode
 
+  
   self.aimAngle, self.facingDirection = activeItem.aimAngleAndDirection(self.fireOffset[2], activeItem.ownerAimPosition())
   activeItem.setFacingDirection(self.facingDirection)
   
@@ -74,6 +93,43 @@ function update(dt, fireMode, shiftHeld, moves)
   if self.projectileId then
     setStance("throw")
     if world.entityExists(self.projectileId) then
+	  local secParams = copy(self.secProjectileParameters)
+	  secParams.powerMultiplier = activeItem.ownerPowerMultiplier()
+	  secParams.ownerAimPosition = activeItem.ownerAimPosition()
+	  self.secondaryTimer = self.secondaryTimer - 1
+	  if self.secondaryMode == "rotation" then
+	  self.secondaryDirection = {math.sin(self.projectileRotation), math.cos(self.projectileRotation)}
+	  self.projectileIdle = false
+	  elseif self.secondaryMode == "direction" then
+		if self.disableSecondary == true then
+			if self.secondaryIdleMode == "none" then
+				self.projectileIdle = true
+				self.secondaryDirection = self.projectileVelocity
+			elseif self.secondaryIdleMode == "rotation" then
+				self.projectileIdle = false
+				self.secondaryDirection = {math.sin(self.projectileRotation), math.cos(self.projectileRotation)}
+			elseif self.secondaryIdleMode == "aim" then
+				self.projectileIdle = false
+				self.secondaryDirection = aimVector()
+			end
+		else
+			self.secondaryDirection = self.projectileVelocity
+			self.projectileIdle = false
+		end
+	  elseif self.secondaryMode == "aim" then
+		self.secondaryDirection = aimVector()
+	  end
+	  if self.secondary == true and self.secondaryTimer <= 0 and fireMode == "primary" and not self.projectileIdle then 
+	    self.secondaryTimer = self.secondaryInterval
+		self.secProjectileId = world.spawnProjectile(
+		self.secProjectileType,
+		self.projectilePosition,
+		activeItem.ownerEntityId(),
+		self.secondaryDirection,
+		false,
+		secParams
+		)
+	  end
       local position = mcontroller.position()
       local handPosition = vec2.add(position, activeItem.handPosition(self.ropeOffset))
 	  world.sendEntityMessage(self.projectileId, "updateProjectile", activeItem.ownerAimPosition())
