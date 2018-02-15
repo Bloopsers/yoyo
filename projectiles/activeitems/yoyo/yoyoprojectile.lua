@@ -43,7 +43,7 @@ function update(dt)
   end
 
   distanceTraveled = 0
-
+  
   if self.ownerId and world.entityExists(self.ownerId) then
     if self.aimPosition then
       if self.leftClicking == false or self.returning == true then
@@ -54,7 +54,22 @@ function update(dt)
           projectile.die()
         end
       else
-        controlTo(self.aimPosition, 1)
+        local toTarget = world.distance(self.aimPosition, mcontroller.position())
+        -- if the yoyos on the cursor, slow it down
+		if vec2.mag(toTarget) < 0.5 then
+          controlTo(self.aimPosition, 0)
+        -- otherwise use normal speed
+        elseif vec2.mag(toTarget) < 2 then
+		  controlTo(self.aimPosition, 0.1)
+		elseif vec2.mag(toTarget) < 4 then
+		  controlTo(self.aimPosition, 0.3)
+		elseif vec2.mag(toTarget) < 6 then
+		  controlTo(self.aimPosition, 0.45)
+		elseif vec2.mag(toTarget) < 8 then
+		  controlTo(self.aimPosition, 0.575)
+		else
+          controlTo(self.aimPosition, 1)
+        end
 
         distanceTraveled = world.magnitude(world.entityPosition(self.ownerId), mcontroller.position())
 

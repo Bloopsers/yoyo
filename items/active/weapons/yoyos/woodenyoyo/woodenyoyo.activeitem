@@ -59,7 +59,7 @@
     "power" : 7,
     "damageRepeatTimeout" : 0.2,
 	  "controlMovement" : {
-		  "maxSpeed" : 40,
+		  "maxSpeed" : 30,
 		  "controlForce" : 100
 	  }
   },
