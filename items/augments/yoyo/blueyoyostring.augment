@@ -2,13 +2,13 @@
   "itemName" : "blueyoyostring",
   "price" : 15,
   "rarity" : "Common",
-  "category" : "Yoyo String",
-  "inventoryIcon" : "yoyostring.png?replace;b6b6b6=5588d4;373737=344495",
-  "description" : "A blue yoyo string.\nLength: +2",
+  "category" : "yoyostring",
+  "inventoryIcon" : "/items/augments/yoyo/yoyostring.png?replace;6f2919=344495;a85636=96cbe7",
+  "description" : "A blue yoyo string. Increases your yoyo length by 2.",
   "shortdescription" : "Blue Yoyo String",
 
   "extraLength" : 2,
-  "stringDirectives" : "b6b6b6=5588d4;373737=344495",
+  "stringColor" : "?replace;6f2919=344495;a85636=96cbe7",
   "ropeColor" : [85, 136, 212, 255],
 
   "scripts" : [ "/scripts/augments/yoyo.lua" ]

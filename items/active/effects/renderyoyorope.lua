@@ -7,7 +7,7 @@ function update()
   local ropeParticleDensity = animationConfig.animationParameter("ropeParticleDensity")
 
   local lastPoint = activeItemAnimation.handPosition(animationConfig.animationParameter("ropeOffset"))
-  for i = 2, 1000 do
+  for i = 2, 500 do
     local nextPoint = animationConfig.animationParameter("p"..i)
     if nextPoint == nil then
       break

@@ -2,13 +2,13 @@
   "itemName" : "pinkyoyostring",
   "price" : 15,
   "rarity" : "Common",
-  "category" : "Yoyo String",
-  "inventoryIcon" : "yoyostring.png?replace;b6b6b6=eab3db;373737=d35eae",
-  "description" : "A pink yoyo string.\nLength: +2",
+  "category" : "yoyostring",
+  "inventoryIcon" : "/items/augments/yoyo/yoyostring.png?replace;6f2919=97276d;a85636=eab3db",
+  "description" : "A pink yoyo string. Increases your yoyo length by 2.",
   "shortdescription" : "Pink Yoyo String",
 
   "extraLength" : 2,
-  "stringDirectives" : "b6b6b6=eab3db;373737=d35eae",
+  "stringColor" : "?replace;6f2919=97276d;a85636=eab3db",
   "ropeColor" : [234, 179, 219, 255],
 
   "scripts" : [ "/scripts/augments/yoyo.lua" ]

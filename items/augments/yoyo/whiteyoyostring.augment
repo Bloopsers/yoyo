@@ -2,13 +2,13 @@
   "itemName" : "whiteyoyostring",
   "price" : 15,
   "rarity" : "Common",
-  "category" : "Yoyo String",
-  "inventoryIcon" : "yoyostring.png?replace;b6b6b6=b6b6b6;373737=373737",
-  "description" : "A white yoyo string.\nLength: +2",
+  "category" : "yoyostring",
+  "inventoryIcon" : "/items/augments/yoyo/yoyostring.png?replace;6f2919=7b7b7b;a85636=e6e6e6",
+  "description" : "A white yoyo string. Increases your yoyo length by 2.",
   "shortdescription" : "White Yoyo String",
 
   "extraLength" : 2,
-  "stringDirectives" : "b6b6b6=b6b6b6;373737=373737",
+  "stringColor" : "?replace;6f2919=7b7b7b;a85636=e6e6e6",
   "ropeColor" : [182, 182, 182, 255],
 
   "scripts" : [ "/scripts/augments/yoyo.lua" ]

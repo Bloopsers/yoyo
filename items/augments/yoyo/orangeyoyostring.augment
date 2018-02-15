@@ -2,13 +2,13 @@
   "itemName" : "orangeyoyostring",
   "price" : 15,
   "rarity" : "Common",
-  "category" : "Yoyo String",
-  "inventoryIcon" : "yoyostring.png?replace;b6b6b6=ea9931;373737=af4e00",
-  "description" : "An orange yoyo string.\nLength: +2",
+  "category" : "yoyostring",
+  "inventoryIcon" : "/items/augments/yoyo/yoyostring.png?replace;6f2919=af4e00;a85636=ffd495",
+  "description" : "An orange yoyo string. Increases your yoyo length by 2.",
   "shortdescription" : "Orange Yoyo String",
 
   "extraLength" : 2,
-  "stringDirectives" : "b6b6b6=ea9931;373737=af4e00",
+  "stringColor" : "?replace;6f2919=af4e00;a85636=ffd495",
   "ropeColor" : [234, 153, 49, 255],
 
   "scripts" : [ "/scripts/augments/yoyo.lua" ]

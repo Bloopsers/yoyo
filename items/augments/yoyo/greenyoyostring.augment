@@ -2,13 +2,13 @@
   "itemName" : "greenyoyostring",
   "price" : 15,
   "rarity" : "Common",
-  "category" : "Yoyo String",
-  "inventoryIcon" : "yoyostring.png?replace;b6b6b6=51bd3b;373737=247824",
-  "description" : "A green yoyo string.\nLength: +2",
+  "category" : "yoyostring",
+  "inventoryIcon" : "/items/augments/yoyo/yoyostring.png?replace;6f2919=247824;a85636=b2e89d",
+  "description" : "A green yoyo string. Increases your yoyo length by 2.",
   "shortdescription" : "Green Yoyo String",
 
   "extraLength" : 2,
-  "stringDirectives" : "b6b6b6=51bd3b;373737=247824",
+  "stringColor" : "?replace;6f2919=247824;a85636=b2e89d",
   "ropeColor" : [81, 189, 59, 255],
 
   "scripts" : [ "/scripts/augments/yoyo.lua" ]

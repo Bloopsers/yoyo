@@ -2,13 +2,13 @@
   "itemName" : "purpleyoyostring",
   "price" : 15,
   "rarity" : "Common",
-  "category" : "Yoyo String",
-  "inventoryIcon" : "yoyostring.png?replace;b6b6b6=a451c4;373737=6a2284",
-  "description" : "A purple yoyo string.\nLength: +2",
+  "category" : "yoyostring",
+  "inventoryIcon" : "/items/augments/yoyo/yoyostring.png?replace;6f2919=6a2284;a85636=d29ce7",
+  "description" : "A purple yoyo string. Increases your yoyo length by 2.",
   "shortdescription" : "Purple Yoyo String",
 
   "extraLength" : 2,
-  "stringDirectives" : "b6b6b6=a451c4;373737=6a2284",
+  "stringColor" : "?replace;6f2919=6a2284;a85636=d29ce7",
   "ropeColor" : [164, 81, 196, 255],
 
   "scripts" : [ "/scripts/augments/yoyo.lua" ]
