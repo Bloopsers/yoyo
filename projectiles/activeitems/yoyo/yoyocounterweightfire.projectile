@@ -1,0 +1,20 @@
+{
+  "projectileName" : "yoyocounterweightfire",
+  "image" : "counterweightfire.png",
+  "flippable" : false,
+  "orientationLocked" : true,
+  "actionOnReap" : [ ],
+  "statusEffects" : [ ],
+  "damagePoly" : [[-4, 2], [-2, 4], [2, 4], [4, 2], [4, -2], [2, -4], [-2, -4], [-4, -2]],
+  "power" : 2.0,
+  "emitters" : [ "fireflames" ],
+  "speed" : 3,
+  "renderLayer" : "monster+2",
+  "damageKind" : "yoyo",
+  "physics" : "counterweight",
+  "bounces" : -1,
+  "piercing" : true,
+  "timeToLive" : 8,
+
+  "scripts" : [ "counterweight.lua" ]
+}

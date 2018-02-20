@@ -17,11 +17,29 @@
   "animation" : "/items/active/weapons/yoyos/yoyo.animation",
   "animationParts" : { "yoyo" : "/projectiles/activeitems/yoyo/woodenyoyo.png" },
   "fireOffset" : [0, 0],
-  "ropeOffset" : [0, 0],
-  "ropeVisualOffset" : [0, 0],
 
-  "ropeWidth" : 0.75,
-  "ropeColor" : [192, 177, 124, 255],
+  "rope" : {
+    "yoyo" : {
+      "width" : 0.75,
+      "color" : [192, 177, 124, 255],
+      "offset" : [0, 0],
+      "visualOffset" : [0, 0]
+    }
+  },
+
+  "counterweights" : [
+    {
+      "projectileType" : "yoyocounterweightfire",
+      "projectileParameters" : {},
+      "rope" : {
+        "width" : 0.75,
+        "color" : [255, 0, 0],
+        "offset" : [0, 0],
+        "visualOffset" : [0, 0]
+      }
+    }
+  ],
+
   "usesYoyoUpgrades" : true,
   "shouldGiveString" : false,
 
@@ -41,14 +59,13 @@
   "counterWeightIcon" : "",
   "counterWeightName" : "",
 
-  "secondary" : true,
-  "secondaryTimer" : 5,
-  "secondaryMode" : "aim",
-  "secondaryIdleMode" : "aim",
-  "secProjectileType" : "flamethrower",
-  "secProjectileParameters" : {
-	  "power" : 3,
-	  "speed" : 25
+  "secondary" : {
+    "emissionCycle" : 0.25,
+    "projectileType" : "flamethrower",
+    "projectileParameters" : {
+	    "power" : 3,
+	    "speed" : 25
+    }
   },
 
   "builder" : "/items/buildscripts/buildyoyo.lua",

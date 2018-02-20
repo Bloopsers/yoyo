@@ -1,6 +1,7 @@
 require "/scripts/vec2.lua"
 
 function init()
+  mcontroller.applyParameters({gravityEnabled = false})
   self.controlMovement = config.getParameter("controlMovement")
   self.controlRotation = config.getParameter("controlRotation")
   self.rotationSpeed = 0
@@ -33,17 +34,11 @@ end
 
 function update(dt)
   self.yoyoTime = self.yoyoTime + (1 * dt)
-
   if self.yoyoTime >= self.maxYoyoTime then
     self.returning = true
+    mcontroller.applyParameters({collisionEnabled = false})
   end
 
-  if self.yoyoTime >= self.maxYoyoTime * 2 then
-    projectile.die()
-  end
-
-  distanceTraveled = 0
-  
   if self.ownerId and world.entityExists(self.ownerId) then
     if self.aimPosition then
       if self.leftClicking == false or self.returning == true then
@@ -55,23 +50,21 @@ function update(dt)
         end
       else
         local toTarget = world.distance(self.aimPosition, mcontroller.position())
-        -- if the yoyos on the cursor, slow it down
-		if vec2.mag(toTarget) < 0.5 then
+		    if vec2.mag(toTarget) < 0.5 then
           controlTo(self.aimPosition, 0)
-        -- otherwise use normal speed
         elseif vec2.mag(toTarget) < 2 then
-		  controlTo(self.aimPosition, 0.1)
-		elseif vec2.mag(toTarget) < 4 then
-		  controlTo(self.aimPosition, 0.3)
-		elseif vec2.mag(toTarget) < 6 then
-		  controlTo(self.aimPosition, 0.45)
-		elseif vec2.mag(toTarget) < 8 then
-		  controlTo(self.aimPosition, 0.575)
-		else
+		      controlTo(self.aimPosition, 0.1)
+		    elseif vec2.mag(toTarget) < 4 then
+		      controlTo(self.aimPosition, 0.3)
+		    elseif vec2.mag(toTarget) < 6 then
+		      controlTo(self.aimPosition, 0.45)
+		    elseif vec2.mag(toTarget) < 8 then
+		      controlTo(self.aimPosition, 0.575)
+		    else
           controlTo(self.aimPosition, 1)
         end
 
-        distanceTraveled = world.magnitude(world.entityPosition(self.ownerId), mcontroller.position())
+        local distanceTraveled = world.magnitude(world.entityPosition(self.ownerId), mcontroller.position())
 
         if distanceTraveled > self.maxDistance then
           controlTo(world.entityPosition(self.ownerId), 2.5)
