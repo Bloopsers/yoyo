@@ -17,6 +17,37 @@
     "centered" : true,
     "wrapWidth" : 126
   },
+  "descriptionLabel" : {
+    "type" : "label",
+    "position" : [15, 90],
+    "hAnchor" : "left",
+    "vAnchor" : "top",
+    "wrapWidth" : 123
+  },
+  "lengthTitleLabel" : {
+    "type" : "label",
+    "position" : [15, 51.5],
+    "hAnchor" : "left",
+    "value" : "String Length:"
+  },
+  "lengthLabel" : {
+    "type" : "label",
+    "position" : [130, 51.5],
+    "hAnchor" : "right",
+    "wrapWidth" : 126
+  },
+  "damageTitleLabel" : {
+    "type" : "label",
+    "position" : [15, 61],
+    "hAnchor" : "left",
+    "value" : "Damage Per Second:"
+  },
+  "damageLabel" : {
+    "type" : "label",
+    "position" : [130, 61],
+    "hAnchor" : "right",
+    "wrapWidth" : 126
+  },
   "damageKindImage" : {
     "type" : "image",
     "position" : [120, 105],

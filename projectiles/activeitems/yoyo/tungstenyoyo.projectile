@@ -1,7 +1,6 @@
 {
-  "projectileName" : "woodenyoyo",
-  "image" : "woodenyoyo.png",
-  "damageKindImage" : "icon.png",
+  "projectileName" : "tungstenyoyo",
+  "image" : "tungstenyoyo.png",
   "flippable" : false,
   "orientationLocked" : true,
   "actionOnReap" : [ ],

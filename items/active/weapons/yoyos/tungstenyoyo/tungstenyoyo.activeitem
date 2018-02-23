@@ -1,18 +1,18 @@
 {
-  "itemName" : "woodenyoyo",
-  "price" : 50,
-  "inventoryIcon" : "woodenyoyoicon.png",
+  "itemName" : "tungstenyoyo",
+  "price" : 640,
+  "inventoryIcon" : "icon.png",
   "rarity" : "Common",
   "maxStack" : 1,
   "description" : "It's simple, but still fun as heck!",
-  "shortdescription" : "Wooden Yoyo",
-  "largeImage" : "woodenyoyoicon.png",
+  "shortdescription" : "Tungsten Yoyo",
+  "largeImage" : "icon.png",
   "tooltipKind" : "yoyo",
   "category" : "yoyo",
   "fireTime" : 0,
   "twoHanded" : false,
   "itemTags" : ["weapon","yoyo"],
-  "level" : 1,
+  "level" : 2,
 
   "scripts" : ["/items/active/weapons/yoyos/yoyo.lua"],
   "animationScripts" : ["/items/active/effects/renderyoyorope.lua"],
@@ -22,7 +22,7 @@
       "throw" : ["/sfx/melee/sword_spinslash.ogg"]
     }
   },
-  "animationParts" : { "yoyo" : "/projectiles/activeitems/yoyo/woodenyoyo.png" },
+  "animationParts" : { "yoyo" : "/projectiles/activeitems/yoyo/tungstenyoyo.png" },
 
   "fireOffset" : [0, 0],
 
@@ -35,12 +35,26 @@
     }
   },
 
-  "counterweights" : [],
+  "counterweights" : [
+    {
+      "projectileType" : "yoyocounterweightfire",
+      "projectileParameters" : {
+        "counterWeightRadius" : 7,
+        "counterWeightSpeed" : 25
+      },
+      "rope" : {
+        "width" : 0.75,
+        "color" : [147, 38, 37],
+        "offset" : [0, 0],
+        "visualOffset" : [0, 0]
+      }
+    }
+  ],
 
   "usesYoyoUpgrades" : true,
   "shouldGiveString" : false,
 
-  "maxLength" : 9,
+  "maxLength" : 12,
   "extraLength" : 1,
 
   // string
@@ -54,24 +68,15 @@
   "counterWeightIcon" : "",
   "counterWeightName" : "",
 
-  /*"secondary" : {
-    "emissionCycle" : 0.25,
-    "projectileType" : "flamethrower",
-    "projectileParameters" : {
-	    "power" : 3,
-	    "speed" : 25
-    }
-  },*/
-
   "builder" : "/items/buildscripts/buildyoyo.lua",
 
-  "projectileType" : "woodenyoyo",
+  "projectileType" : "tungstenyoyo",
   "projectileParameters" : {
     "knockback" : 2,
-    "power" : 5,
+    "power" : 6,
     "damageRepeatTimeout" : 1.0,
-    "yoyoSpeed" : 19,
-    "maxYoyoTime" : 4
+    "yoyoSpeed" : 22,
+    "maxYoyoTime" : 5.5
   },
 
   "stances" : {

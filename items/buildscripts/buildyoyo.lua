@@ -4,6 +4,11 @@ function build(directory, config, parameters, level, seed)
   local params = sb.jsonMerge(config, parameters)
 
   config.tooltipFields = {}
+  if params.projectileParameters.damageRepeatTimeout and params.projectileParameters.power then
+    local power = params.projectileParameters.power * root.evalFunction("weaponDamageLevelMultiplier", params.level or 1)
+    local damage = power / params.projectileParameters.damageRepeatTimeout * 1
+    config.tooltipFields.damageLabel = damage
+  end
   config.tooltipFields.lengthLabel = string.format("%s (+%s)", params.maxLength, params.extraLength)
 
   local elementalType = params.elementalType or "physical"

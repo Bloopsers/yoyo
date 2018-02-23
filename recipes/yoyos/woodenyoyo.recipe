@@ -1,0 +1,9 @@
+{
+  "input" : [
+    { "item" : "copperbar", "count" : 3 },
+    { "item" : "string", "count" : 10 },
+    { "item" : "darkwoodmaterial", "count" : 30 }
+  ],
+  "output" : { "item" : "woodenyoyo", "count" : 1 },
+  "groups" : [ "craftinganvil", "weapons", "all" ]
+}

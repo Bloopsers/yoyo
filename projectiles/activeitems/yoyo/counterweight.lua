@@ -1,48 +1,52 @@
 require "/scripts/vec2.lua"
 
 function init()
-  mcontroller.applyParameters({gravityEnabled = false})
-  self.controlMovement = config.getParameter("controlMovement")
-  self.controlRotation = config.getParameter("controlRotation")
-  self.rotationSpeed = 0
-  self.ownerId = nil
-  self.timedActions = config.getParameter("timedActions", {})
-  self.leftClicking = false
-  self.pickupDistance = config.getParameter("pickupDistance", 2)
-  self.maxDistance = config.getParameter("maxDistance")
-  self.facingDirection = 1
-  self.controlMovement = {
-    maxSpeed = 50,
-    controlForce = 120
-  }
+  mcontroller.applyParameters({
+    gravityEnabled = false,
+    collisionPoly = {{-0.35, -0.35}, {0.35, -0.35}, {0, 0.35}, {-0.35, -0.35}}
+  })
 
-  rotateSpeed = 4
-  if math.random(1, 2) == 1 then
-    rotateSpeed = -4
-  end
-  angle = 0
+  radius = config.getParameter("counterWeightRadius")
+  rotateSpeed = config.getParameter("rotateSpeed", 3)
+  local angles = { 0, 180, -180 }
+  angle = angles[math.random(1, 3)]
+  speed = config.getParameter("counterWeightSpeed")
 
   self.ownerId = projectile.sourceEntity()
-
-  message.setHandler("facingDirection", function(_, _, facingDirection)
-    self.facingDirection = facingDirection
-    return entity.id()
-  end)
 end
 
 function kill()
   projectile.die()
 end
 
-function update(dt)
-  local ownerPos = world.entityPosition(self.ownerId)
-  if mcontroller.isColliding() == true then
-    rotateSpeed = rotateSpeed - rotateSpeed * 2
+function circle(radius, points, center)
+  local poly = {}
+  center = center or {0, 0}
+  for i = 0, points - 1 do
+    local angle = (i / points) * math.pi * 2
+    table.insert(poly, vec2.add(center, vec2.withAngle(angle, radius)))
   end
+  return poly
+end
+
+function update(dt)
+  world.debugPoly(circle(radius, 32, world.entityPosition(self.ownerId)), {0, 255, 0})
+  local ownerPos = world.entityPosition(self.ownerId)
+
   angle = angle + (rotateSpeed * dt)
   mcontroller.setRotation(angle)
 
-  local radius = 7
   local offset = vec2.mul({math.sin(angle), math.cos(angle)}, radius)
-  mcontroller.setPosition(world.nearestTo(ownerPos, vec2.add(ownerPos, offset)))
+  controlTo(vec2.add(ownerPos, offset), speed)
+end
+
+function hit(entityId)
+  rotateSpeed = rotateSpeed - rotateSpeed * 2
+end
+
+function controlTo(position, speed)
+  local speed = speed or self.yoyoSpeed
+  local offset = world.distance(position, mcontroller.position())
+  local vel = vec2.mul(vec2.norm(offset), speed)
+  mcontroller.setVelocity(vel)
 end

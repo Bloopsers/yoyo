@@ -1,9 +1,9 @@
 {
   "author" : "Bloopers & eralois",
-  "description" : "Adds new vehicles & modifies existing ones",
-  "friendlyName" : "Pimp My Ride!",
-  "includes" : ["Portable Outpost", "Hover Wheelchair", "Explorerpod", "I Want to MECHANIZE That Van"],
-  "link" : "steam://url/CommunityFilePage/896508953 ",
-  "name" : "yoyo",
-  "steamContentId" : "896508953",
-  "version" : "1.5"}
+  "description" : "Adds yoyos",
+  "friendlyName" : "Yoyos",
+  "includes" : [],
+  "link" : "",
+  "name" : "yoyos",
+  "steamContentId" : "",
+  "version" : "1.0.0"}

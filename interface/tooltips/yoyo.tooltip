@@ -18,20 +18,32 @@
   },
   "descriptionLabel" : {
     "type" : "label",
-    "position" : [9, 92],
+    "position" : [9, 101],
     "hAnchor" : "left",
     "vAnchor" : "top",
     "wrapWidth" : 123
   },
   "lengthTitleLabel" : {
     "type" : "label",
-    "position" : [9, 62],
+    "position" : [9, 61.5],
     "hAnchor" : "left",
     "value" : "String Length:"
   },
   "lengthLabel" : {
     "type" : "label",
-    "position" : [130, 62],
+    "position" : [130, 61.5],
+    "hAnchor" : "right",
+    "wrapWidth" : 126
+  },
+  "damageTitleLabel" : {
+    "type" : "label",
+    "position" : [9, 71],
+    "hAnchor" : "left",
+    "value" : "Damage Per Second:"
+  },
+  "damageLabel" : {
+    "type" : "label",
+    "position" : [130, 71],
     "hAnchor" : "right",
     "wrapWidth" : 126
   },

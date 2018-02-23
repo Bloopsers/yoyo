@@ -47,15 +47,12 @@ function init()
 
   self.maxLength = config.getParameter("maxLength", 5) + config.getParameter("extraLength", 0)
 
-  self.ropeLength = 0
   self.aimAngle = 0
   self.facingDirection = 0
   self.projectileId = nil
   self.projectilePosition = nil
   self.anchored = false
-  self.previousMoves = {}
   self.previousFireMode = nil
-  self.overrideHoverTime = config.getParameter("overrideHoverTime")
 
   self.projectileParameters.power = self.projectileParameters.power * root.evalFunction("weaponDamageLevelMultiplier", config.getParameter("level", 1))
   initStances()
@@ -99,21 +96,12 @@ function update(dt, fireMode, shiftHeld, moves)
     if world.entityExists(self.projectileId) then
       for id,counterweight in pairs(counterweights) do
         if world.entityExists(counterweight.projId) then
-          world.sendEntityMessage(counterweight.projId, "facingDirection", mcontroller.facingDirection())
           counterweight.position = world.entityPosition(counterweight.projId)
           local position = mcontroller.position()
           local id = "counterWeight" .. id
           local handPosition = vec2.add(position, activeItem.handPosition(rope[id].params.visualOffset))
 
-          local newRope
-          if #rope[id].points == 0 then
-            newRope = {handPosition, counterweight.position}
-          else
-            newRope = copy(rope[id].points)
-            table.insert(newRope, 1, world.nearestTo(newRope[1], handPosition))
-            table.insert(newRope, world.nearestTo(newRope[#newRope], counterweight.position))
-          end
-          updateRope(id, windRope(newRope))
+          updateRope(id, {handPosition, counterweight.position})
         end
       end
       world.sendEntityMessage(self.projectileId, "updateProjectile", activeItem.ownerAimPosition())
@@ -140,16 +128,7 @@ function update(dt, fireMode, shiftHeld, moves)
       local position = mcontroller.position()
       local handPosition = vec2.add(position, activeItem.handPosition(self.ropeOffset))
 
-      local newRope
-      if #rope.yoyo.points == 0 then
-        newRope = {handPosition, self.projectilePosition}
-      else
-        newRope = copy(rope.yoyo.points)
-        table.insert(newRope, 1, world.nearestTo(newRope[1], handPosition))
-        table.insert(newRope, world.nearestTo(newRope[#newRope], self.projectilePosition))
-      end
-
-      updateRope("yoyo", windRope(newRope))
+      updateRope("yoyo", {handPosition, self.projectilePosition})
     else
       cancel()
     end
@@ -225,7 +204,7 @@ function fire()
   for index,counterweight in pairs(counterweights) do
     counterweight.projId = world.spawnProjectile(
       counterweight.projectileType,
-      firePosition(),
+      mcontroller.position(),
       activeItem.ownerEntityId(),
       aimVector(),
       false,

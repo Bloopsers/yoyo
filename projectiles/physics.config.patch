@@ -4,7 +4,7 @@
     "path": "/counterweight",
     "value": {
       "gravityMultiplier" : 0.0,
-      "bounceFactor" : 0.0,
+      "bounceFactor" : 2.0,
       "stopOnFirstBounce" : false,
       "maxMovementPerStep" : 0.4,
       "collisionPoly" : [ [-0.25, -0.25], [0.25, -0.25], [0.25, 0.25], [-0.25, 0.25] ],
@@ -12,7 +12,7 @@
       "groundFriction" : 0.0,
       "airFriction" : 0.0,
       "liquidFriction" : 0.0,
-      "speedLimit" : null,
+      "speedLimit" : 20,
       "maximumCorrection" : 0.75
     }
   }
