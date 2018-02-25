@@ -3,9 +3,11 @@ require "/scripts/vec2.lua"
 function init()
   mcontroller.applyParameters({
     gravityEnabled = false,
+	mass = 0,
     collisionPoly = {{-0.35, -0.35}, {0.35, -0.35}, {0, 0.35}, {-0.35, -0.35}}
   })
 
+  self.switchTimer = 1
   radius = config.getParameter("counterWeightRadius")
   rotateSpeed = config.getParameter("rotateSpeed", 3)
   local angles = { 0, 180, -180 }
@@ -37,7 +39,21 @@ function update(dt)
   mcontroller.setRotation(angle)
 
   local offset = vec2.mul({math.sin(angle), math.cos(angle)}, radius)
-  controlTo(vec2.add(ownerPos, offset), speed)
+  if world.magnitude(mcontroller.position(), ownerPos) > 7 then
+  controlTo(vec2.add(ownerPos, offset), 50000)
+  else
+  controlTo(vec2.add(ownerPos, offset), 25)
+  end
+  
+  if mcontroller.isColliding() then
+  
+	self.switchTimer = self.switchTimer - 1
+	if self.switchTimer == 0 then
+    rotateSpeed = rotateSpeed - rotateSpeed * 2
+	end
+  else
+	self.switchTimer = 1
+  end
 end
 
 function hit(entityId)
