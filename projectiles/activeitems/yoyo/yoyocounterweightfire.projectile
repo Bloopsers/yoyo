@@ -4,7 +4,6 @@
   "flippable" : false,
   "orientationLocked" : true,
   "actionOnReap" : [ ],
-  "statusEffects" : [ ],
   "damagePoly" : [[-0.35, -0.35], [0.35, -0.35], [0, 0.35], [-0.35, -0.35]],
   "power" : 2.0,
   "speed" : 3,
@@ -14,7 +13,11 @@
   "physics" : "counterweight",
   "bounces" : 999,
   "piercing" : true,
-  "timeToLive" : 8,
+  "timeToLive" : 100,
+
+  "statusEffects" : [
+    "burning"
+  ],
 
   "scripts" : [ "counterweight.lua" ]
 }

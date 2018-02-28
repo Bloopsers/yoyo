@@ -1,0 +1,28 @@
+{
+  "itemName" : "counterweightfire",
+  "price" : 100,
+  "rarity" : "Common",
+  "category" : "yoyocounterweight",
+  "inventoryIcon" : "/items/augments/yoyo/yoyostring.png",
+  "description" : "A fiery counterweight.",
+  "shortdescription" : "Fiery Counterweight",
+
+  "counterweights" : [
+    {
+      "projectileType" : "yoyocounterweightfire",
+      "fromItem" : true,
+      "projectileParameters" : {
+        "counterWeightRadius" : 7,
+        "counterWeightSpeed" : 25
+      },
+      "rope" : {
+        "width" : 0.75,
+        "color" : [147, 38, 37],
+        "offset" : [0, 0],
+        "visualOffset" : [0, 0]
+      }
+    }
+  ],
+
+  "scripts" : [ "/scripts/augments/counterweight.lua" ]
+}

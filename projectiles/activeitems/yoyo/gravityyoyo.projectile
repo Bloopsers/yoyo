@@ -1,0 +1,59 @@
+{
+  "projectileName" : "gravityyoyo",
+  "image" : "gravityyoyo.png",
+  "flippable" : false,
+  "orientationLocked" : true,
+  "fullbright" : true,
+  "lightColor" : [210, 156, 231],
+  "actionOnReap" : [ ],
+  "statusEffects" : [ ],
+  "damagePoly" : [[-4, 2], [-2, 4], [2, 4], [4, 2], [4, -2], [2, -4], [-2, -4], [-4, -2]],
+  "power" : 5.0,
+  "speed" : 40,
+  "renderLayer" : "overlay-1",
+  "damageKind" : "yoyo",
+  "physics" : "hover",
+  "bounces" : -1,
+  "piercing" : true,
+  "timeToLive" : 100,
+
+  "physicsForces" : {
+    "vacuum" : {
+      "type" : "RadialForceRegion",
+      "outerRadius" : 5,
+      "innerRadius" : 0,
+      "targetRadialVelocity" : -20,
+      "controlForce" : 500,
+      "categoryWhitelist" : ["monster", "itemdrop"]
+    }
+  },
+
+  "periodicActions" : [
+    {
+      "action" : "particle",
+      "specification" : "gravityyoyotrail",
+      "time" : 0.03,
+      "repeat" : true
+    },
+    {
+      "action" : "particle",
+      "specification" : "energyblade",
+      "time" : 0.2,
+      "repeat" : true
+    },
+    {
+      "action" : "particle",
+      "specification" : "energyblade2",
+      "time" : 0.4,
+      "repeat" : true
+    }
+  ],
+
+  "pickupDistance" : 2,
+  "maxDistance" : 10,
+  "maxYoyoTime" : 5,
+
+  "persistentAudio" : "/sfx/projectiles/gravitymine_loop.ogg",
+
+  "scripts" : [ "yoyoprojectile.lua" ]
+}

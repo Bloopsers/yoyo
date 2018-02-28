@@ -29,7 +29,7 @@
   "rope" : {
     "yoyo" : {
       "width" : 0.75,
-      "color" : [192, 177, 124, 255],
+      "color" : [202, 202, 202, 255],
       "offset" : [0, 0],
       "visualOffset" : [0, 0]
     }
@@ -39,8 +39,9 @@
     {
       "projectileType" : "yoyocounterweightfire",
       "projectileParameters" : {
-        "counterWeightRadius" : 7,
-        "counterWeightSpeed" : 25
+        "power" : 5,
+        "rotateRadius" : 7,
+        "rotateSpeed" : 3.14
       },
       "rope" : {
         "width" : 0.75,
@@ -54,13 +55,11 @@
   "usesYoyoUpgrades" : true,
   "shouldGiveString" : false,
 
-  "maxLength" : 12,
+  "maxLength" : 11,
   "extraLength" : 1,
 
   // string
-  "currentStringType" : "crudeyoyostring",
-  //"currentStringIcon" : "/items/augments/yoyo/yoyostring.png?replace;6f2919=655650;a85636=c6a99d",
-  //"currentStringName" : "Crude Yoyo String",
+  "currentStringType" : "yoyostring",
   "stringColor" : "?replace;6f2919=373737;a85636=b6b6b6",
 
   // counterweight
@@ -73,7 +72,7 @@
   "projectileType" : "tungstenyoyo",
   "projectileParameters" : {
     "knockback" : 2,
-    "power" : 6,
+    "power" : 5,
     "damageRepeatTimeout" : 1.0,
     "yoyoSpeed" : 22,
     "maxYoyoTime" : 5.5

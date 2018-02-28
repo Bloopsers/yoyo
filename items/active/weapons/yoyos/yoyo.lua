@@ -1,6 +1,5 @@
 require "/scripts/util.lua"
 require "/scripts/vec2.lua"
-require "/scripts/yoyorope.lua"
 require "/scripts/activeitem/stances.lua"
 
 
@@ -27,20 +26,22 @@ function init()
       params = counterweight.rope
     }
     table.insert(ropeIds, "counterWeight" .. index)
+    if counterweight.projectileParameters.power then
+      counterweight.projectileParameters.power = counterweight.projectileParameters.power * root.evalFunction("weaponDamageLevelMultiplier", config.getParameter("level", 1))
+    end
   end
 
   activeItem.setScriptedAnimationParameter("ropes", ropeIds)
 
   self.projectileType = config.getParameter("projectileType")
-  self.oldString = config.getParameter("oldString")
-  self.currentStringType = config.getParameter("currentStringType")
 
   self.secondary = config.getParameter("secondary")
   self.secondaryTimer = 0
   self.leftClicking = false
+  self.yoyoRotation = 0
 
   if self.secondary then
-    self.secondary.projectileParameters.power = self.secondary.projectileParameters.power * root.evalFunction("weaponDamageLevelMultiplier", config.getParameter("level", 1)) / 2
+    self.secondary.projectileParameters.power = self.secondary.projectileParameters.power * root.evalFunction("weaponDamageLevelMultiplier", config.getParameter("level", 1))
   end
 
   self.projectileParameters = config.getParameter("projectileParameters")
@@ -82,11 +83,10 @@ function update(dt, fireMode, shiftHeld, moves)
   self.aimAngle, self.facingDirection = activeItem.aimAngleAndDirection(self.fireOffset[2], activeItem.ownerAimPosition())
   activeItem.setFacingDirection(self.facingDirection)
 
-  if self.shouldGiveString == true then
-	  self.shouldGiveString = false
-	  activeItem.setInstanceValue("shouldGiveString", false)
-
-	  player.giveItem(self.oldString)
+  local oldString = config.getParameter("oldStringDescriptor")
+  if oldString then
+	  player.giveItem(oldString)
+	  activeItem.setInstanceValue("oldStringDescriptor", nil)
   end
 
   trackProjectile()
@@ -109,15 +109,24 @@ function update(dt, fireMode, shiftHeld, moves)
 
       if self.secondary and fireMode == "primary" then
         if self.secondaryTimer > self.secondary.emissionCycle then
+          animator.playSound("secondaryShoot")
+          animator.setSoundVolume("secondaryShoot", config.getParameter("secondary.shootVolume", 1), 0.0)
+
 	        local secParams = copy(self.secondary)
 	        secParams.powerMultiplier = activeItem.ownerPowerMultiplier()
 	        secParams.ownerAimPosition = activeItem.ownerAimPosition()
+
+          if self.secondary.aimMode == "rotation" then
+            direction = {math.sin(self.yoyoRotation), math.cos(self.yoyoRotation)}
+          else
+            direction = aimVector()
+          end
 
 		      self.secProjectileId = world.spawnProjectile(
 		        self.secondary.projectileType,
 		        self.projectilePosition,
 		        activeItem.ownerEntityId(),
-		        {0, 0},
+		        direction,
 		        false,
 		        secParams
 		      )
@@ -153,19 +162,6 @@ function update(dt, fireMode, shiftHeld, moves)
   updateAim()
 end
 
-function trackCounterweights()
-  for index,counterweight in pairs(counterweights) do
-    if counterweight.projId then
-      if world.entityExists(counterweight.projId) then
-        local position = mcontroller.position()
-        counterweight.position = vec2.add(world.distance(world.entityPosition(counterweight.projId), position), position)
-      else
-        counterweight.projId = nil
-      end
-    end
-  end
-end
-
 function trackProjectile()
   if self.projectileId then
     if world.entityExists(self.projectileId) then
@@ -181,11 +177,6 @@ function trackProjectile()
 end
 
 function fire()
-  if world.lineTileCollision(mcontroller.position(), firePosition()) then
-    setStance("idle")
-    return
-  end
-
   local params = copy(self.projectileParameters)
   params.powerMultiplier = activeItem.ownerPowerMultiplier()
   params.ownerAimPosition = activeItem.ownerAimPosition()
@@ -206,7 +197,7 @@ function fire()
       counterweight.projectileType,
       mcontroller.position(),
       activeItem.ownerEntityId(),
-      aimVector(),
+      {0, 0},
       false,
       counterweight.projectileParameters
     )

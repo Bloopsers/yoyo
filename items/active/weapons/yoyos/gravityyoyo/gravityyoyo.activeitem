@@ -1,18 +1,18 @@
 {
-  "itemName" : "woodenyoyo",
-  "price" : 50,
-  "inventoryIcon" : "woodenyoyoicon.png",
+  "itemName" : "gravityyoyo",
+  "price" : 1200,
+  "inventoryIcon" : "icon.png",
   "rarity" : "Common",
   "maxStack" : 1,
-  "description" : "It's simple, but still fun as heck!",
-  "shortdescription" : "Wooden Yoyo",
-  "largeImage" : "woodenyoyoicon.png",
+  "description" : "TODO/Replace Me",
+  "shortdescription" : "Gravity Yoyo",
+  "largeImage" : "icon.png",
   "tooltipKind" : "yoyo",
   "category" : "yoyo",
   "fireTime" : 0,
   "twoHanded" : false,
   "itemTags" : ["weapon","yoyo"],
-  "level" : 1,
+  "level" : 4,
 
   "scripts" : ["/items/active/weapons/yoyos/yoyo.lua"],
   "animationScripts" : ["/items/active/effects/renderyoyorope.lua"],
@@ -22,14 +22,17 @@
       "throw" : ["/sfx/melee/sword_spinslash.ogg"]
     }
   },
-  "animationParts" : { "yoyo" : "/projectiles/activeitems/yoyo/woodenyoyo.png" },
+  "animationParts" : {
+    "yoyo" : "/items/active/weapons/yoyos/gravityyoyo/gravityyoyo.png",
+    "yoyoFullbright" : "/items/active/weapons/yoyos/gravityyoyo/gravityyoyolit.png"
+  },
 
   "fireOffset" : [0, 0],
 
   "rope" : {
     "yoyo" : {
       "width" : 0.75,
-      "color" : [192, 177, 124, 255],
+      "color" : [202, 202, 202, 255],
       "offset" : [0, 0],
       "visualOffset" : [0, 0]
     }
@@ -38,9 +41,8 @@
   "counterweights" : [],
 
   "usesYoyoUpgrades" : true,
-  "shouldGiveString" : false,
 
-  "maxLength" : 9,
+  "maxLength" : 14,
   "extraLength" : 1,
 
   // string
@@ -54,13 +56,13 @@
 
   "builder" : "/items/buildscripts/buildyoyo.lua",
 
-  "projectileType" : "woodenyoyo",
+  "projectileType" : "gravityyoyo",
   "projectileParameters" : {
-    "knockback" : 2,
+    "knockback" : 0,
     "power" : 5,
-    "damageRepeatTimeout" : 1.0,
-    "yoyoSpeed" : 19,
-    "maxYoyoTime" : 4
+    "damageRepeatTimeout" : 0.7,
+    "yoyoSpeed" : 28.5,
+    "maxYoyoTime" : 8.5
   },
 
   "stances" : {

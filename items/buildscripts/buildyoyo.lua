@@ -4,11 +4,11 @@ function build(directory, config, parameters, level, seed)
   local params = sb.jsonMerge(config, parameters)
 
   config.tooltipFields = {}
-  if params.projectileParameters.damageRepeatTimeout and params.projectileParameters.power then
-    local power = params.projectileParameters.power * root.evalFunction("weaponDamageLevelMultiplier", params.level or 1)
-    local damage = power / params.projectileParameters.damageRepeatTimeout * 1
-    config.tooltipFields.damageLabel = damage
-  end
+
+  local power = params.projectileParameters.power * root.evalFunction("weaponDamageLevelMultiplier", params.level)
+  local dps = round(power / params.projectileParameters.damageRepeatTimeout * 1, 1)
+  config.tooltipFields.damageLabel = dps
+
   config.tooltipFields.lengthLabel = string.format("%s (+%s)", params.maxLength, params.extraLength)
 
   local elementalType = params.elementalType or "physical"
@@ -27,4 +27,12 @@ function build(directory, config, parameters, level, seed)
   parameters.largeImage = config.largeImage .. params.stringColor
 
   return config, parameters
+end
+
+function round(num, numDecimalPlaces)
+  if numDecimalPlaces and numDecimalPlaces>0 then
+    local mult = 10^numDecimalPlaces
+    return math.floor(num * mult + 0.5) / mult
+  end
+  return math.floor(num + 0.5)
 end
