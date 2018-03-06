@@ -2,7 +2,6 @@ require "/scripts/util.lua"
 require "/scripts/vec2.lua"
 require "/scripts/activeitem/stances.lua"
 
-
 function init()
   self.fireOffset = config.getParameter("fireOffset")
   rope = {}
@@ -13,7 +12,8 @@ function init()
       points = {},
       length = 0,
       params = params
-    },
+    }
+    params.hue = 0
     table.insert(ropeIds, index)
   end
 
@@ -35,14 +35,8 @@ function init()
 
   self.projectileType = config.getParameter("projectileType")
 
-  self.secondary = config.getParameter("secondary")
-  self.secondaryTimer = 0
-  self.leftClicking = false
+  self.fireMode = "none"
   self.yoyoRotation = 0
-
-  if self.secondary then
-    self.secondary.projectileParameters.power = self.secondary.projectileParameters.power * root.evalFunction("weaponDamageLevelMultiplier", config.getParameter("level", 1))
-  end
 
   self.projectileParameters = config.getParameter("projectileParameters")
 
@@ -52,8 +46,6 @@ function init()
   self.facingDirection = 0
   self.projectileId = nil
   self.projectilePosition = nil
-  self.anchored = false
-  self.previousFireMode = nil
 
   self.projectileParameters.power = self.projectileParameters.power * root.evalFunction("weaponDamageLevelMultiplier", config.getParameter("level", 1))
   initStances()
@@ -74,11 +66,7 @@ function uninit()
 end
 
 function update(dt, fireMode, shiftHeld, moves)
-  self.previousFireMode = fireMode
-
-  self.secondaryTimer = self.secondaryTimer + (1 * dt)
-
-  self.leftClicking = fireMode == "primary"
+  self.fireMode = fireMode
 
   self.aimAngle, self.facingDirection = activeItem.aimAngleAndDirection(self.fireOffset[2], activeItem.ownerAimPosition())
   activeItem.setFacingDirection(self.facingDirection)
@@ -104,35 +92,7 @@ function update(dt, fireMode, shiftHeld, moves)
           updateRope(id, {handPosition, counterweight.position})
         end
       end
-      world.sendEntityMessage(self.projectileId, "updateProjectile", activeItem.ownerAimPosition())
-      world.sendEntityMessage(self.projectileId, "leftClicking", self.leftClicking)
-
-      if self.secondary and fireMode == "primary" then
-        if self.secondaryTimer > self.secondary.emissionCycle then
-          animator.playSound("secondaryShoot")
-          animator.setSoundVolume("secondaryShoot", config.getParameter("secondary.shootVolume", 1), 0.0)
-
-	        local secParams = copy(self.secondary)
-	        secParams.powerMultiplier = activeItem.ownerPowerMultiplier()
-	        secParams.ownerAimPosition = activeItem.ownerAimPosition()
-
-          if self.secondary.aimMode == "rotation" then
-            direction = {math.sin(self.yoyoRotation), math.cos(self.yoyoRotation)}
-          else
-            direction = aimVector()
-          end
-
-		      self.secProjectileId = world.spawnProjectile(
-		        self.secondary.projectileType,
-		        self.projectilePosition,
-		        activeItem.ownerEntityId(),
-		        direction,
-		        false,
-		        secParams
-		      )
-          self.secondaryTimer = 0
-        end
-	    end
+      world.sendEntityMessage(self.projectileId, "updateProjectile", activeItem.ownerAimPosition(), self.fireMode, rope.yoyo.length)
 
       local position = mcontroller.position()
       local handPosition = vec2.add(position, activeItem.handPosition(self.ropeOffset))
@@ -148,7 +108,7 @@ function update(dt, fireMode, shiftHeld, moves)
 
   self.cooldownTimer = math.max(0, self.cooldownTimer - dt)
 
-  if self.stanceName == "idle" and fireMode == "primary" and self.cooldownTimer == 0 then
+  if self.stanceName == "idle" and (fireMode == "primary" or fireMode == "alt") and self.cooldownTimer == 0 then
     self.cooldownTimer = self.cooldownTime
     setStance("windup")
   end
@@ -167,9 +127,6 @@ function trackProjectile()
     if world.entityExists(self.projectileId) then
       local position = mcontroller.position()
       self.projectilePosition = vec2.add(world.distance(world.entityPosition(self.projectileId), position), position)
-      if not self.anchored then
-        self.anchored = world.callScriptedEntity(self.projectileId, "anchored")
-      end
     else
       cancel()
     end
@@ -216,6 +173,12 @@ function updateRope(id, newRope)
   rope[id].points = newRope
   local ropeLength = 0
 
+  if rope[id].params.rainbow == true then
+    rope[id].params.hue = rope[id].params.hue +(rope[id].params.hueCycleSpeed or 1)
+    rope[id].params.hue = rope[id].params.hue % 360
+    rope[id].params.color = HSLtoRGB(rope[id].params.hue, 150, 150, (rope[id].params.color[4] or 255))
+  end
+
   activeItem.setScriptedAnimationParameter(id .. "params", rope[id].params)
 
   for i = 2, #rope[id].points do
@@ -239,7 +202,6 @@ function cancel()
   end
   self.projectileId = nil
   self.projectilePosition = nil
-  self.anchored = false
   updateRope("yoyo", {})
   for i=1,#counterweights do
     updateRope("counterWeight" .. i, {})
@@ -275,4 +237,19 @@ function checkProjectiles()
     end
     storage.projectileIds = #newProjectileIds > 0 and newProjectileIds or nil
   end
+end
+
+function HSLtoRGB(h, s, l, a)
+    if s<=0 then return l,l,l   end
+    h, s, l = h/360*6, s/255, l/255
+    local c = (1-math.abs(2*l-1))*s
+    local x = (1-math.abs(h%2-1))*c
+    local m,r,g,b = (l-.5*c), 0,0,0
+    if h < 1     then r,g,b = c,x,0
+    elseif h < 2 then r,g,b = x,c,0
+    elseif h < 3 then r,g,b = 0,c,x
+    elseif h < 4 then r,g,b = 0,x,c
+    elseif h < 5 then r,g,b = x,0,c
+    else              r,g,b = c,0,x
+    end return {(r+m)*255,(g+m)*255,(b+m)*255, a}
 end

@@ -1,12 +1,12 @@
 {
-  "itemName" : "tungstenyoyo",
-  "price" : 640,
-  "inventoryIcon" : "icon.png",
+  "itemName" : "rainbowwoodyoyo",
+  "price" : 50,
+  "inventoryIcon" : "rainbowwoodyoyoicon.png",
   "rarity" : "Common",
   "maxStack" : 1,
-  "description" : "It's simple, but still fun as heck!",
-  "shortdescription" : "Tungsten Yoyo",
-  "largeImage" : "icon.png",
+  "description" : "Show off your skills with this fabulous looking yoyo.",
+  "shortdescription" : "Rainbow Wood Yoyo",
+  "largeImage" : "rainbowwoodyoyoicon.png",
   "tooltipKind" : "yoyo",
   "category" : "yoyo",
   "fireTime" : 0,
@@ -22,40 +22,27 @@
       "throw" : ["/sfx/melee/sword_spinslash.ogg"]
     }
   },
-  "animationParts" : { "yoyo" : "/projectiles/activeitems/yoyo/tungstenyoyo.png" },
+  "animationParts" : { "yoyo" : "/projectiles/activeitems/yoyo/rainbowwoodyoyo.png" },
 
   "fireOffset" : [0, 0],
 
   "rope" : {
     "yoyo" : {
       "width" : 0.75,
-      "color" : [202, 202, 202, 255],
+      "color" : [192, 177, 124, 255],
       "offset" : [0, 0],
-      "visualOffset" : [0, 0]
+      "visualOffset" : [0, 0],
+      "rainbow" : true,
+      "hueCycleSpeed" : 2
     }
   },
 
-  "counterweights" : [
-    {
-      "projectileType" : "yoyocounterweightfire",
-      "projectileParameters" : {
-        "power" : 5,
-        "rotateRadius" : 7,
-        "rotateSpeed" : 3.14
-      },
-      "rope" : {
-        "width" : 0.75,
-        "color" : [147, 38, 37],
-        "offset" : [0, 0],
-        "visualOffset" : [0, 0]
-      }
-    }
-  ],
+  "counterweights" : [],
 
   "usesYoyoUpgrades" : true,
   "shouldGiveString" : false,
 
-  "maxLength" : 11,
+  "maxLength" : 9,
   "extraLength" : 1,
 
   // string
@@ -69,13 +56,13 @@
 
   "builder" : "/items/buildscripts/buildyoyo.lua",
 
-  "projectileType" : "tungstenyoyo",
+  "projectileType" : "rainbowwoodyoyo",
   "projectileParameters" : {
-    "knockback" : 2,
+    "knockback" : 3,
     "power" : 5,
-    "damageRepeatTimeout" : 1.0,
+    "damageRepeatTimeout" : 0.9,
     "yoyoSpeed" : 22,
-    "maxYoyoTime" : 5.5
+    "maxYoyoTime" : 5
   },
 
   "stances" : {

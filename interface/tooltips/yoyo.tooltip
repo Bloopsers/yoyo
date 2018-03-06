@@ -39,7 +39,7 @@
     "type" : "label",
     "position" : [9, 71],
     "hAnchor" : "left",
-    "value" : "Damage Per Second:"
+    "value" : "Damage Per Hit:"
   },
   "damageLabel" : {
     "type" : "label",
@@ -64,7 +64,7 @@
   },
   "objectImage" : {
     "type" : "image",
-    "position" : [70, 129],
+    "position" : [70, 135],
     "file" : "",
     "centered" : true,
     "maxSize" : [75, 45],

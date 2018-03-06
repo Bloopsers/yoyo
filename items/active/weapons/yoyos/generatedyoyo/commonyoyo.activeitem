@@ -1,61 +1,44 @@
 {
-  "itemName" : "tungstenyoyo",
-  "price" : 640,
-  "inventoryIcon" : "icon.png",
+  "itemName" : "commonyoyo",
+  "price" : 300,
   "rarity" : "Common",
   "maxStack" : 1,
   "description" : "It's simple, but still fun as heck!",
-  "shortdescription" : "Tungsten Yoyo",
-  "largeImage" : "icon.png",
+  "shortdescription" : "Common Yoyo",
   "tooltipKind" : "yoyo",
   "category" : "yoyo",
   "fireTime" : 0,
   "twoHanded" : true,
   "itemTags" : ["weapon","yoyo"],
-  "level" : 2,
 
   "scripts" : ["/items/active/weapons/yoyos/yoyo.lua"],
   "animationScripts" : ["/items/active/effects/renderyoyorope.lua"],
+
   "animation" : "/items/active/weapons/yoyos/yoyo.animation",
   "animationCustom" : {
     "sounds" : {
       "throw" : ["/sfx/melee/sword_spinslash.ogg"]
     }
   },
-  "animationParts" : { "yoyo" : "/projectiles/activeitems/yoyo/tungstenyoyo.png" },
+  "animationParts" : { },
 
   "fireOffset" : [0, 0],
 
   "rope" : {
     "yoyo" : {
       "width" : 0.75,
-      "color" : [202, 202, 202, 255],
+      "color" : [192, 177, 124, 255],
       "offset" : [0, 0],
       "visualOffset" : [0, 0]
     }
   },
 
-  "counterweights" : [
-    {
-      "projectileType" : "yoyocounterweightfire",
-      "projectileParameters" : {
-        "power" : 5,
-        "rotateRadius" : 7,
-        "rotateSpeed" : 3.14
-      },
-      "rope" : {
-        "width" : 0.75,
-        "color" : [147, 38, 37],
-        "offset" : [0, 0],
-        "visualOffset" : [0, 0]
-      }
-    }
-  ],
+  "counterweights" : [],
 
   "usesYoyoUpgrades" : true,
   "shouldGiveString" : false,
 
-  "maxLength" : 11,
+  "maxLength" : [7, 10],
   "extraLength" : 1,
 
   // string
@@ -67,15 +50,30 @@
   "counterWeightIcon" : "",
   "counterWeightName" : "",
 
+  "generated" : true,
   "builder" : "/items/buildscripts/buildyoyo.lua",
+  "builderConfig" : {
+    "nameGenerator" : "yoyonames.config:nameGen",
+    "yoyoProjectilePart" : "yoyo",
+    "animationParts" : {
+      "yoyo" : {
+        "projectilePath" : "parts/projectile_<variant>.png",
+        "iconPath" : "parts/icon_<variant>.png",
+        "variants" : 1,
+        "paletteSwap" : true
+      }
+    },
+    "palette" : "/items/active/weapons/colors/melee.weaponcolors",
+    "iconDrawables" : ["yoyo"]
+  },
 
-  "projectileType" : "tungstenyoyo",
+  "projectileType" : "generatedyoyo",
   "projectileParameters" : {
-    "knockback" : 2,
-    "power" : 5,
-    "damageRepeatTimeout" : 1.0,
-    "yoyoSpeed" : 22,
-    "maxYoyoTime" : 5.5
+    "knockback" : [1, 2],
+    "power" : [4.5, 5.2],
+    "damageRepeatTimeout" : [8.7, 1.1],
+    "yoyoSpeed" : [18.5, 21.5],
+    "maxYoyoTime" : [4, 7]
   },
 
   "stances" : {

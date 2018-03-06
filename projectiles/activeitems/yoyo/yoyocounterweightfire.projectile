@@ -9,7 +9,7 @@
   "speed" : 3,
   "emitters" : [ "fireflames" ],
   "renderLayer" : "overlay-1",
-  "damageKind" : "yoyo",
+  "damageKind" : "firehammer",
   "physics" : "counterweight",
   "bounces" : 999,
   "piercing" : true,

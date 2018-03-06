@@ -1,18 +1,18 @@
 {
-  "itemName" : "tungstenyoyo",
-  "price" : 640,
+  "itemName" : "frozenyoyo",
+  "price" : 3000,
   "inventoryIcon" : "icon.png",
-  "rarity" : "Common",
+  "rarity" : "Legendary",
   "maxStack" : 1,
-  "description" : "It's simple, but still fun as heck!",
-  "shortdescription" : "Tungsten Yoyo",
+  "description" : "Todo/Replace me",
+  "shortdescription" : "Frozen Yoyo",
   "largeImage" : "icon.png",
   "tooltipKind" : "yoyo",
   "category" : "yoyo",
   "fireTime" : 0,
   "twoHanded" : true,
   "itemTags" : ["weapon","yoyo"],
-  "level" : 2,
+  "level" : 3,
 
   "scripts" : ["/items/active/weapons/yoyos/yoyo.lua"],
   "animationScripts" : ["/items/active/effects/renderyoyorope.lua"],
@@ -22,7 +22,7 @@
       "throw" : ["/sfx/melee/sword_spinslash.ogg"]
     }
   },
-  "animationParts" : { "yoyo" : "/projectiles/activeitems/yoyo/tungstenyoyo.png" },
+  "animationParts" : { "yoyo" : "/projectiles/activeitems/yoyo/frozenyoyo.png" },
 
   "fireOffset" : [0, 0],
 
@@ -35,27 +35,12 @@
     }
   },
 
-  "counterweights" : [
-    {
-      "projectileType" : "yoyocounterweightfire",
-      "projectileParameters" : {
-        "power" : 5,
-        "rotateRadius" : 7,
-        "rotateSpeed" : 3.14
-      },
-      "rope" : {
-        "width" : 0.75,
-        "color" : [147, 38, 37],
-        "offset" : [0, 0],
-        "visualOffset" : [0, 0]
-      }
-    }
-  ],
+  "counterweights" : [],
 
   "usesYoyoUpgrades" : true,
   "shouldGiveString" : false,
 
-  "maxLength" : 11,
+  "maxLength" : 15,
   "extraLength" : 1,
 
   // string
@@ -69,13 +54,13 @@
 
   "builder" : "/items/buildscripts/buildyoyo.lua",
 
-  "projectileType" : "tungstenyoyo",
+  "projectileType" : "frozenyoyo",
   "projectileParameters" : {
-    "knockback" : 2,
-    "power" : 5,
-    "damageRepeatTimeout" : 1.0,
-    "yoyoSpeed" : 22,
-    "maxYoyoTime" : 5.5
+    "knockback" : 1,
+    "power" : 5.8,
+    "damageRepeatTimeout" : 0.7,
+    "yoyoSpeed" : 26,
+    "maxYoyoTime" : 7.5
   },
 
   "stances" : {

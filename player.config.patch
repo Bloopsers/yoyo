@@ -1,9 +1,16 @@
 [
   {
     "op": "add",
-    "path": "/defaultBlueprints/tier1/6",
+    "path": "/defaultBlueprints/tier1/-",
     "value": {
       "item": "woodenyoyo"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/defaultBlueprints/tier1/-",
+    "value": {
+      "item": "tungstenyoyo"
     }
   }
 ]

@@ -10,7 +10,7 @@
   "tooltipKind" : "yoyo",
   "category" : "yoyo",
   "fireTime" : 0,
-  "twoHanded" : false,
+  "twoHanded" : true,
   "itemTags" : ["weapon","yoyo"],
   "level" : 1,
 

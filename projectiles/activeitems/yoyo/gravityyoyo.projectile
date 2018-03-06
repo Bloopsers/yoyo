@@ -22,8 +22,8 @@
       "type" : "RadialForceRegion",
       "outerRadius" : 5,
       "innerRadius" : 0,
-      "targetRadialVelocity" : -20,
-      "controlForce" : 500,
+      "targetRadialVelocity" : -30,
+      "controlForce" : 400,
       "categoryWhitelist" : ["monster", "itemdrop"]
     }
   },

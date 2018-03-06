@@ -1,0 +1,31 @@
+{
+  "projectileName" : "perfectyoyohoming",
+  "image" : "perfectblock.png",
+  "flippable" : false,
+  "fullbright" : true,
+  "animationCycle" : 0.7,
+  "frameNumber" : 4,
+  "orientationLocked" : true,
+  "lightColor" : [180,255,179],
+  "actionOnReap" : [ ],
+  "statusEffects" : [ ],
+  "damagePoly" : [[-3, 1], [-1, 3], [1, 3], [3, 1], [3, -1], [1, -3], [-1, -3], [-3, -1]],
+  "power" : 2.0,
+  "speed" : 7,
+  "damageKind" : "yoyo",
+  "physics" : "laser",
+  "bounces" : -1,
+  "piercing" : false,
+  "timeToLive" : 1.8,
+
+  "controlMovement" : {
+    "maxSpeed" : 2,
+    "controlForce" : 8
+  },
+
+  "rotationRate" : 60,
+  "trackingLimit" : 20,
+  "maxDistance" : 3,
+
+  "scripts" : [ "homingprojectile.lua" ]
+}

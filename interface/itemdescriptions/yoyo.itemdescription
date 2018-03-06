@@ -40,7 +40,7 @@
     "type" : "label",
     "position" : [15, 61],
     "hAnchor" : "left",
-    "value" : "Damage Per Second:"
+    "value" : "Damage Per Hit:"
   },
   "damageLabel" : {
     "type" : "label",
