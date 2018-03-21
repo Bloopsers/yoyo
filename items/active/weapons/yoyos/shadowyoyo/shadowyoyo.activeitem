@@ -1,0 +1,113 @@
+{
+  "itemName" : "shadowyoyo",
+  "price" : 3000,
+  "inventoryIcon" : "icon.png",
+  "rarity" : "Legendary",
+  "maxStack" : 1,
+  "description" : "Enemy hits stack up your damage",
+  "shortdescription" : "Shadow Yoyo",
+  "largeImage" : "icon.png",
+  "tooltipKind" : "yoyo",
+  "category" : "yoyo",
+  "fireTime" : 0,
+  "twoHanded" : true,
+  "itemTags" : ["weapon","yoyo"],
+  "level" : 4,
+
+  "scripts" : ["/items/active/weapons/yoyos/yoyo.lua"],
+  "animationScripts" : ["/items/active/effects/renderyoyorope.lua"],
+  "animation" : "/items/active/weapons/yoyos/yoyo.animation",
+  "animationCustom" : {
+    "sounds" : {
+      "throw" : ["/sfx/melee/sword_spinslash.ogg"]
+    }
+  },
+  "animationParts" : { "yoyo" : "/projectiles/activeitems/yoyo/shadowyoyo/shadowyoyo.png" },
+
+  "fireOffset" : [0, 0],
+
+  "rope" : {
+    "yoyo" : {
+      "width" : 0.8,
+      "color" : [202, 202, 202, 230],
+      "offset" : [0, 0],
+      "visualOffset" : [0, 0]
+    }
+  },
+
+  "counterweights" : [],
+
+  "usesYoyoUpgrades" : true,
+  "shouldGiveString" : false,
+
+  "maxLength" : 16,
+  "extraLength" : 2,
+
+  "currentStringType" : "yoyostring",
+  "stringColor" : "?replace;a85636=7b7b7b;e0975c=b6b6b6;ffca8a=e6e6e6",
+
+  "counterWeightType" : "",
+  "counterWeightIcon" : "",
+  "counterWeightName" : "",
+
+  "builder" : "/items/buildscripts/buildyoyo.lua",
+
+  "projectileType" : "shadowyoyo",
+  "projectileParameters" : {
+    "knockback" : 0,
+    "power" : 5.5,
+    "damageRepeatTimeout" : 0.7,
+    "yoyoSpeed" : 50,
+    "maxYoyoTime" : 14
+  },
+
+  "stances" : {
+    "idle" : {
+      "armRotation" : 0,
+      "animationState" : {
+        "weapon" : "visible"
+      },
+      "allowRotate" : true,
+      "allowFlip" : true
+    },
+    "windup" : {
+      "duration" : 0.2,
+      "transition" : "throw",
+      "transitionFunction" : "fire",
+      "armRotation" : 35,
+      "animationState" : {
+        "weapon" : "visible"
+      },
+      "allowRotate" : false,
+      "allowFlip" : false
+    },
+    "throw" : {
+      "armRotation" : 0,
+      "animationState" : {
+        "weapon" : "hidden"
+      },
+      "allowRotate" : true,
+      "allowFlip" : true
+    },
+	  "precatch" : {
+      "duration" : 0.1,
+      "transition" : "catch",
+      "armRotation" : -15,
+      "animationState" : {
+        "weapon" : "hidden"
+      },
+      "allowRotate" : false,
+      "allowFlip" : true
+    },
+    "catch" : {
+      "duration" : 0.1,
+      "transition" : "idle",
+      "armRotation" : -35,
+      "animationState" : {
+        "weapon" : "visible"
+      },
+      "allowRotate" : false,
+      "allowFlip" : true
+    }
+  }
+}

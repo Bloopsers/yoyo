@@ -1,0 +1,11 @@
+{
+  "input" : [
+    { "item" : "perfectlygenericitem", "count" : 12 },
+    { "item" : "solariumstar", "count" : 10 }
+  ],
+  "output" : {
+    "item" : "perfectyoyo",
+    "count" : 1
+  },
+  "groups" : [ "treasuredtrophies" ]
+}

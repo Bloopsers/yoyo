@@ -3,12 +3,12 @@
   "price" : 30,
   "rarity" : "Uncommon",
   "category" : "yoyostring",
-  "inventoryIcon" : "longyoyostring.png?replace;b6b6b6=51bd3b;373737=247824",
+  "inventoryIcon" : "longyoyostring.png?replace;a85636=247824;e0975c=51bd3b;ffca8a=b2e89d",
   "description" : "A long green yoyo string. Increases your yoyo length by 7.",
   "shortdescription" : "Long Green Yoyo String",
 
   "extraLength" : 7,
-  "stringColor" : "?replace;6f2919=247824;a85636=b2e89d",
+  "stringColor" : "?replace;a85636=247824;e0975c=51bd3b;ffca8a=b2e89d",
   "ropeColor" : [81, 189, 59, 255],
 
   "scripts" : [ "/scripts/augments/yoyo.lua" ]

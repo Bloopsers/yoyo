@@ -8,5 +8,10 @@
     "op": "add",
     "path": "/labels/yoyostring",
     "value": "Yoyo String"
+  },
+  {
+    "op": "add",
+    "path": "/labels/yoyocounterweight",
+    "value": "Yoyo Counterweight"
   }
 ]

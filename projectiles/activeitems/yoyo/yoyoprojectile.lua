@@ -2,10 +2,10 @@ require "/scripts/vec2.lua"
 
 function init()
   mcontroller.applyParameters({gravityEnabled = false})
+  mcontroller.applyParameters(config.getParameter("movementSettings", {}))
 
   self.rotationSpeed = config.getParameter("rotationSpeed", 25)
   self.ownerId = nil
-  self.timedActions = config.getParameter("timedActions", {})
   self.fireMode = "primary"
   self.pickupDistance = config.getParameter("pickupDistance", 2)
   self.maxDistance = config.getParameter("maxDistance")
@@ -13,18 +13,37 @@ function init()
   self.maxYoyoTime = config.getParameter("maxYoyoTime", 5)
   self.yoyoSpeed = config.getParameter("yoyoSpeed", 32)
   self.stringLength = 0
-
+  self.hits = 0
   self.ownerId = projectile.sourceEntity()
-
   self.aimPosition = mcontroller.position()
+  self.hitSounds = config.getParameter("hitSounds")
+    
+  self.queryParameters = {
+    includedTypes = {"creature"},
+    order = "nearest"
+  }
 
-  message.setHandler("updateProjectile", function(_, _, aimPosition, fireMode, stringLength, id)
+  message.setHandler("updateProjectile", function(_, _, aimPosition, fireMode, stringLength)
     self.aimPosition = aimPosition
     self.fireMode = fireMode
     self.stringLength = stringLength
-    self.id = id
     return entity.id()
   end)
+end
+
+function tprint (tbl, indent)
+  if not indent then indent = 0 end
+  for k, v in pairs(tbl) do
+    formatting = string.rep("  ", indent) .. k .. ": "
+    if type(v) == "table" then
+      print(formatting)
+      tprint(v, indent+1)
+    elseif type(v) == 'boolean' then
+      print(formatting .. tostring(v))		
+    else
+      print(formatting .. v)
+    end
+  end
 end
 
 function kill()
@@ -42,25 +61,31 @@ function circle(radius, points, center)
 end
 
 function update(dt)
+  local qur = world.entityQuery(mcontroller.position(), 8, self.queryParameters)
+  for _,entityId in ipairs(qur) do
+    if world.entityDamageTeam(entityId).type == "enemy" then
+      world.debugLine(mcontroller.position(), world.entityPosition(entityId), {255, 255, 0})
+    end
+  end
+
   self.yoyoTime = self.yoyoTime + (1 * dt)
 
   self.ownerPos = world.entityPosition(self.ownerId)
 
-  world.debugPoly(circle(self.maxDistance, 32, self.ownerPos), {0, 255, 0})
+  --world.damageTileArea(mcontroller.position(), 2, "foreground", self.ownerPos, "blockish", 0.5)
 
-  if self.yoyoTime >= self.maxYoyoTime then
+  if self.yoyoTime >= self.maxYoyoTime or self.stringLength > self.maxDistance +5 or self.fireMode == "none" then
     self.returning = true
     mcontroller.applyParameters({collisionEnabled = false})
   end
-
-  if self.fireMode == "none" then
-    self.returning = true
-  end
+  
+  world.debugPoly(circle(self.maxDistance, 32, self.ownerPos), {255, 255, 0})
+  world.debugPoly(circle(world.magnitude(mcontroller.position(), self.ownerPos), 32, self.ownerPos), {0, 255, 0})
 
   if self.ownerId and world.entityExists(self.ownerId) then
     if self.aimPosition then
       if self.yoyoTime > 0.15 and self.returning == true then
-        controlTo(self.ownerPos, self.yoyoSpeed * 1.5)
+        controlTo(self.ownerPos, self.yoyoSpeed * 2, 650)
         local toTarget = world.distance(self.ownerPos, mcontroller.position())
 
         if vec2.mag(toTarget) < self.pickupDistance and self.yoyoTime > 0.15 then
@@ -68,20 +93,16 @@ function update(dt)
         end
       else
         local distToPos = world.magnitude(mcontroller.position(), self.aimPosition)
-        if self.stringLength > self.maxDistance +1 then
-          if self.stringLength > self.maxDistance then
-            controlTo(self.ownerPos, self.yoyoSpeed)
-          end
-        elseif distToPos < 0.3 then
-          controlTo(self.aimPosition, 0)
+        if distToPos < 0.3 then
+          controlTo(self.aimPosition, 0, 650)
         elseif distToPos < 0.5 then
-          controlTo(self.aimPosition, self.yoyoSpeed / 3)
+          controlTo(self.aimPosition, self.yoyoSpeed / 3, 650)
         elseif distToPos < 0.9 then
-          controlTo(self.aimPosition, self.yoyoSpeed / 2.2)
+          controlTo(self.aimPosition, self.yoyoSpeed / 2.2, 650)
         elseif distToPos < 1.3 then
-          controlTo(self.aimPosition, self.yoyoSpeed / 1.4)
+          controlTo(self.aimPosition, self.yoyoSpeed / 1.4, 650)
         else
-          controlTo(self.aimPosition, self.yoyoSpeed)
+          controlTo(self.aimPosition, self.yoyoSpeed, 650)
         end
       end
     end
@@ -96,16 +117,62 @@ function update(dt)
   end
 end
 
-function controlTo(position, speed)
+function controlTo(position, speed, controlForce)
   local offset = world.distance(position, mcontroller.position())
-  local vel = vec2.mul(vec2.norm(offset), speed)
-  mcontroller.setVelocity(vel)
-end
-
-function vec2.lerp(a, b, t)
-  return {a[1] * (1-t) + (b[1]*t), a[2] * (1-t) + (b[2]*t)}
+  local v = vec2.sub(position, self.ownerPos)
+  v = vec2.clampMag(v, self.maxDistance)
+  offset = world.distance(vec2.add(self.ownerPos, v), mcontroller.position())
+  if world.magnitude(mcontroller.position(), self.ownerPos) > self.maxDistance -1.5 then
+    controlForce = 900
+  end
+  mcontroller.approachVelocity(vec2.mul(vec2.norm(offset), speed), controlForce)
 end
 
 function vec2.length(vector)
   return math.sqrt(vec2.dot(vector, vector))
+end
+
+function vec2.clampMag(vector, maxLength)
+  if vec2.length(vector) > maxLength then
+    vector = vec2.norm(vector)
+    vector = vec2.mul(vector, maxLength)
+  end
+  return vector
+end
+
+function controlTo2(position, speed, controlForce)
+  local offset = world.distance(position, mcontroller.position())
+  local v = vec2.sub(position, self.ownerPos)
+  v = vec2.clampMag(v, self.maxDistance)[1]
+  offset = world.distance(vec2.add(self.ownerPos, v), mcontroller.position())
+  local vel = vec2.mul(vec2.norm(offset), speed)
+  mcontroller.setVelocity(vel)
+end
+
+function hit(entityId)
+  if self.hitSounds then
+    projectile.processAction({action = "sound", options = self.hitSounds})
+  end
+  if world.entityDamageTeam(entityId).type == "enemy" then
+    self.hits = self.hits +1
+  end
+  if self.hits >= 2 then
+    world.sendEntityMessage(self.ownerId, "hitEnemy", entityId)
+    self.hits = 0
+  end
+  if self.yoyoTime > 0.15 then
+    self.yoyoTime = self.yoyoTime +0.5
+  end
+  --shoot out the yoyo in a random direction if we hit something
+  local directions = {
+    {2400, 2400},
+    {-2400, -2400},
+    {2400, -2400},
+    {-2400, 2400},
+    {0, 2400},
+    {0, -2400},
+    {2400, 0},
+    {-2400, 0}
+  }
+  mcontroller.force(directions[math.random(#directions)])
 end

@@ -1,0 +1,19 @@
+{
+  "kind": "perfectblockdespawn",
+  "definition": {
+    "type": "textured",
+    "image": "/particles/yoyo/perfectblockdespawn.png",
+    "flippable": false,
+    "position": [0, 0],
+    "light": [180, 255, 179],
+    "fade": 0.25,
+    "destructionAction": "shrink",
+    "destructionTime": 0.15,
+    "size": 0.7,
+    "fullbright": true,
+    "timeToLive": 0.05,
+    "layer": "front",
+    "angularVelocity" : 0,
+    "collidesForeground": false
+  }
+}

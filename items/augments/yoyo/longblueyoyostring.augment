@@ -3,13 +3,13 @@
   "price" : 30,
   "rarity" : "Uncommon",
   "category" : "yoyostring",
-  "inventoryIcon" : "longyoyostring.png?replace;6f2919=247824;a85636=b2e89d",
+  "inventoryIcon" : "longyoyostring.png?replace;a85636=344495;e0975c=5588d4;ffca8a=96cbe7",
   "description" : "A long blue yoyo string. Increases your yoyo length by 7.",
   "shortdescription" : "Long Blue Yoyo String",
 
-  "extraLength" : 7,
-  "stringColor" : "?replace=;6f2919=344495;a85636=96cbe7",
-  "ropeColor" : [85, 136, 212, 255],
+  "extraLength" : 6,
+  "stringColor" : "?replace;a85636=344495;e0975c=5588d4;ffca8a=96cbe7",
+  "ropeColor" : [85, 136, 212, 230],
 
   "scripts" : [ "/scripts/augments/yoyo.lua" ]
 }

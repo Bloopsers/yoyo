@@ -11,14 +11,16 @@ function apply(input)
     return nil
   end
 
-  if output:instanceValue("currentStringType") then
-    output:setInstanceValue("oldStringDescriptor", {name = output:instanceValue("currentStringType"), count = 1, parameters = {}})
-  end
+  output:setInstanceValue("oldStringDescriptor", {name = output:instanceValue("currentStringType"), count = 1, parameters = {}})
 
   local ropes = output:instanceValue("rope")
 
   for id,rope in pairs(ropes) do
     rope.color = config.getParameter("ropeColor")
+    if config.getParameter("rainbow") then
+      rope.rainbow = true
+      rope.hueCycleSpeed = config.getParameter("hueCycleSpeed", 1)
+    end
   end
 
   output:setInstanceValue("currentStringType", config.getParameter("itemName"))

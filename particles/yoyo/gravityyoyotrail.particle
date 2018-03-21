@@ -1,12 +1,12 @@
 {
   "kind" : "gravityyoyotrail",
   "definition" : {
-    "type" : "animated",
-    "animation" : "/animations/yoyo/gravityyoyotrail.animation",
+    "type": "textured",
+    "image": "/particles/yoyo/gravityyoyotrail.png",
     "position" : [0, 0],
     "fade" : 0.5,
     "destructionAction" : "shrink",
-    "destructionTime" : 1,
+    "destructionTime" : 0.025,
     "size" : 0.8,
     "layer" : "middle",
     "timeToLive" : 0.2

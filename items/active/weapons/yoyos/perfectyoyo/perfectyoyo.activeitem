@@ -22,14 +22,14 @@
       "throw" : ["/sfx/melee/sword_spinslash.ogg"]
     }
   },
-  "animationParts" : { "yoyo" : "/projectiles/activeitems/yoyo/tungstenyoyo.png" },
+  "animationParts" : { "yoyo" : "/projectiles/activeitems/yoyo/perfectyoyo/perfectyoyo.png?scalenearest=0.9" },
 
   "fireOffset" : [0, 0],
 
   "rope" : {
     "yoyo" : {
       "width" : 0.75,
-      "color" : [202, 202, 202, 255],
+      "color" : [202, 202, 202, 230],
       "offset" : [0, 0],
       "visualOffset" : [0, 0]
     }
@@ -40,14 +40,12 @@
   "usesYoyoUpgrades" : true,
   "shouldGiveString" : false,
 
-  "maxLength" : 17,
-  "extraLength" : 1,
+  "maxLength" : 25,
+  "extraLength" : 2,
 
-  // string
   "currentStringType" : "yoyostring",
-  "stringColor" : "?replace;6f2919=373737;a85636=b6b6b6",
+  "stringColor" : "?replace;a85636=7b7b7b;e0975c=b6b6b6;ffca8a=e6e6e6",
 
-  // counterweight
   "counterWeightType" : "",
   "counterWeightIcon" : "",
   "counterWeightName" : "",
@@ -56,11 +54,11 @@
 
   "projectileType" : "perfectyoyo",
   "projectileParameters" : {
-    "knockback" : 3,
-    "power" : 6.8,
-    "damageRepeatTimeout" : 0.5,
-    "yoyoSpeed" : 30,
-    "maxYoyoTime" : 999999
+    "knockback" : 6,
+    "power" : 7,
+    "damageRepeatTimeout" : 0.7,
+    "yoyoSpeed" : 50,
+    "maxYoyoTime" : 100
   },
 
   "stances" : {

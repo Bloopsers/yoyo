@@ -16,34 +16,34 @@
     "hAnchor" : "left",
     "value" : "tree"
   },
-  "descriptionLabel" : {
+  /*"descriptionLabel" : {
     "type" : "label",
     "position" : [9, 101],
     "hAnchor" : "left",
     "vAnchor" : "top",
     "wrapWidth" : 123
-  },
+  },*/
   "lengthTitleLabel" : {
     "type" : "label",
-    "position" : [9, 61.5],
+    "position" : [9, 61],
     "hAnchor" : "left",
     "value" : "String Length:"
   },
   "lengthLabel" : {
     "type" : "label",
-    "position" : [130, 61.5],
+    "position" : [130, 61],
     "hAnchor" : "right",
     "wrapWidth" : 126
   },
   "damageTitleLabel" : {
     "type" : "label",
-    "position" : [9, 71],
+    "position" : [9, 70],
     "hAnchor" : "left",
     "value" : "Damage Per Hit:"
   },
   "damageLabel" : {
     "type" : "label",
-    "position" : [130, 71],
+    "position" : [130, 70],
     "hAnchor" : "right",
     "wrapWidth" : 126
   },
@@ -56,7 +56,7 @@
   },
   "damageKindImage" : {
     "type" : "image",
-    "position" : [120, 110],
+    "position" : [120, 95],
     "file" : "",
     "centered" : true,
     "maxSize" : [16, 16],
@@ -64,7 +64,7 @@
   },
   "objectImage" : {
     "type" : "image",
-    "position" : [70, 135],
+    "position" : [70, 108.5],
     "file" : "",
     "centered" : true,
     "maxSize" : [75, 45],
@@ -72,8 +72,9 @@
   },
   "counterWeightIconImage" : {
     "type" : "image",
-    "position" : [6, 38],
+    "position" : [14, 46.5],
     "zlevel" : 3,
+    "centered" : true,
     "file" : "/interface/tooltips/augment.png"
   },
   "counterWeightNameLabel" : {

@@ -24,7 +24,7 @@ function update()
           width = params.width,
           color = params.color,
           fullbright = params.fullbright
-        }, "overlay-2")
+        }, "ForegroundTile+1")
 
         if ropeParticle and ropeParticleDensity and ropeParticleDensity > 0 then
           local segment = vec2.sub(relativeNextPoint, lastPoint)

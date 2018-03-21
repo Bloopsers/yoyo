@@ -32,29 +32,6 @@
             }
           }
         }
-      },
-      "yoyoFullbright" : {
-        "properties" : {
-          "centered" : true,
-          "fullbright" : true,
-          "offset" : [0.375, 0.0],
-          "transformationGroups" : [ "weapon" ]
-        },
-
-        "partStates" : {
-          "weapon" : {
-            "visible" : {
-              "properties" : {
-                "image" : "<partImage>"
-              }
-            },
-            "hidden" : {
-              "properties" : {
-                "image" : ""
-              }
-            }
-          }
-        }
       }
     }
   },

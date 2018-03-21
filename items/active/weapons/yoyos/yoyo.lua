@@ -17,13 +17,19 @@ function init()
     table.insert(ropeIds, index)
   end
 
+  message.setHandler("hitEnemy", function(_, _, entityId)
+    spawnCounterweights()
+  end)
+
+  self.lastFireMode = "none"
+
   counterweights = config.getParameter("counterweights")
 
   for index,counterweight in pairs(counterweights) do
     rope["counterWeight" .. index] = {
       points = {},
       length = 0,
-      params = counterweight.rope
+      params = rope.yoyo.params
     }
     table.insert(ropeIds, "counterWeight" .. index)
     if counterweight.projectileParameters.power then
@@ -71,19 +77,13 @@ function update(dt, fireMode, shiftHeld, moves)
   self.aimAngle, self.facingDirection = activeItem.aimAngleAndDirection(self.fireOffset[2], activeItem.ownerAimPosition())
   activeItem.setFacingDirection(self.facingDirection)
 
-  local oldString = config.getParameter("oldStringDescriptor")
-  if oldString then
-	  player.giveItem(oldString)
-	  activeItem.setInstanceValue("oldStringDescriptor", nil)
-  end
-
   trackProjectile()
 
   if self.projectileId then
     setStance("throw")
     if world.entityExists(self.projectileId) then
       for id,counterweight in pairs(counterweights) do
-        if world.entityExists(counterweight.projId) then
+        if counterweight.projId and world.entityExists(counterweight.projId) then
           counterweight.position = world.entityPosition(counterweight.projId)
           local position = mcontroller.position()
           local id = "counterWeight" .. id
@@ -92,7 +92,11 @@ function update(dt, fireMode, shiftHeld, moves)
           updateRope(id, {handPosition, counterweight.position})
         end
       end
-      world.sendEntityMessage(self.projectileId, "updateProjectile", activeItem.ownerAimPosition(), self.fireMode, rope.yoyo.length)
+      world.sendEntityMessage(self.projectileId, "updateProjectile",
+        activeItem.ownerAimPosition(),
+        self.fireMode,
+        rope.yoyo.length
+      )
 
       local position = mcontroller.position()
       local handPosition = vec2.add(position, activeItem.handPosition(self.ropeOffset))
@@ -109,9 +113,13 @@ function update(dt, fireMode, shiftHeld, moves)
   self.cooldownTimer = math.max(0, self.cooldownTimer - dt)
 
   if self.stanceName == "idle" and (fireMode == "primary" or fireMode == "alt") and self.cooldownTimer == 0 then
-    self.cooldownTimer = self.cooldownTime
-    setStance("windup")
+    if self.lastFireMode ~= ("primary" or "alt") then
+      self.cooldownTimer = self.cooldownTime
+      setStance("windup")
+    end
   end
+
+  self.lastFireMode = fireMode
 
   if self.stanceName == "throw" then
     if not self.projectileId then
@@ -133,6 +141,21 @@ function trackProjectile()
   end
 end
 
+function spawnCounterweights()
+  for index,counterweight in pairs(counterweights) do
+    if counterweight.projId == nil or not world.entityExists(counterweight.projId) then
+      counterweight.projId = world.spawnProjectile(
+        counterweight.projectileType,
+        mcontroller.position(),
+        activeItem.ownerEntityId(),
+        {0, 0},
+        false,
+        counterweight.projectileParameters
+      )
+    end
+  end
+end
+
 function fire()
   local params = copy(self.projectileParameters)
   params.powerMultiplier = activeItem.ownerPowerMultiplier()
@@ -148,17 +171,6 @@ function fire()
     false,
     params
   )
-
-  for index,counterweight in pairs(counterweights) do
-    counterweight.projId = world.spawnProjectile(
-      counterweight.projectileType,
-      mcontroller.position(),
-      activeItem.ownerEntityId(),
-      {0, 0},
-      false,
-      counterweight.projectileParameters
-    )
-  end
 
   if self.projectileId then
     storage.projectileIds = {projectileId}
@@ -176,7 +188,7 @@ function updateRope(id, newRope)
   if rope[id].params.rainbow == true then
     rope[id].params.hue = rope[id].params.hue +(rope[id].params.hueCycleSpeed or 1)
     rope[id].params.hue = rope[id].params.hue % 360
-    rope[id].params.color = HSLtoRGB(rope[id].params.hue, 150, 150, (rope[id].params.color[4] or 255))
+    rope[id].params.color = HSLtoRGB(rope[id].params.hue, 170, 170, (rope[id].params.color[4] or 255))
   end
 
   activeItem.setScriptedAnimationParameter(id .. "params", rope[id].params)

@@ -1,6 +1,6 @@
 {
   "itemName" : "rainbowwoodyoyo",
-  "price" : 50,
+  "price" : 100,
   "inventoryIcon" : "rainbowwoodyoyoicon.png",
   "rarity" : "Common",
   "maxStack" : 1,
@@ -22,18 +22,18 @@
       "throw" : ["/sfx/melee/sword_spinslash.ogg"]
     }
   },
-  "animationParts" : { "yoyo" : "/projectiles/activeitems/yoyo/rainbowwoodyoyo.png" },
+  "animationParts" : { "yoyo" : "/projectiles/activeitems/yoyo/rainbowwoodyoyo/rainbowwoodyoyo.png" },
 
   "fireOffset" : [0, 0],
 
   "rope" : {
     "yoyo" : {
-      "width" : 0.75,
-      "color" : [192, 177, 124, 255],
+      "width" : 0.8,
+      "color" : [192, 177, 124, 230],
       "offset" : [0, 0],
       "visualOffset" : [0, 0],
       "rainbow" : true,
-      "hueCycleSpeed" : 2
+      "hueCycleSpeed" : 0.5
     }
   },
 
@@ -42,14 +42,12 @@
   "usesYoyoUpgrades" : true,
   "shouldGiveString" : false,
 
-  "maxLength" : 9,
-  "extraLength" : 1,
+  "maxLength" : 11,
+  "extraLength" : 2,
 
-  // string
   "currentStringType" : "yoyostring",
-  "stringColor" : "?replace;6f2919=373737;a85636=b6b6b6",
+  "stringColor" : "?replace;a85636=7b7b7b;e0975c=b6b6b6;ffca8a=e6e6e6",
 
-  // counterweight
   "counterWeightType" : "",
   "counterWeightIcon" : "",
   "counterWeightName" : "",
@@ -58,11 +56,11 @@
 
   "projectileType" : "rainbowwoodyoyo",
   "projectileParameters" : {
-    "knockback" : 3,
-    "power" : 5,
-    "damageRepeatTimeout" : 0.9,
-    "yoyoSpeed" : 22,
-    "maxYoyoTime" : 5
+    "knockback" : 2,
+    "power" : 7,
+    "damageRepeatTimeout" : 0.7,
+    "yoyoSpeed" : 50,
+    "maxYoyoTime" : 5.5
   },
 
   "stances" : {
