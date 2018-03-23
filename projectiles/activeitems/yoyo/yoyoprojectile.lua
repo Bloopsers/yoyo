@@ -17,6 +17,7 @@ function init()
   self.ownerId = projectile.sourceEntity()
   self.aimPosition = mcontroller.position()
   self.hitSounds = config.getParameter("hitSounds")
+  self.rotation = 0
     
   self.queryParameters = {
     includedTypes = {"creature"},
@@ -29,20 +30,9 @@ function init()
     self.stringLength = stringLength
     return entity.id()
   end)
-end
 
-function tprint (tbl, indent)
-  if not indent then indent = 0 end
-  for k, v in pairs(tbl) do
-    formatting = string.rep("  ", indent) .. k .. ": "
-    if type(v) == "table" then
-      print(formatting)
-      tprint(v, indent+1)
-    elseif type(v) == 'boolean' then
-      print(formatting .. tostring(v))		
-    else
-      print(formatting .. v)
-    end
+  if yoyoExtra then
+    yoyoExtra:init()
   end
 end
 
@@ -61,6 +51,10 @@ function circle(radius, points, center)
 end
 
 function update(dt)
+  if yoyoExtra then
+    yoyoExtra:update(dt)
+  end
+
   local qur = world.entityQuery(mcontroller.position(), 8, self.queryParameters)
   for _,entityId in ipairs(qur) do
     if world.entityDamageTeam(entityId).type == "enemy" then
@@ -111,10 +105,11 @@ function update(dt)
   end
 
   if self.returning == true then
-    mcontroller.setRotation(mcontroller.rotation() + (self.rotationSpeed * dt))
+    self.rotation = mcontroller.rotation() + (self.rotationSpeed * dt)
   else
-    mcontroller.setRotation(mcontroller.rotation() - (self.rotationSpeed * dt))
+    self.rotation = mcontroller.rotation() - (self.rotationSpeed * dt)
   end
+  mcontroller.setRotation(self.rotation)
 end
 
 function controlTo(position, speed, controlForce)
@@ -150,6 +145,10 @@ function controlTo2(position, speed, controlForce)
 end
 
 function hit(entityId)
+  if yoyoExtra then
+    yoyoExtra:hit(entityId)
+  end
+
   if self.hitSounds then
     projectile.processAction({action = "sound", options = self.hitSounds})
   end
@@ -165,14 +164,14 @@ function hit(entityId)
   end
   --shoot out the yoyo in a random direction if we hit something
   local directions = {
-    {2400, 2400},
-    {-2400, -2400},
-    {2400, -2400},
-    {-2400, 2400},
-    {0, 2400},
-    {0, -2400},
-    {2400, 0},
-    {-2400, 0}
+    {2100, 2100},
+    {-2100, -2100},
+    {2100, -2100},
+    {-2100, 2100},
+    {0, 2100},
+    {0, -2100},
+    {2100, 0},
+    {-2100, 0}
   }
   mcontroller.force(directions[math.random(#directions)])
 end

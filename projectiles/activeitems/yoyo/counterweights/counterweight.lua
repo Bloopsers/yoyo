@@ -10,9 +10,16 @@ function init()
   self.returning = false
   self.time = 0
   self.pickupDistance = 1
-  radius = config.getParameter("rotateRadius", 5)
-  rotateSpeed = 0.1
-  angle = 0
+  self.fixedAngle = config.getParameter("fixedAngle")
+  self.maxTime = config.getParameter("maxTime", 5)
+  radius = config.getParameter("rotateRadius")
+  rotateSpeed = config.getParameter("rotateSpeed")
+
+  if self.fixedAngle then
+    angle = self.fixedAngle
+  else
+    angle = math.random(360)
+  end
 
   self.ownerId = projectile.sourceEntity()
 end
@@ -33,10 +40,10 @@ end
 
 function update(dt)
   self.ownerPos = world.entityPosition(self.ownerId)
-  world.debugPoly(circle(radius, 32, ownerPos), {0, 255, 0})
+  world.debugPoly(circle(radius, 32, self.ownerPos), {0, 0, 255})
 
   self.time = self.time + (1 * dt)
-  if self.time > 4 then
+  if self.time > self.maxTime or world.magnitude(mcontroller.position(), self.ownerPos) > radius +7 then
     self.returning = true
     mcontroller.applyParameters({collisionEnabled = false})
   end
@@ -48,14 +55,14 @@ function update(dt)
   local offset = vec2.mul({math.sin(angle), math.cos(angle)}, radius)
 
   if self.returning == true then
-    controlTo(self.ownerPos, 30, 800)
+    controlTo(self.ownerPos, 50, 800)
     if world.magnitude(world.entityPosition(self.ownerId), mcontroller.position()) < self.pickupDistance then
       projectile.die()
     end
   else
     if world.pointCollision(vec2.add(self.ownerPos, offset), {"Block"}) then
       self.switchTimer = self.switchTimer - 1
-      controlTo(vec2.add(self.ownerPos, offset), 30, 800)
+      controlTo(vec2.add(self.ownerPos, offset), 30 / radius, 800)
       if self.switchTimer == 0 then
         rotateSpeed = -rotateSpeed
       end

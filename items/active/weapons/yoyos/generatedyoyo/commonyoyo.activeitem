@@ -26,8 +26,8 @@
 
   "rope" : {
     "yoyo" : {
-      "width" : 0.75,
-      "color" : [192, 177, 124, 255],
+      "width" : 0.8,
+      "color" : [202, 202, 202, 230],
       "offset" : [0, 0],
       "visualOffset" : [0, 0]
     }
@@ -36,16 +36,14 @@
   "counterweights" : [],
 
   "usesYoyoUpgrades" : true,
-  "shouldGiveString" : false,
+  "usesCounterweightUpgrades" : false,
 
-  "maxLength" : [7, 10],
-  "extraLength" : 1,
+  "maxLength" : [8, 10],
+  "extraLength" : 2,
 
-  // string
   "currentStringType" : "yoyostring",
   "stringColor" : "?replace;6f2919=373737;a85636=b6b6b6",
 
-  // counterweight
   "counterWeightType" : "",
   "counterWeightIcon" : "",
   "counterWeightName" : "",
@@ -70,9 +68,9 @@
   "projectileType" : "generatedyoyo",
   "projectileParameters" : {
     "knockback" : [1, 2],
-    "power" : [4.5, 5.2],
-    "damageRepeatTimeout" : [8.7, 1.1],
-    "yoyoSpeed" : [18.5, 21.5],
+    "power" : [7.3, 7.6],
+    "damageRepeatTimeout" : [5, 7.5],
+    "yoyoSpeed" : [33, 43],
     "maxYoyoTime" : [4, 7]
   },
 

@@ -1,0 +1,16 @@
+{
+  "itemName" : "transparentyoyostring",
+  "price" : 100,
+  "rarity" : "Common",
+  "category" : "yoyoupgrade",
+  "tooltipKind" : "yoyoupgrade",
+  "inventoryIcon" : "/items/augments/yoyo/yoyostring.png?replace;a85636=4facb2C8;e0975c=a8e6e2C8;ffca8a=ffffffC8",
+  "description" : "A transparent yoyo string. Increases your yoyo range by 6.",
+  "shortdescription" : "Transparent Yoyo String",
+
+  "extraLength" : 6,
+  "stringColor" : "?replace;a85636=4facb2C8;e0975c=a8e6e2C8;ffca8a=ffffffC8",
+  "ropeColor" : [168, 230, 226, 100],
+
+  "scripts" : [ "/scripts/augments/yoyo.lua" ]
+}

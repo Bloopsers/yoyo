@@ -2,7 +2,7 @@
   "projectileName" : "yoyocounterweightfire",
   "image" : "counterweightfire.png",
   "emitters" : [ "fireflames" ],
-  "renderLayer" : "overlay-1",
+  "renderLayer" : "ForegroundTile+2",
 
   "flippable" : true,
   "orientationLocked" : false,

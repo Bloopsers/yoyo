@@ -41,6 +41,7 @@
   "counterweights" : [],
 
   "usesYoyoUpgrades" : true,
+  "usesCounterweightUpgrades" : true,
 
   "maxLength" : 21,
   "extraLength" : 2,

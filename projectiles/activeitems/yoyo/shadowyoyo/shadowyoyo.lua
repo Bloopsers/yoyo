@@ -1,8 +1,6 @@
-init2 = init
-update2 = update
-hit2 = hit
+yoyoExtra = {}
 
-function init()
+function yoyoExtra:init()
   self.basePower = config.getParameter("power")
   self.stacks = 0
   self.damagePerStack = config.getParameter("damagePerStack")
@@ -10,11 +8,9 @@ function init()
   self.maxHitTimer = config.getParameter("maxHitTimer")
   self.hitTimer = 0
   self.damageUpAction = config.getParameter("damageUpAction")
-  init2()
 end
 
-function update(dt)
-  update2(dt)
+function yoyoExtra:update(dt)
   if self.stacks >= 1 then
     self.hitTimer = self.hitTimer + (1 * dt)
   end
@@ -52,8 +48,7 @@ function textParticle(text)
   projectile.processAction(action)
 end
 
-function hit(entityId)
-  hit2(entityId)
+function yoyoExtra:hit(entityId)
   -- make sure we're hitting an enemy and not some bushes or something
   if world.entityDamageTeam(entityId).type == "enemy" then
     self.hitTimer = 0

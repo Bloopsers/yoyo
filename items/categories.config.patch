@@ -7,11 +7,11 @@
   {
     "op": "add",
     "path": "/labels/yoyostring",
-    "value": "Yoyo String"
+    "value": "Yoyo Upgrade"
   },
   {
     "op": "add",
-    "path": "/labels/yoyocounterweight",
-    "value": "Yoyo Counterweight"
+    "path": "/labels/yoyoupgrade",
+    "value": "Yoyo Upgrade"
   }
 ]

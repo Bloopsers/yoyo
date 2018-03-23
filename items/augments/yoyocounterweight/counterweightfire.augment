@@ -2,10 +2,10 @@
   "itemName" : "counterweightfire",
   "price" : 500,
   "rarity" : "Common",
-  "category" : "yoyocounterweight",
+  "category" : "yoyoupgrade",
   "tooltipKind" : "base",
   "inventoryIcon" : "/items/augments/yoyocounterweight/counterweightfire.png",
-  "description" : "A counterweight that burns enemies.\n^gray;Equip to yoyo with right-click",
+  "description" : "Burns your enemies!\n^gray;Equip to yoyo with right-click",
   "shortdescription" : "Fiery Counterweight",
 
   "counterweights" : [
@@ -14,8 +14,9 @@
       "fromItem" : true,
       "projectileParameters" : {
         "power" : 5,
-        "rotateRadius" : 7,
-        "rotateSpeed" : 3.14
+        "rotateRadius" : 6,
+        "rotateSpeed" : 0.1,
+        "maxTime" : 5
       }
     }
   ],

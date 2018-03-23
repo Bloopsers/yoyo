@@ -8,36 +8,36 @@ function update()
     if params then
       local ropeParticle = params.ropeParticle
       local ropeParticleDensity = params.ropeParticleDensity
+      local points = animationConfig.animationParameter(ropeId .. "points")
 
       local lastPoint = activeItemAnimation.handPosition(params.offset)
-      for i = 2, 500 do
-        local nextPoint = animationConfig.animationParameter(ropeId .. "p"..i)
-        if nextPoint == nil then
-          break
-        end
+      if #points >= 2 then
+        for i = 2,#points do
+          local nextPoint = points[i]
 
-        local position = activeItemAnimation.ownerPosition()
-        local relativeNextPoint = world.distance(nextPoint, position)
-        localAnimator.addDrawable({
-          position = position,
-          line = {lastPoint, relativeNextPoint},
-          width = params.width,
-          color = params.color,
-          fullbright = params.fullbright
-        }, "ForegroundTile+1")
+          local position = activeItemAnimation.ownerPosition()
+          local relativeNextPoint = world.distance(nextPoint, position)
+          localAnimator.addDrawable({
+            position = position,
+            line = {lastPoint, relativeNextPoint},
+            width = params.width,
+            color = params.color,
+            fullbright = params.fullbright
+          }, "ForegroundTile+1")
 
-        if ropeParticle and ropeParticleDensity and ropeParticleDensity > 0 then
-          local segment = vec2.sub(relativeNextPoint, lastPoint)
-          local particleCount = math.ceil(ropeParticleDensity * vec2.mag(segment))
-          if particleCount > 0 then
-            for i = 1, particleCount do
-              local ppos = vec2.add(vec2.add(position, lastPoint), vec2.mul(segment, math.random()))
-              localAnimator.spawnParticle(ropeParticle, ppos)
+          if ropeParticle and ropeParticleDensity and ropeParticleDensity > 0 then
+            local segment = vec2.sub(relativeNextPoint, lastPoint)
+            local particleCount = math.ceil(ropeParticleDensity * vec2.mag(segment))
+            if particleCount > 0 then
+              for i = 1, particleCount do
+                local ppos = vec2.add(vec2.add(position, lastPoint), vec2.mul(segment, math.random()))
+                localAnimator.spawnParticle(ropeParticle, ppos)
+              end
             end
-        end
-        end
+          end
 
-        lastPoint = relativeNextPoint
+          lastPoint = relativeNextPoint
+        end
       end
     end
   end

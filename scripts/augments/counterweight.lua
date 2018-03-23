@@ -3,6 +3,10 @@ require "/scripts/augments/item.lua"
 function apply(input)
   local output = Item.new(input)
 
+  if not output:instanceValue("usesCounterweightUpgrades") then
+    return nil
+  end
+
   if output:instanceValue("counterWeightType") == config.getParameter("itemName") then
     return nil
   end

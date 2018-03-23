@@ -79,6 +79,7 @@ function build(directory, config, parameters, level, seed)
           if v.paletteSwap then
             config.animationParts[k] = config.animationParts[k] .. config.paletteSwaps
             config.iconAnimationParts[k] = config.iconAnimationParts[k] .. config.paletteSwaps
+            config.projectileParameters.yoyoImage = config.animationParts["yoyo"] .. config.paletteSwaps
           end
           config.projectileParameters.image = config.animationParts[builderConfig.yoyoProjectilePart]
         else
@@ -121,8 +122,16 @@ function build(directory, config, parameters, level, seed)
     config.inventoryIcon = config.inventoryIcon .. params.stringColor
   end
 
-  config.tooltipFields.counterWeightIconImage = parameters.counterWeightIcon or "/interface/tooltips/counterweightbase.png"
-  config.tooltipFields.counterWeightNameLabel = parameters.counterWeightName or "^gray;No Counterweight"
+  local name = "^gray;No Counterweight"
+  local icon = "/interface/tooltips/counterweightbase.png"
+  if params.counterWeightName ~= "" then
+    name = params.counterWeightName
+  end
+  if params.counterWeightIcon ~= "" then
+    icon = params.counterWeightIcon
+  end
+  config.tooltipFields.counterWeightIconImage = icon
+  config.tooltipFields.counterWeightNameLabel = name
 
   --config.tooltipFields.stringIconImage = params.currentStringIcon
   --config.tooltipFields.stringNameLabel = params.currentStringName

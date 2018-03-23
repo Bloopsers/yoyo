@@ -38,7 +38,7 @@
   "counterweights" : [],
 
   "usesYoyoUpgrades" : true,
-  "shouldGiveString" : false,
+  "usesCounterweightUpgrades" : true,
 
   "maxLength" : 16.5,
   "extraLength" : 2,

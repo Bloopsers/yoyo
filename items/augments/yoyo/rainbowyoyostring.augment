@@ -2,9 +2,10 @@
   "itemName" : "rainbowyoyostring",
   "price" : 100,
   "rarity" : "Common",
-  "category" : "yoyostring",
+  "category" : "yoyoupgrade",
+  "tooltipKind" : "yoyoupgrade",
   "inventoryIcon" : "/items/augments/yoyo/rainbowyoyostring.png",
-  "description" : "Cycles through the rainbow! Increases your yoyo length by 2.",
+  "description" : "Cycles through the rainbow! Increases your yoyo range by 2.",
   "shortdescription" : "Rainbow Yoyo String",
 
   "extraLength" : 2,

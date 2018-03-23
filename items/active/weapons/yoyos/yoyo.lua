@@ -22,6 +22,7 @@ function init()
   end)
 
   self.lastFireMode = "none"
+  self.isTwoHanded = config.getParameter("twoHanded", false)
 
   counterweights = config.getParameter("counterweights")
 
@@ -90,6 +91,8 @@ function update(dt, fireMode, shiftHeld, moves)
           local handPosition = vec2.add(position, activeItem.handPosition(rope[id].params.visualOffset))
 
           updateRope(id, {handPosition, counterweight.position})
+        else
+          updateRope("counterWeight" .. id, {})
         end
       end
       world.sendEntityMessage(self.projectileId, "updateProjectile",
@@ -112,8 +115,8 @@ function update(dt, fireMode, shiftHeld, moves)
 
   self.cooldownTimer = math.max(0, self.cooldownTimer - dt)
 
-  if self.stanceName == "idle" and (fireMode == "primary" or fireMode == "alt") and self.cooldownTimer == 0 then
-    if self.lastFireMode ~= ("primary" or "alt") then
+  if self.stanceName == "idle" and self.cooldownTimer == 0 then
+    if (fireMode == "primary" or fireMode == "alt") and self.lastFireMode ~= ("primary" or "alt") then
       self.cooldownTimer = self.cooldownTime
       setStance("windup")
     end
@@ -124,6 +127,7 @@ function update(dt, fireMode, shiftHeld, moves)
   if self.stanceName == "throw" then
     if not self.projectileId then
       setStance("precatch")
+      animator.playSound("catch")
     end
   end
 
@@ -144,6 +148,7 @@ end
 function spawnCounterweights()
   for index,counterweight in pairs(counterweights) do
     if counterweight.projId == nil or not world.entityExists(counterweight.projId) then
+      counterweight.points = {}
       counterweight.projId = world.spawnProjectile(
         counterweight.projectileType,
         mcontroller.position(),
@@ -195,12 +200,12 @@ function updateRope(id, newRope)
 
   for i = 2, #rope[id].points do
     ropeLength = ropeLength + world.magnitude(rope[id].points[i], rope[id].points[i - 1])
-    activeItem.setScriptedAnimationParameter(id .. "p" .. i, rope[id].points[i])
   end
   rope[id].length = ropeLength
   for i = #rope[id].points + 1, previousRopeCount do
-    activeItem.setScriptedAnimationParameter(id .. "p" .. i, nil)
   end
+
+  activeItem.setScriptedAnimationParameter(id .. "points", rope[id].points)
 end
 
 function cancel()
