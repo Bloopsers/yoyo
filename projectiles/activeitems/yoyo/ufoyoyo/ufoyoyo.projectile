@@ -3,6 +3,8 @@
   "image" : "ufoyoyo.png",
   "flippable" : false,
   "orientationLocked" : true,
+  "animationCycle" : 0.4,
+  "frameNumber" : 7,
   "lightColor" : [255, 47, 25],
   "actionOnReap" : [ ],
   "statusEffects" : [ ],
@@ -15,6 +17,7 @@
   "renderLayer" : "ForegroundTile+2",
   "damageKind" : "plasma",
   "physics" : "hover",
+  "fullbright" : true,
   "bounces" : -1,
   "piercing" : true,
   "timeToLive" : 100,
@@ -48,6 +51,8 @@
   "maxDistance" : 10,
   "maxYoyoTime" : 5,
   "rotationSpeed" : 0,
+  
+  "persistentAudio" : "/sfx/tech/forcefield_loop.ogg",
 
   "scripts" : [ "/projectiles/activeitems/yoyo/yoyoprojectile.lua" ]
 }
