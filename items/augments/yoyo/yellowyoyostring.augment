@@ -1,6 +1,7 @@
 {
   "itemName" : "yellowyoyostring",
   "price" : 15,
+  "rarity" : "Common",
   "category" : "yoyoupgrade",
   "tooltipKind" : "yoyoupgrade",
   "inventoryIcon" : "/items/augments/yoyo/yoyostring.png?replace;a85636=a46e06;e0975c=e2c344;ffca8a=ffffa7",

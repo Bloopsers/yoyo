@@ -2,7 +2,7 @@
   "itemName" : "titaniumyoyo",
   "price" : 940,
   "inventoryIcon" : "icon.png",
-  "rarity" : "Common",
+  "rarity" : "Uncommon",
   "maxStack" : 1,
   "description" : "It's simple, but still fun as heck!",
   "shortdescription" : "Titanium Yoyo",
@@ -40,7 +40,7 @@
   "usesYoyoUpgrades" : true,
   "usesCounterweightUpgrades" : true,
 
-  "maxLength" : 16.5,
+  "maxLength" : 14,
   "extraLength" : 2,
 
   "currentStringType" : "yoyostring",
@@ -57,8 +57,8 @@
     "knockback" : 3,
     "power" : 7,
     "damageRepeatTimeout" : 0.7,
-    "yoyoSpeed" : 50,
-    "maxYoyoTime" : 10
+    "yoyoSpeed" : 45,
+    "maxYoyoTime" : 9
   },
 
   "stances" : {

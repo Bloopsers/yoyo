@@ -18,25 +18,9 @@
   "piercing" : true,
   "timeToLive" : 100,
 
-  "periodicActions" : [
-    {
-      "action" : "particle",
-      "time" : 0.006,
-      "repeat" : true,
-      "specification" : {
-        "type" : "textured",
-        "image" : "/items/active/weapons/yoyos/generatedyoyo/parts/projectile_1.png",
-        "timeToLive" : 0.007,
-        "layer" : "middle",
-        "flippable" : true,
-        "rotation" : 0
-      }
-    }
-  ],
-
   "pickupDistance" : 2,
   "maxDistance" : 10,
   "maxYoyoTime" : 5,
 
-  "scripts" : [ "/projectiles/activeitems/yoyo/yoyoprojectile.lua", "generatedyoyo.lua" ]
+  "scripts" : [ "/projectiles/activeitems/yoyo/yoyoprojectile.lua" ]
 }

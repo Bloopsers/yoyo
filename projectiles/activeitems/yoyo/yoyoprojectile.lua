@@ -18,6 +18,7 @@ function init()
   self.aimPosition = mcontroller.position()
   self.hitSounds = config.getParameter("hitSounds")
   self.rotation = 0
+  mcontroller.setRotation(self.rotation)
     
   self.queryParameters = {
     includedTypes = {"creature"},

@@ -36,13 +36,13 @@
   "counterweights" : [],
 
   "usesYoyoUpgrades" : true,
-  "usesCounterweightUpgrades" : false,
+  "usesCounterweightUpgrades" : true,
 
   "maxLength" : [8, 10],
   "extraLength" : 2,
 
   "currentStringType" : "yoyostring",
-  "stringColor" : "?replace;6f2919=373737;a85636=b6b6b6",
+  "stringColor" : "?replace;a85636=7b7b7b;e0975c=b6b6b6;ffca8a=e6e6e6",
 
   "counterWeightType" : "",
   "counterWeightIcon" : "",
@@ -53,24 +53,32 @@
   "builderConfig" : {
     "nameGenerator" : "yoyonames.config:nameGen",
     "yoyoProjectilePart" : "yoyo",
+    "companies" : [
+      "Corkscrew",
+      "Dunken",
+      "Rotik",
+      "Curve"
+    ],
+    "counterweights" : [],
+    "counterweightChance" : 3,
     "animationParts" : {
       "yoyo" : {
-        "projectilePath" : "parts/projectile_<variant>.png",
-        "iconPath" : "parts/icon_<variant>.png",
+        "projectilePath" : "parts/<company>_projectile_<variant>.png",
+        "iconPath" : "parts/<company>_icon_<variant>.png",
         "variants" : 1,
         "paletteSwap" : true
       }
     },
-    "palette" : "/items/active/weapons/colors/melee.weaponcolors",
+    "palette" : "/items/active/weapons/yoyos/generatedyoyo/yoyo.weaponcolors",
     "iconDrawables" : ["yoyo"]
   },
 
   "projectileType" : "generatedyoyo",
   "projectileParameters" : {
-    "knockback" : [1, 2],
+    "knockback" : [1, 3],
     "power" : [7.3, 7.6],
     "damageRepeatTimeout" : [5, 7.5],
-    "yoyoSpeed" : [33, 43],
+    "yoyoSpeed" : [33, 45],
     "maxYoyoTime" : [4, 7]
   },
 

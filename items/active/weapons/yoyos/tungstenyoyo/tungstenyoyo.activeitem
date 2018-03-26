@@ -57,8 +57,8 @@
     "knockback" : 2,
     "power" : 7,
     "damageRepeatTimeout" : 0.7,
-    "yoyoSpeed" : 50,
-    "maxYoyoTime" : 7
+    "yoyoSpeed" : 40,
+    "maxYoyoTime" : 6.5
   },
 
   "stances" : {

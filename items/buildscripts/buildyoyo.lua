@@ -38,8 +38,12 @@ function build(directory, config, parameters, level, seed)
     end
     elementalType = configParameter("elementalType", "physical")
 
+    if not parameters.company then
+      parameters.company = randomFromList(builderConfig.companies, seed, "companies")
+    end
+
     if not parameters.shortdescription and builderConfig.nameGenerator then
-      parameters.shortdescription = root.generateName(util.absolutePath(directory, builderConfig.nameGenerator), seed)
+      parameters.shortdescription = parameters.company .. " " .. root.generateName(util.absolutePath(directory, builderConfig.nameGenerator), seed)
     end
 
     config.paletteSwaps = ""
@@ -76,17 +80,42 @@ function build(directory, config, parameters, level, seed)
           end
           config.animationParts[k] = util.absolutePath(directory, string.gsub(v.projectilePath, "<variant>", parameters.animationPartVariants[k] or ""))
           config.iconAnimationParts[k] = util.absolutePath(directory, string.gsub(v.iconPath, "<variant>", parameters.animationPartVariants[k] or ""))
+          config.animationParts[k] = string.gsub(config.animationParts[k], "<company>", parameters.company or "")
+          config.iconAnimationParts[k] = string.gsub(config.iconAnimationParts[k], "<company>", parameters.company or "")
           if v.paletteSwap then
             config.animationParts[k] = config.animationParts[k] .. config.paletteSwaps
             config.iconAnimationParts[k] = config.iconAnimationParts[k] .. config.paletteSwaps
-            config.projectileParameters.yoyoImage = config.animationParts["yoyo"] .. config.paletteSwaps
+            config.projectileParameters.yoyoImage = config.animationParts[builderConfig.yoyoProjectilePart] .. config.paletteSwaps
           end
-          config.projectileParameters.image = config.animationParts[builderConfig.yoyoProjectilePart]
+          yoyoProjectileImage = config.animationParts[builderConfig.yoyoProjectilePart]
         else
           config.animationParts[k] = v
         end
       end
     end
+
+    if builderConfig.counterweights then
+      table.insert(config.counterweights, randomFromList(builderConfig.counterweights, seed, "counterweights"))
+    end
+
+    local periodicActions = {}
+
+    table.insert(periodicActions, 
+      {
+        action = "particle",
+        time = 0.006,
+        ["repeat"] = true,
+        rotate = true,
+        specification = {
+          type = "textured",
+          image = yoyoProjectileImage,
+          timeToLive = 0.007,
+          layer = "front",
+          flippable = true
+        }
+      })
+
+    config.projectileParameters.periodicActions = periodicActions
 
     if not config.inventoryIcon and config.iconAnimationParts then
       config.inventoryIcon = jarray()

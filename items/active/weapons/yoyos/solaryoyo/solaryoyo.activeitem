@@ -16,13 +16,13 @@
 
   "scripts" : ["/items/active/weapons/yoyos/yoyo.lua"],
   "animationScripts" : ["/items/active/effects/renderyoyorope.lua"],
-  "animation" : "/items/active/weapons/yoyos/yoyofullbright.animation",
+  "animation" : "/items/active/weapons/yoyos/yoyo.animation",
   "animationCustom" : {
     "sounds" : {
       "throw" : ["/sfx/melee/sword_spinslash.ogg"]
     }
   },
-  "animationParts" : { "yoyo" : "", "yoyoFullbright" : "/projectiles/activeitems/yoyo/solaryoyo/solaryoyo.png" },
+  "animationParts" : { "yoyoFullbright" : "/projectiles/activeitems/yoyo/solaryoyo/solaryoyo.png" },
 
   "fireOffset" : [0, 0],
 
