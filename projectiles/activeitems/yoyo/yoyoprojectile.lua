@@ -10,23 +10,18 @@ function init()
   self.pickupDistance = config.getParameter("pickupDistance", 2)
   self.maxDistance = config.getParameter("maxDistance")
   self.yoyoTime = 0
-  self.cursorOutside = false
   self.maxYoyoTime = config.getParameter("maxYoyoTime", 5)
   self.yoyoSpeed = config.getParameter("yoyoSpeed", 32)
   self.stringLength = 0
-  self.allowMove = true
   self.hits = 0
   self.variable = 0
+  self.dieOnReturn = config.getParameter("dieOnReturn", false)
   self.ownerId = projectile.sourceEntity()
   self.aimPosition = mcontroller.position()
   self.hitSounds = config.getParameter("hitSounds")
   self.rotation = 0
-  mcontroller.setRotation(self.rotation)
-    
-  self.queryParameters = {
-    includedTypes = {"creature"},
-    order = "nearest"
-  }
+
+  mcontroller.setRotation(0)
 
   message.setHandler("updateProjectile", function(_, _, aimPosition, fireMode, stringLength)
     self.aimPosition = aimPosition
@@ -54,27 +49,26 @@ function circle(radius, points, center)
   return poly
 end
 
+function returnYoyo()
+  if self.dieOnReturn then
+    projectile.die()
+  else
+    self.returning = true
+    mcontroller.applyParameters({collisionEnabled = false})
+  end
+end
+
 function update(dt)
   if yoyoExtra then
     yoyoExtra:update(dt)
-  end
-
-  local qur = world.entityQuery(mcontroller.position(), 8, self.queryParameters)
-  for _,entityId in ipairs(qur) do
-    if world.entityDamageTeam(entityId).type == "enemy" then
-      world.debugLine(mcontroller.position(), world.entityPosition(entityId), {255, 255, 0})
-    end
   end
 
   self.yoyoTime = self.yoyoTime + (1 * dt)
 
   self.ownerPos = world.entityPosition(self.ownerId)
 
-  --world.damageTileArea(mcontroller.position(), 2, "foreground", self.ownerPos, "blockish", 0.5)
-
   if self.yoyoTime >= self.maxYoyoTime or self.stringLength > self.maxDistance +5 or self.fireMode == "none" then
-    self.returning = true
-    mcontroller.applyParameters({collisionEnabled = false})
+    returnYoyo()
   end
   
   world.debugPoly(circle(self.maxDistance, 32, self.ownerPos), {255, 255, 0})
@@ -92,7 +86,8 @@ function update(dt)
         end
       else
         local distToPos = world.magnitude(mcontroller.position(), self.aimPosition)
-		local cursorOutside = world.magnitude(self.ownerPos, self.aimPosition) > self.maxDistance
+        local cursorOutside = world.magnitude(self.ownerPos, self.aimPosition) > self.maxDistance
+        
         if distToPos < 0.4 then
           controlTo(self.aimPosition, 0, 650)
         elseif distToPos < 0.6 then
@@ -105,17 +100,17 @@ function update(dt)
           controlTo(self.aimPosition, self.yoyoSpeed, 650)
         end
 		
-		if cursorOutside == true then
-		    if world.magnitude(mcontroller.position(), self.ownerPos) >= self.maxDistance then
-				mcontroller.setVelocity({mcontroller.yVelocity() / 24, mcontroller.xVelocity() / 24})
-				controlTo(self.aimPosition, self.yoyoSpeed / 4.5, 650 / 4.5)
-				controlTwo(mcontroller.position(), self.yoyoSpeed / 4.5, 650 / 4.5)
-			end
-		end
+		    if cursorOutside == true then
+		      if world.magnitude(mcontroller.position(), self.ownerPos) >= self.maxDistance then
+				    mcontroller.setVelocity({mcontroller.yVelocity() / 24, mcontroller.xVelocity() / 24})
+				    controlTo(self.aimPosition, self.yoyoSpeed / 4.5, 650 / 4.5)
+				    controlTwo(mcontroller.position(), self.yoyoSpeed / 4.5, 650 / 4.5)
+			    end
+		    end
 		
-		if world.magnitude(mcontroller.position(), self.ownerPos) > self.maxDistance + 0.2 then
+		    if world.magnitude(mcontroller.position(), self.ownerPos) > self.maxDistance + 0.2 then
           controlTo(self.ownerPos, self.yoyoSpeed, 650)
-		end
+		    end
       end
     end
   else
@@ -123,10 +118,10 @@ function update(dt)
   end
 
   if self.variable > 0 then
-  self.variable = self.variable - dt
+    self.variable = self.variable - dt
   end
   if self.variable < 0 then
-  self.variable = 0
+    self.variable = 0
   end
   
   if self.returning == true then
@@ -198,6 +193,7 @@ function hit(entityId)
   if self.yoyoTime > 0.15 then
     self.yoyoTime = self.yoyoTime +0.5
   end
+
   --shoot out the yoyo in a random direction if we hit something
   local directions = {
     {2100, 2100},

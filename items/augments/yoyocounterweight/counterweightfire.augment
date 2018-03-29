@@ -5,7 +5,7 @@
   "category" : "yoyoupgrade",
   "tooltipKind" : "yoyoupgrade",
   "inventoryIcon" : "/items/augments/yoyocounterweight/counterweightfire.png",
-  "description" : "Burns your enemies!\n^gray;Equip to yoyo with right-click",
+  "description" : "Burns your enemies!",
   "shortdescription" : "Fiery Counterweight",
 
   "counterweights" : [

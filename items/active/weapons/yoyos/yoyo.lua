@@ -22,9 +22,20 @@ function init()
   end)
 
   self.lastFireMode = "none"
-  self.isTwoHanded = config.getParameter("twoHanded", false)
-
   counterweights = config.getParameter("counterweights")
+  self.projectileType = config.getParameter("projectileType")
+  self.fireMode = "none"
+  self.yoyoRotation = 0
+  self.projectileParameters = config.getParameter("projectileParameters")
+  self.maxLength = config.getParameter("maxLength", 5) + config.getParameter("extraLength", 0)
+  self.aimAngle = 0
+  self.facingDirection = 0
+  self.projectileId = nil
+  self.projectilePosition = nil
+  self.cooldownTime = config.getParameter("cooldownTime", 0)
+  self.cooldownTimer = self.cooldownTime
+
+  self.projectileParameters.power = self.projectileParameters.power * root.evalFunction("weaponDamageLevelMultiplier", config.getParameter("level", 1))
 
   for index,counterweight in pairs(counterweights) do
     rope["counterWeight" .. index] = {
@@ -33,34 +44,14 @@ function init()
       params = rope.yoyo.params
     }
     table.insert(ropeIds, "counterWeight" .. index)
-    if counterweight.projectileParameters.power then
-      counterweight.projectileParameters.power = counterweight.projectileParameters.power * root.evalFunction("weaponDamageLevelMultiplier", config.getParameter("level", 1))
-    end
+    counterweight.projectileParameters.power = self.projectileParameters.power + (counterweight.projectileParameters.power or 0)
   end
 
   activeItem.setScriptedAnimationParameter("ropes", ropeIds)
 
-  self.projectileType = config.getParameter("projectileType")
-
-  self.fireMode = "none"
-  self.yoyoRotation = 0
-
-  self.projectileParameters = config.getParameter("projectileParameters")
-
-  self.maxLength = config.getParameter("maxLength", 5) + config.getParameter("extraLength", 0)
-
-  self.aimAngle = 0
-  self.facingDirection = 0
-  self.projectileId = nil
-  self.projectilePosition = nil
-
-  self.projectileParameters.power = self.projectileParameters.power * root.evalFunction("weaponDamageLevelMultiplier", config.getParameter("level", 1))
   initStances()
-
-  self.cooldownTime = config.getParameter("cooldownTime", 0)
-  self.cooldownTimer = self.cooldownTime
-
   checkProjectiles()
+
   if storage.projectileIds then
     setStance("throw")
   else
@@ -81,7 +72,6 @@ function update(dt, fireMode, shiftHeld, moves)
   trackProjectile()
 
   if self.projectileId then
-    activeItem.setCursor("/cursors/reticle0.cursor")
     setStance("throw")
     if world.entityExists(self.projectileId) then
       for id,counterweight in pairs(counterweights) do
@@ -109,8 +99,6 @@ function update(dt, fireMode, shiftHeld, moves)
     else
       cancel()
     end
-  else
-	activeItem.setCursor()
   end
 
   updateStance(dt)
@@ -165,6 +153,8 @@ function spawnCounterweights()
 end
 
 function fire()
+  activeItem.setCursor("/cursors/reticle0.cursor")
+
   local params = copy(self.projectileParameters)
   params.powerMultiplier = activeItem.ownerPowerMultiplier()
   params.ownerAimPosition = activeItem.ownerAimPosition()
@@ -214,6 +204,7 @@ end
 function cancel()
   if self.projectileId and world.entityExists(self.projectileId) then
     world.callScriptedEntity(self.projectileId, "kill")
+    activeItem.setCursor()
   end
   for k,v in pairs(counterweights) do
     if v.projId and world.entityExists(v.projId) then
