@@ -1,18 +1,18 @@
 {
-  "itemName" : "riptideyoyo",
+  "itemName" : "skullyoyo",
   "price" : 940,
   "inventoryIcon" : "icon.png",
   "rarity" : "Uncommon",
   "maxStack" : 1,
   "description" : "It's simple, but still fun as heck!",
-  "shortdescription" : "Riptide",
+  "shortdescription" : "Skull & Bones",
   "largeImage" : "icon.png",
   "tooltipKind" : "yoyo",
   "category" : "yoyo",
   "fireTime" : 0,
   "twoHanded" : true,
   "itemTags" : ["weapon","yoyo"],
-  "level" : 2,
+  "level" : 1,
 
   "scripts" : ["/items/active/weapons/yoyos/yoyo.lua"],
   "animationScripts" : ["/items/active/effects/renderyoyorope.lua"],
@@ -22,7 +22,7 @@
       "throw" : ["/sfx/melee/sword_spinslash.ogg"]
     }
   },
-  "animationParts" : { "yoyo" : "/projectiles/activeitems/yoyo/riptideyoyo/riptideyoyo.png" },
+  "animationParts" : { "yoyo" : "/projectiles/activeitems/yoyo/skullyoyo/skullyoyo.png" },
 
   "fireOffset" : [0, 0],
 
@@ -35,10 +35,21 @@
     }
   },
 
-  "counterweights" : [],
+  "counterweights" : [
+	{
+      "projectileType" : "yoyocounterweightbones",
+      "projectileParameters" : {
+        "power" : 3,
+        "rotateRadius" : 5,
+        "rotateSpeed" : 0.1,
+        "maxTime" : 4,
+        "fixedAngle" : 0
+      }
+    }
+  ],
 
   "usesYoyoUpgrades" : true,
-  "usesCounterweightUpgrades" : true,
+  "usesCounterweightUpgrades" : false,
 
   "maxLength" : 11,
   "extraLength" : 2,
@@ -46,20 +57,20 @@
   "currentStringType" : "yoyostring",
   "stringColor" : "?replace;a85636=7b7b7b;e0975c=b6b6b6;ffca8a=e6e6e6",
 
-  "counterWeightType" : "",
-  "counterWeightIcon" : "",
-  "counterWeightName" : "",
+  "counterWeightType" : "boneyoyocounterweight",
+  "counterWeightIcon" : "/items/active/weapons/yoyos/skullyoyo/boneicon.png",
+  "counterWeightName" : "^red;Bone Counterweight^reset;",
 
   "builder" : "/items/buildscripts/buildyoyo.lua",
 
-  "projectileType" : "riptideyoyo",
+  "projectileType" : "skullyoyo",
   "projectileParameters" : {
     "knockback" : 3,
     "power" : 7,
-	"rotationSpeed" : 19,
+	"rotationSpeed" : 18,
     "damageRepeatTimeout" : 0.7,
-    "yoyoSpeed" : 40,
-    "maxYoyoTime" : 6
+    "yoyoSpeed" : 35,
+    "maxYoyoTime" : 5
   },
 
   "stances" : {

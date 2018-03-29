@@ -81,6 +81,7 @@ function update(dt, fireMode, shiftHeld, moves)
   trackProjectile()
 
   if self.projectileId then
+    activeItem.setCursor("/cursors/yoyo.cursor")
     setStance("throw")
     if world.entityExists(self.projectileId) then
       for id,counterweight in pairs(counterweights) do
@@ -108,6 +109,8 @@ function update(dt, fireMode, shiftHeld, moves)
     else
       cancel()
     end
+  else
+	activeItem.setCursor()
   end
 
   updateStance(dt)

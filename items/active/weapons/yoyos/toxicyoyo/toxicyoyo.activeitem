@@ -1,18 +1,18 @@
 {
-  "itemName" : "riptideyoyo",
+  "itemName" : "toxicyoyo",
   "price" : 940,
   "inventoryIcon" : "icon.png",
   "rarity" : "Uncommon",
   "maxStack" : 1,
   "description" : "It's simple, but still fun as heck!",
-  "shortdescription" : "Riptide",
+  "shortdescription" : "The Radiator",
   "largeImage" : "icon.png",
   "tooltipKind" : "yoyo",
   "category" : "yoyo",
   "fireTime" : 0,
   "twoHanded" : true,
   "itemTags" : ["weapon","yoyo"],
-  "level" : 2,
+  "level" : 4,
 
   "scripts" : ["/items/active/weapons/yoyos/yoyo.lua"],
   "animationScripts" : ["/items/active/effects/renderyoyorope.lua"],
@@ -22,7 +22,7 @@
       "throw" : ["/sfx/melee/sword_spinslash.ogg"]
     }
   },
-  "animationParts" : { "yoyo" : "/projectiles/activeitems/yoyo/riptideyoyo/riptideyoyo.png" },
+  "animationParts" : { "yoyo" : "/projectiles/activeitems/yoyo/toxicyoyo/toxicyoyo.png" },
 
   "fireOffset" : [0, 0],
 
@@ -40,7 +40,7 @@
   "usesYoyoUpgrades" : true,
   "usesCounterweightUpgrades" : true,
 
-  "maxLength" : 11,
+  "maxLength" : 14,
   "extraLength" : 2,
 
   "currentStringType" : "yoyostring",
@@ -52,14 +52,13 @@
 
   "builder" : "/items/buildscripts/buildyoyo.lua",
 
-  "projectileType" : "riptideyoyo",
+  "projectileType" : "toxicyoyo",
   "projectileParameters" : {
     "knockback" : 3,
     "power" : 7,
-	"rotationSpeed" : 19,
     "damageRepeatTimeout" : 0.7,
     "yoyoSpeed" : 40,
-    "maxYoyoTime" : 6
+    "maxYoyoTime" : 5
   },
 
   "stances" : {
@@ -91,7 +90,7 @@
       "allowFlip" : true
     },
 	  "precatch" : {
-      "duration" : 0.1,
+      "duration" : 0.3,
       "transition" : "catch",
       "armRotation" : -15,
       "animationState" : {

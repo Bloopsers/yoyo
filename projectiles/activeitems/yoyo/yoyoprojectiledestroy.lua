@@ -74,6 +74,7 @@ function update(dt)
 
   if self.yoyoTime >= self.maxYoyoTime or self.stringLength > self.maxDistance +5 or self.fireMode == "none" then
     self.returning = true
+    projectile.die()
     mcontroller.applyParameters({collisionEnabled = false})
   end
   

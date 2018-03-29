@@ -1,11 +1,10 @@
 {
-  "projectileName" : "riptideyoyo",
-  "image" : "riptideyoyo.png",
+  "projectileName" : "toxicyoyo",
+  "image" : "toxicyoyo.png",
   "flippable" : false,
   "orientationLocked" : true,
-  "actionOnReap" : [ ],
   "statusEffects" : [
-    "wet"
+    "weakpoison"
   ],
   "damagePoly" : [[-4, 2], [-2, 4], [2, 4], [4, 2], [4, -2], [2, -4], [-2, -4], [-4, -2]],
   "movementSettings" : {
@@ -14,16 +13,22 @@
   "power" : 5.0,
   "speed" : 0,
   "renderLayer" : "ForegroundTile+2",
-  "damageKind" : "yoyo",
+  "damageKind" : "poison",
   "physics" : "hover",
   "bounces" : -1,
   "piercing" : true,
   "timeToLive" : 100,
-  "emitters" : [ "defaultblue" ],
+  
+  "actionOnReap" : [
+    {
+      "action" : "config",
+      "file" : "/projectiles/explosions/toxicyoyoexplosion/toxicyoyoexplosionuniversal.config"
+    }
+  ],
 
   "pickupDistance" : 2,
   "maxDistance" : 10,
   "maxYoyoTime" : 5,
 
-  "scripts" : [ "/projectiles/activeitems/yoyo/yoyoprojectile.lua" ]
+  "scripts" : [ "/projectiles/activeitems/yoyo/yoyoprojectiledestroy.lua" ]
 }

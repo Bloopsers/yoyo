@@ -1,12 +1,10 @@
 {
-  "projectileName" : "riptideyoyo",
-  "image" : "riptideyoyo.png",
+  "projectileName" : "skullyoyo",
+  "image" : "skullyoyo.png",
   "flippable" : false,
   "orientationLocked" : true,
   "actionOnReap" : [ ],
-  "statusEffects" : [
-    "wet"
-  ],
+  "statusEffects" : [ ],
   "damagePoly" : [[-4, 2], [-2, 4], [2, 4], [4, 2], [4, -2], [2, -4], [-2, -4], [-4, -2]],
   "movementSettings" : {
     "collisionPoly" : [[0.3,0],[0.212132,0.212132],[1.83697e-17,0.3],[-0.212132,0.212132],[-0.3,3.67394e-17],[-0.212132,-0.212132],[-5.51091e-17,-0.3],[0.212132,-0.212132]]
@@ -19,7 +17,6 @@
   "bounces" : -1,
   "piercing" : true,
   "timeToLive" : 100,
-  "emitters" : [ "defaultblue" ],
 
   "pickupDistance" : 2,
   "maxDistance" : 10,
