@@ -20,6 +20,21 @@ function init()
   self.aimPosition = mcontroller.position()
   self.hitSounds = config.getParameter("hitSounds")
   self.rotation = 0
+  self.blinkTimer = 0
+  self.flashParticle = {
+    action = "particle",
+    rotate = true,
+    specification = {
+      type = "textured",
+      size = 1,
+      --image = config.getParameter("image") .. "?setcolor=FFFFFFB4",
+      image = "/projectiles/activeitems/yoyo/yoyoflash.png",
+      fullbright = true,
+      layer = "front",
+      timeToLive = 0.06,
+      flippable = false
+    }
+  }
 
   mcontroller.setRotation(0)
 
@@ -94,34 +109,13 @@ function update(dt)
           controlTo(self.aimPosition, self.yoyoSpeed / 3, 650)
         elseif distToPos < 1.0 then
           controlTo(self.aimPosition, self.yoyoSpeed / 2.2, 650)
-        elseif distToPos < 1.4 then
-          controlTo(self.aimPosition, self.yoyoSpeed / 1.4, 650)
         else
           controlTo(self.aimPosition, self.yoyoSpeed, 650)
         end
-		
-		    if cursorOutside == true then
-		      if world.magnitude(mcontroller.position(), self.ownerPos) >= self.maxDistance then
-				    mcontroller.setVelocity({mcontroller.yVelocity() / 24, mcontroller.xVelocity() / 24})
-				    controlTo(self.aimPosition, self.yoyoSpeed / 4.5, 650 / 4.5)
-				    controlTwo(mcontroller.position(), self.yoyoSpeed / 4.5, 650 / 4.5)
-			    end
-		    end
-		
-		    if world.magnitude(mcontroller.position(), self.ownerPos) > self.maxDistance + 0.2 then
-          controlTo(self.ownerPos, self.yoyoSpeed, 650)
-		    end
       end
     end
   else
     projectile.die()
-  end
-
-  if self.variable > 0 then
-    self.variable = self.variable - dt
-  end
-  if self.variable < 0 then
-    self.variable = 0
   end
   
   if self.returning == true then
@@ -136,26 +130,30 @@ function controlTo(position, speed, controlForce)
   local offset = world.distance(position, mcontroller.position())
   local v = vec2.sub(position, self.ownerPos)
   v = vec2.clampMag(v, self.maxDistance)
-  offset = world.distance(vec2.add(self.ownerPos, v), mcontroller.position())
-  if world.magnitude(mcontroller.position(), self.ownerPos) > self.maxDistance -1.5 then
-    controlForce = 900
+
+  local pos = vec2.lerp(mcontroller.position(), vec2.add(self.ownerPos, v), speed / 150)
+
+  if self.stringLength < self.maxDistance -1 or world.lineCollision(mcontroller.position(), pos, {"Block", "Dynamic", "Null"}) or self.returning == true then
+    controlTo2(position, speed, controlForce)
+  else
+    mcontroller.setPosition(pos)
   end
-  mcontroller.approachVelocity(vec2.mul(vec2.norm(offset), speed), controlForce)
 end
 
-function controlTwo(position, speed, controlForce)
+function controlTo2(position, speed, controlForce)
   local offset = world.distance(position, mcontroller.position())
   local v = vec2.sub(position, self.ownerPos)
   v = vec2.clampMag(v, self.maxDistance)
   offset = world.distance(vec2.add(self.ownerPos, v), mcontroller.position())
-  if world.magnitude(mcontroller.position(), self.ownerPos) > self.maxDistance -1.5 then
-    controlForce = 900
-  end
   mcontroller.approachVelocity(vec2.mul(vec2.norm(offset), speed), controlForce)
 end
 
 function vec2.length(vector)
   return math.sqrt(vec2.dot(vector, vector))
+end
+
+function vec2.lerp(a, b, t)
+  return {a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t}
 end
 
 function vec2.clampMag(vector, maxLength)
@@ -164,15 +162,6 @@ function vec2.clampMag(vector, maxLength)
     vector = vec2.mul(vector, maxLength)
   end
   return vector
-end
-
-function controlTo2(position, speed, controlForce)
-  local offset = world.distance(position, mcontroller.position())
-  local v = vec2.sub(position, self.ownerPos)
-  v = vec2.clampMag(v, self.maxDistance)[1]
-  offset = world.distance(vec2.add(self.ownerPos, v), mcontroller.position())
-  local vel = vec2.mul(vec2.norm(offset), speed)
-  mcontroller.setVelocity(vel)
 end
 
 function hit(entityId)
