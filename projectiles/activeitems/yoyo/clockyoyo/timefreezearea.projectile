@@ -1,0 +1,42 @@
+{
+  "projectileName" : "timefreezearea",
+  "image" : "/assetmissing.png",
+  "flippable" : false,
+  "orientationLocked" : true,
+  "periodicActions" : [ {
+      "action" : "particle",
+	  "time" : 0.05,
+	  "repeat" : true,
+      "specification" : {
+    "type" : "animated",
+    "animation" : "/animations/numerals/numerals3.animation",
+    "position" : [0, 0],
+    "initialVelocity" : [0, 2.0],
+    "finalVelocity" : [0, 3.0],
+    "approach" : [0, 50],
+    "fade" : 0.5,
+    "destructionAction" : "shrink",
+    "destructionTime" : 1,
+    "size" : 0.3,
+    "timeToLive" : 0.85,
+    "variance" : {
+      "initialVelocity" : [2, 1.0]
+    }
+  }
+}
+  ],
+  "statusEffects" : [     {"effect" : "timefreeze", "duration" : 2.5} ],
+  "damagePoly" : [[-4, 2], [-2, 4], [2, 4], [4, 2], [4, -2], [2, -4], [-2, -4], [-4, -2]],
+  "movementSettings" : {
+    "collisionPoly" : [[0.3,0],[0.212132,0.212132],[1.83697e-17,0.3],[-0.212132,0.212132],[-0.3,3.67394e-17],[-0.212132,-0.212132],[-5.51091e-17,-0.3],[0.212132,-0.212132]]
+  },
+  "power" : 0,
+  "speed" : 0,
+  "renderLayer" : "ForegroundTile+2",
+  "damageKind" : "yoyo",
+  "physics" : "hover",
+  "fullbright" : true,
+  "bounces" : -1,
+  "piercing" : false,
+  "timeToLive" : 0.05
+}

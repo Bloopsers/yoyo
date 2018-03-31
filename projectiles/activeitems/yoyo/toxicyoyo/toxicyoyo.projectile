@@ -26,9 +26,10 @@
     }
   ],
 
+  "dieOnReturn" : true,
   "pickupDistance" : 2,
   "maxDistance" : 10,
   "maxYoyoTime" : 5,
 
-  "scripts" : [ "/projectiles/activeitems/yoyo/yoyoprojectiledestroy.lua" ]
+  "scripts" : [ "/projectiles/activeitems/yoyo/yoyoprojectile.lua" ]
 }

@@ -153,14 +153,12 @@ function spawnCounterweights()
 end
 
 function fire()
-  activeItem.setCursor("/cursors/reticle0.cursor")
 
   local params = copy(self.projectileParameters)
   params.powerMultiplier = activeItem.ownerPowerMultiplier()
   params.ownerAimPosition = activeItem.ownerAimPosition()
   params.maxDistance = self.maxLength
 
-  if self.aimDirection < 0 then params.processing = "?flipx" end
   self.projectileId = world.spawnProjectile(
     self.projectileType,
     firePosition(),
