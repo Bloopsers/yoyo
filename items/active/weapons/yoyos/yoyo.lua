@@ -153,6 +153,7 @@ function spawnCounterweights()
 end
 
 function fire()
+  activeItem.setCursor("/cursors/reticle4.cursor")
 
   local params = copy(self.projectileParameters)
   params.powerMultiplier = activeItem.ownerPowerMultiplier()
