@@ -40,7 +40,7 @@
   "usesYoyoUpgrades" : true,
   "usesCounterweightUpgrades" : true,
 
-  "maxLength" : 9,
+  "maxLength" : 7,
   "extraLength" : 2,
 
   "currentStringType" : "yoyostring",
@@ -54,10 +54,10 @@
 
   "projectileType" : "woodenyoyo",
   "projectileParameters" : {
-    "knockback" : 1,
+    "knockback" : 2,
     "power" : 7,
     "damageRepeatTimeout" : 0.7,
-    "yoyoSpeed" : 40,
+    "yoyoSpeed" : 35,
     "maxYoyoTime" : 4.5
   },
 

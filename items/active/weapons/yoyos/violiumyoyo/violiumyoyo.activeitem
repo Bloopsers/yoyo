@@ -1,11 +1,11 @@
 {
   "itemName" : "violiumyoyo",
-  "price" : 5000,
+  "price" : 1000,
   "inventoryIcon" : "icon.png",
-  "rarity" : "Common",
+  "rarity" : "Legendary",
   "maxStack" : 1,
-  "description" : "It's a perfectly generic yoyo. What more could you ask for?",
-  "shortdescription" : "The Vanguard",
+  "description" : "Todo/Replace me",
+  "shortdescription" : "Vanguard",
   "largeImage" : "icon.png",
   "tooltipKind" : "yoyo",
   "category" : "yoyo",
@@ -22,13 +22,13 @@
       "throw" : ["/sfx/melee/sword_spinslash.ogg"]
     }
   },
-  "animationParts" : { "yoyo" : "/projectiles/activeitems/yoyo/perfectyoyo/perfectyoyo.png?scalenearest=0.9" },
+  "animationParts" : { "yoyo" : "/projectiles/activeitems/yoyo/violiumyoyo/violiumyoyo.png" },
 
   "fireOffset" : [0, 0],
 
   "rope" : {
     "yoyo" : {
-      "width" : 0.75,
+      "width" : 0.8,
       "color" : [202, 202, 202, 230],
       "offset" : [0, 0],
       "visualOffset" : [0, 0]
@@ -40,7 +40,7 @@
   "usesYoyoUpgrades" : true,
   "usesCounterweightUpgrades" : true,
 
-  "maxLength" : 25,
+  "maxLength" : 13,
   "extraLength" : 2,
 
   "currentStringType" : "yoyostring",
@@ -52,13 +52,13 @@
 
   "builder" : "/items/buildscripts/buildyoyo.lua",
 
-  "projectileType" : "perfectyoyo",
+  "projectileType" : "violiumyoyo",
   "projectileParameters" : {
-    "knockback" : 6,
+    "knockback" : 4,
     "power" : 7,
     "damageRepeatTimeout" : 0.7,
     "yoyoSpeed" : 50,
-    "maxYoyoTime" : 100
+    "maxYoyoTime" : 15
   },
 
   "stances" : {

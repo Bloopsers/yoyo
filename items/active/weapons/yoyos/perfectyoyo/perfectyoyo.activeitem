@@ -1,10 +1,10 @@
 {
   "itemName" : "perfectyoyo",
-  "price" : 5000,
+  "price" : 1000,
   "inventoryIcon" : "icon.png",
-  "rarity" : "Common",
+  "rarity" : "Legendary",
   "maxStack" : 1,
-  "description" : "It's a perfectly generic yoyo. What more could you ask for?",
+  "description" : "It's a perfectly generic cube on a piece of string. What more could you ask for?",
   "shortdescription" : "Pefectly Generic Yoyo",
   "largeImage" : "icon.png",
   "tooltipKind" : "yoyo",
@@ -28,7 +28,7 @@
 
   "rope" : {
     "yoyo" : {
-      "width" : 0.75,
+      "width" : 0.8,
       "color" : [202, 202, 202, 230],
       "offset" : [0, 0],
       "visualOffset" : [0, 0]
@@ -40,7 +40,7 @@
   "usesYoyoUpgrades" : true,
   "usesCounterweightUpgrades" : true,
 
-  "maxLength" : 25,
+  "maxLength" : 17,
   "extraLength" : 2,
 
   "currentStringType" : "yoyostring",
@@ -54,7 +54,7 @@
 
   "projectileType" : "perfectyoyo",
   "projectileParameters" : {
-    "knockback" : 6,
+    "knockback" : 5,
     "power" : 7,
     "damageRepeatTimeout" : 0.7,
     "yoyoSpeed" : 50,

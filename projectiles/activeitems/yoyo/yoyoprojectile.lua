@@ -12,7 +12,7 @@ function init()
   self.yoyoTime = 0
   self.maxYoyoTime = config.getParameter("maxYoyoTime", 5)
   self.yoyoSpeed = config.getParameter("yoyoSpeed", 32)
-  self.stringLength = 0
+  self.yoyoLength = 0
   self.hits = 0
   self.variable = 0
   self.dieOnReturn = config.getParameter("dieOnReturn", false)
@@ -21,6 +21,7 @@ function init()
   self.hitSounds = config.getParameter("hitSounds")
   self.rotation = 0
   self.blinkTimer = 0
+
   self.flashParticle = {
     action = "particle",
     rotate = true,
@@ -38,10 +39,9 @@ function init()
 
   mcontroller.setRotation(0)
 
-  message.setHandler("updateProjectile", function(_, _, aimPosition, fireMode, stringLength)
+  message.setHandler("updateProjectile", function(_, _, aimPosition, fireMode)
     self.aimPosition = aimPosition
     self.fireMode = fireMode
-    self.stringLength = stringLength
     return entity.id()
   end)
 
@@ -81,14 +81,15 @@ function update(dt)
   self.yoyoTime = self.yoyoTime + (1 * dt)
 
   self.ownerPos = world.entityPosition(self.ownerId)
+  self.yoyoLength = world.magnitude(mcontroller.position(), self.ownerPos)
 
-  if self.yoyoTime >= self.maxYoyoTime or self.stringLength > self.maxDistance +5 or self.fireMode == "none" then
+  if self.yoyoTime >= self.maxYoyoTime or self.yoyoLength > self.maxDistance +5 or self.fireMode == "none" then
     returnYoyo()
   end
   
   world.debugPoly(circle(self.maxDistance, 32, self.ownerPos), {255, 255, 0})
   world.debugPoly(circle(world.magnitude(mcontroller.position(), self.ownerPos), 32, self.ownerPos), {0, 255, 0})
-  world.debugText("%s", sb.printJson(mcontroller.velocity()), self.aimPosition, {0, 255, 0})
+  world.debugText("%s/%s", self.yoyoLength, self.maxDistance, self.aimPosition, {0, 255, 0})
 
   if self.ownerId and world.entityExists(self.ownerId) then
     if self.aimPosition then
@@ -133,7 +134,7 @@ function controlTo(position, speed, controlForce)
 
   local pos = vec2.lerp(mcontroller.position(), vec2.add(self.ownerPos, v), speed / 150)
 
-  if self.stringLength < self.maxDistance -1 or world.lineCollision(mcontroller.position(), pos, {"Block", "Dynamic", "Null"}) or self.returning == true then
+  if world.lineCollision(mcontroller.position(), pos, {"Block", "Dynamic", "Null"}) or self.returning == true or self.yoyoLength < self.maxDistance-1 then
     controlTo2(position, speed, controlForce)
   else
     mcontroller.setPosition(pos)

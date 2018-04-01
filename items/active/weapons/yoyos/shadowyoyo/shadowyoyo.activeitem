@@ -1,17 +1,17 @@
 {
   "itemName" : "shadowyoyo",
-  "price" : 3000,
+  "price" : 1500,
   "inventoryIcon" : "icon.png",
   "rarity" : "Legendary",
   "maxStack" : 1,
-  "description" : "Enemy hits stack up your damage",
-  "shortdescription" : "Shadow Yoyo",
+  "description" : "",
+  "shortdescription" : "Outcast",
   "largeImage" : "icon.png",
   "tooltipKind" : "yoyo",
   "category" : "yoyo",
   "fireTime" : 0,
   "twoHanded" : true,
-  "itemTags" : ["weapon","yoyo"],
+  "itemTags" : ["weapon","yoyo","upgradeableWeapon"],
   "level" : 4,
 
   "scripts" : ["/items/active/weapons/yoyos/yoyo.lua"],
@@ -40,7 +40,7 @@
   "usesYoyoUpgrades" : true,
   "usesCounterweightUpgrades" : true,
 
-  "maxLength" : 16,
+  "maxLength" : 12,
   "extraLength" : 2,
 
   "currentStringType" : "yoyostring",
@@ -54,11 +54,20 @@
 
   "projectileType" : "shadowyoyo",
   "projectileParameters" : {
-    "knockback" : 0,
-    "power" : 5.5,
-    "damageRepeatTimeout" : 0.7,
+    "knockback" : 4,
+    "power" : 4.2,
+    "damageRepeatTimeout" : 0.3,
     "yoyoSpeed" : 50,
-    "maxYoyoTime" : 14
+    "maxYoyoTime" : 9
+  },
+
+  "upgradeParameters" : {
+    "inventoryIcon" : "icon_l6.png",
+    "projectileType" : "shadowyoyo_l6",
+    "animationParts" : {
+      "yoyo" : "/projectiles/activeitems/yoyo/shadowyoyo/shadowyoyo_l6.png"
+    },
+    "shortdescription" : "Outcast ^yellow;^reset;"
   },
 
   "stances" : {

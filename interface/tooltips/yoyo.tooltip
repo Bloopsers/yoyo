@@ -47,6 +47,18 @@
     "hAnchor" : "right",
     "wrapWidth" : 126
   },
+  /*"durationTitleLabel" : {
+    "type" : "label",
+    "position" : [9, 61],
+    "hAnchor" : "left",
+    "value" : "Duration:"
+  },
+  "durationLabel" : {
+    "type" : "label",
+    "position" : [130, 61],
+    "hAnchor" : "right",
+    "wrapWidth" : 126
+  },*/
   "rarityLabel" : {
     "type" : "label",
     "position" : [7, 23],

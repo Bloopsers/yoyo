@@ -1,18 +1,18 @@
 {
   "itemName" : "toxicyoyo",
-  "price" : 940,
+  "price" : 1500,
   "inventoryIcon" : "icon.png",
-  "rarity" : "Uncommon",
+  "rarity" : "Legendary",
   "maxStack" : 1,
   "description" : "It's simple, but still fun as heck!",
-  "shortdescription" : "The Radiator",
+  "shortdescription" : "Radiator",
   "largeImage" : "icon.png",
   "tooltipKind" : "yoyo",
   "category" : "yoyo",
   "fireTime" : 0,
   "twoHanded" : true,
-  "itemTags" : ["weapon","yoyo"],
-  "level" : 4,
+  "itemTags" : ["weapon","yoyo","upgradeableWeapon"],
+  "level" : 2,
 
   "scripts" : ["/items/active/weapons/yoyos/yoyo.lua"],
   "animationScripts" : ["/items/active/effects/renderyoyorope.lua"],
@@ -40,7 +40,7 @@
   "usesYoyoUpgrades" : true,
   "usesCounterweightUpgrades" : true,
 
-  "maxLength" : 14,
+  "maxLength" : 7.5,
   "extraLength" : 2,
 
   "currentStringType" : "yoyostring",
@@ -58,7 +58,16 @@
     "power" : 7,
     "damageRepeatTimeout" : 0.7,
     "yoyoSpeed" : 40,
-    "maxYoyoTime" : 5
+    "maxYoyoTime" : 8
+  },
+
+  "upgradeParameters" : {
+    "inventoryIcon" : "icon_l6.png",
+    "projectileType" : "toxicyoyo_l6",
+    "animationParts" : {
+      "yoyo" : "/projectiles/activeitems/yoyo/toxicyoyo/toxicyoyo_l6.png"
+    },
+    "shortdescription" : "Radiator ^yellow;^reset;"
   },
 
   "stances" : {

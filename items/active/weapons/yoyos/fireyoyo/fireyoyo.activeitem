@@ -1,17 +1,17 @@
 {
   "itemName" : "fireyoyo",
-  "price" : 3000,
+  "price" : 1500,
   "inventoryIcon" : "icon.png",
   "rarity" : "Legendary",
   "maxStack" : 1,
-  "description" : "Todo/Replace me",
-  "shortdescription" : "Fiery Yoyo",
+  "description" : "A flaming spinny ball of hurt.",
+  "shortdescription" : "Hotshot",
   "largeImage" : "icon.png",
   "tooltipKind" : "yoyo",
   "category" : "yoyo",
   "fireTime" : 0,
   "twoHanded" : true,
-  "itemTags" : ["weapon","yoyo"],
+  "itemTags" : ["weapon","yoyo","upgradeableWeapon"],
   "level" : 4,
 
   "scripts" : ["/items/active/weapons/yoyos/yoyo.lua"],
@@ -22,7 +22,7 @@
       "throw" : ["/sfx/melee/sword_spinslash.ogg"]
     }
   },
-  "animationParts" : { "yoyo" : "fireyoyo.png", "yoyoFullbright" : "fireyoyolit.png" },
+  "animationParts" : { "yoyo" : "", "yoyoFullbright" : "/projectiles/activeitems/yoyo/fireyoyo/fireyoyo.png" },
 
   "fireOffset" : [0, 0],
 
@@ -40,7 +40,7 @@
   "usesYoyoUpgrades" : true,
   "usesCounterweightUpgrades" : true,
 
-  "maxLength" : 16,
+  "maxLength" : 10,
   "extraLength" : 2,
 
   "currentStringType" : "yoyostring",
@@ -54,11 +54,20 @@
 
   "projectileType" : "fireyoyo",
   "projectileParameters" : {
-    "knockback" : 2,
+    "knockback" : 4,
     "power" : 7,
     "damageRepeatTimeout" : 0.7,
-    "yoyoSpeed" : 50,
-    "maxYoyoTime" : 8.5
+    "yoyoSpeed" : 45,
+    "maxYoyoTime" : 10.5
+  },
+
+  "upgradeParameters" : {
+    "inventoryIcon" : "icon_l6.png",
+    "projectileType" : "fireyoyo_l6",
+    "animationParts" : {
+      "yoyoFullbright" : "/projectiles/activeitems/yoyo/fireyoyo/fireyoyo_l6.png"
+    },
+    "shortdescription" : "Hotshot ^yellow;^reset;"
   },
 
   "stances" : {

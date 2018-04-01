@@ -151,6 +151,12 @@ function build(directory, config, parameters, level, seed)
     config.inventoryIcon = config.inventoryIcon .. params.stringColor
   end
 
+  local time = configParameter("projectileParameters").maxYoyoTime
+  if time ~= nil and time > 100 then
+    time = "Infinite"
+  end
+  config.tooltipFields.durationLabel = tostring(time)
+
   local name = "^gray;No Counterweight"
   local icon = "/interface/tooltips/counterweightbase.png"
   if params.counterWeightName ~= "" then

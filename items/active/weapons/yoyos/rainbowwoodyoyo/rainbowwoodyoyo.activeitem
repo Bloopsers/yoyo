@@ -1,6 +1,6 @@
 {
   "itemName" : "rainbowwoodyoyo",
-  "price" : 100,
+  "price" : 200,
   "inventoryIcon" : "rainbowwoodyoyoicon.png",
   "rarity" : "Common",
   "maxStack" : 1,
@@ -42,10 +42,10 @@
   "usesYoyoUpgrades" : true,
   "usesCounterweightUpgrades" : true,
 
-  "maxLength" : 11,
+  "maxLength" : 8.5,
   "extraLength" : 2,
 
-  "currentStringType" : "yoyostring",
+  "currentStringType" : "rainbowyoyostring",
   "stringColor" : "?replace;a85636=7b7b7b;e0975c=b6b6b6;ffca8a=e6e6e6",
 
   "counterWeightType" : "",
@@ -56,7 +56,7 @@
 
   "projectileType" : "rainbowwoodyoyo",
   "projectileParameters" : {
-    "knockback" : 2,
+    "knockback" : 4,
     "power" : 7,
     "damageRepeatTimeout" : 0.7,
     "yoyoSpeed" : 40,

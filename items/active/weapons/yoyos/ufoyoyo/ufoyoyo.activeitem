@@ -4,14 +4,14 @@
   "inventoryIcon" : "icon.png",
   "rarity" : "Legendary",
   "maxStack" : 1,
-  "description" : "A really tiny replica of the dreaded Dreadwing's flying saucer. It has a holographic string attached to it.",
-  "shortdescription" : "The Saucer",
+  "description" : "A tiny replica of Dreadwing's flying saucer.",
+  "shortdescription" : "U.F.O",
   "largeImage" : "icon.png",
   "tooltipKind" : "yoyo",
   "category" : "yoyo",
   "fireTime" : 0,
   "twoHanded" : true,
-  "itemTags" : ["weapon","yoyo"],
+  "itemTags" : ["weapon","yoyo","upgradeableWeapon"],
   "level" : 3,
 
   "scripts" : ["/items/active/weapons/yoyos/yoyo.lua"],
@@ -29,7 +29,7 @@
   "rope" : {
     "yoyo" : {
       "width" : 0.8,
-      "color" : [168, 230, 226, 100],
+      "color" : [202, 202, 202, 230],
       "offset" : [0, 0],
       "visualOffset" : [0, 0]
     }
@@ -40,11 +40,11 @@
   "usesYoyoUpgrades" : true,
   "usesCounterweightUpgrades" : true,
 
-  "maxLength" : 10,
+  "maxLength" : 8,
   "extraLength" : 6,
 
-  "currentStringType" : "transparentyoyostring",
-  "stringColor" : "?replace;a85636=4facb2C8;e0975c=a8e6e2C8;ffca8a=ffffffC8",
+  "currentStringType" : "yoyostring",
+  "stringColor" : "?replace;a85636=7b7b7b;e0975c=b6b6b6;ffca8a=e6e6e6",
 
   "counterWeightType" : "",
   "counterWeightIcon" : "",
@@ -57,8 +57,17 @@
     "knockback" : 3,
     "power" : 7,
     "damageRepeatTimeout" : 0.7,
-    "yoyoSpeed" : 30,
-    "maxYoyoTime" : 9
+    "yoyoSpeed" : 35,
+    "maxYoyoTime" : 100
+  },
+
+  "upgradeParameters" : {
+    "inventoryIcon" : "icon_l6.png",
+    "projectileType" : "ufoyoyo_l6",
+    "animationParts" : {
+      "yoyo" : "/projectiles/activeitems/yoyo/ufoyoyo/ufoyoyo_l6.png"
+    },
+    "shortdescription" : "U.F.O ^yellow;^reset;"
   },
 
   "stances" : {

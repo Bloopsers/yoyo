@@ -1,6 +1,6 @@
 {
   "itemName" : "solaryoyo",
-  "price" : 3000,
+  "price" : 1500,
   "inventoryIcon" : "icon.png",
   "rarity" : "Legendary",
   "maxStack" : 1,
@@ -12,7 +12,7 @@
   "fireTime" : 0,
   "twoHanded" : true,
   "itemTags" : ["weapon","yoyo"],
-  "level" : 4,
+  "level" : 6,
 
   "scripts" : ["/items/active/weapons/yoyos/yoyo.lua"],
   "animationScripts" : ["/items/active/effects/renderyoyorope.lua"],
@@ -71,7 +71,7 @@
   "usesYoyoUpgrades" : true,
   "usesCounterweightUpgrades" : false,
 
-  "maxLength" : 14,
+  "maxLength" : 15,
   "extraLength" : 2,
 
   "currentStringType" : "yoyostring",
@@ -85,11 +85,11 @@
 
   "projectileType" : "solaryoyo",
   "projectileParameters" : {
-    "knockback" : 2,
-    "power" : 8,
+    "knockback" : 5,
+    "power" : 6,
     "damageRepeatTimeout" : 0.7,
     "yoyoSpeed" : 45,
-    "maxYoyoTime" : 15
+    "maxYoyoTime" : 14.5
   },
 
   "stances" : {

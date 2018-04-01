@@ -1,17 +1,17 @@
 {
   "itemName" : "clockyoyo",
-  "price" : 940,
+  "price" : 1500,
   "inventoryIcon" : "icon.png",
-  "rarity" : "Uncommon",
+  "rarity" : "Legendary",
   "maxStack" : 1,
   "description" : "It's simple, but still fun as heck!",
-  "shortdescription" : "The Stopwatch",
+  "shortdescription" : "Stopwatch",
   "largeImage" : "icon.png",
   "tooltipKind" : "yoyo",
   "category" : "yoyo",
   "fireTime" : 0,
   "twoHanded" : true,
-  "itemTags" : ["weapon","yoyo"],
+  "itemTags" : ["weapon","yoyo","upgradeableWeapon"],
   "level" : 4,
 
   "scripts" : ["/items/active/weapons/yoyos/yoyo.lua"],
@@ -54,12 +54,21 @@
 
   "projectileType" : "clockyoyo",
   "projectileParameters" : {
-    "knockback" : 3,
+    "knockback" : 4,
     "power" : 7,
-	"rotationSpeed" : 12,
+	  "rotationSpeed" : 12,
     "damageRepeatTimeout" : 0.7,
-    "yoyoSpeed" : 35,
-    "maxYoyoTime" : 60
+    "yoyoSpeed" : 40,
+    "maxYoyoTime" : 100
+  },
+
+  "upgradeParameters" : {
+    "inventoryIcon" : "icon_l6.png",
+    "projectileType" : "clockyoyo_l6",
+    "animationParts" : {
+      "yoyo" : "/projectiles/activeitems/yoyo/clockyoyo/clockyoyo_l6.png"
+    },
+    "shortdescription" : "Stopwatch ^yellow;^reset;"
   },
 
   "stances" : {
