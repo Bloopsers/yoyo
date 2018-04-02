@@ -22,7 +22,7 @@
       "throw" : ["/sfx/melee/sword_spinslash.ogg"]
     }
   },
-  "animationParts" : { "yoyo" : "/projectiles/activeitems/yoyo/violiumyoyo/violiumyoyo.png" },
+  "animationParts" : { "yoyo" : "violiumyoyo.png", "yoyoFullbright" : "violiumyoyolit.png" },
 
   "fireOffset" : [0, 0],
 

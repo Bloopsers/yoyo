@@ -62,7 +62,7 @@
   },
 
   "upgradeParameters" : {
-    "inventoryIcon" : "icon_l6.png",
+    "largeImage" : "icon_l6.png",
     "projectileType" : "toxicyoyo_l6",
     "animationParts" : {
       "yoyo" : "/projectiles/activeitems/yoyo/toxicyoyo/toxicyoyo_l6.png"
@@ -99,7 +99,7 @@
       "allowFlip" : true
     },
 	  "precatch" : {
-      "duration" : 0.3,
+      "duration" : 0.1,
       "transition" : "catch",
       "armRotation" : -15,
       "animationState" : {
@@ -109,7 +109,7 @@
       "allowFlip" : true
     },
     "catch" : {
-      "duration" : 0.1,
+      "duration" : 0.3,
       "transition" : "idle",
       "armRotation" : -35,
       "animationState" : {

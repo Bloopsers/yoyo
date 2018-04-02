@@ -6,14 +6,26 @@ function init()
   self.fireOffset = config.getParameter("fireOffset")
   rope = {}
   ropeIds = {}
+  local ropeDefaults = {
+    points = {},
+    length = 0,
+    params = {
+      color = {255, 255, 255, 255},
+      rainbow = false,
+      hue = 0,
+      hueRange = {0, 360},
+      hueCycleSpeed = 1,
+      offset = {0, 0},
+      visualOffset = {0, 0}
+    }
+  }
 
   for index,params in pairs(config.getParameter("rope")) do
-    rope[index] = {
-      points = {},
-      length = 0,
-      params = params
-    }
-    params.hue = 0
+    rope[index] = ropeDefaults
+    rope[index].params = util.mergeTable(ropeDefaults.params, params)
+    if params.rainbow and params.hueRange then
+      rope[index].params.hue = params.hueRange[1]
+    end
     table.insert(ropeIds, index)
   end
 
@@ -38,11 +50,8 @@ function init()
   self.projectileParameters.power = self.projectileParameters.power * root.evalFunction("weaponDamageLevelMultiplier", config.getParameter("level", 1))
 
   for index,counterweight in pairs(counterweights) do
-    rope["counterWeight" .. index] = {
-      points = {},
-      length = 0,
-      params = rope.yoyo.params
-    }
+    rope["counterWeight" .. index] = ropeDefaults
+    rope["counterWeight" .. index].params = util.mergeTable(ropeDefaults.params, rope.yoyo.params)
     table.insert(ropeIds, "counterWeight" .. index)
     counterweight.projectileParameters.power = self.projectileParameters.power + (counterweight.projectileParameters.power or 0)
   end
@@ -153,8 +162,6 @@ function spawnCounterweights()
 end
 
 function fire()
-  activeItem.setCursor("/cursors/reticle4.cursor")
-
   local params = copy(self.projectileParameters)
   params.powerMultiplier = activeItem.ownerPowerMultiplier()
   params.ownerAimPosition = activeItem.ownerAimPosition()
@@ -179,31 +186,35 @@ end
 function updateRope(id, newRope)
   local position = mcontroller.position()
   local previousRopeCount = #rope[id].points
-  rope[id].points = newRope
+  local params = rope[id]
   local ropeLength = 0
+  params.points = newRope
 
-  if rope[id].params.rainbow == true then
-    rope[id].params.hue = rope[id].params.hue +(rope[id].params.hueCycleSpeed or 1)
-    rope[id].params.hue = rope[id].params.hue % 360
-    rope[id].params.color = HSLtoRGB(rope[id].params.hue, 170, 170, (rope[id].params.color[4] or 255))
+  if id ~= "yoyo" then params.params = rope.yoyo.params end
+
+  if params.params.rainbow == true then
+    params.params.hue = params.params.hue +(params.params.hueCycleSpeed or 1)
+    if params.params.hue > params.params.hueRange[2] then
+      params.params.hue = params.params.hueRange[1]
+    end
+    params.params.color = HSLtoRGB(params.params.hue, 170, 170, (params.params.color[4] or 255))
   end
 
-  activeItem.setScriptedAnimationParameter(id .. "params", rope[id].params)
+  activeItem.setScriptedAnimationParameter(id .. "params", params.params)
 
-  for i = 2, #rope[id].points do
-    ropeLength = ropeLength + world.magnitude(rope[id].points[i], rope[id].points[i - 1])
+  for i = 2, #params.points do
+    ropeLength = ropeLength + world.magnitude(params.points[i], params.points[i - 1])
   end
-  rope[id].length = ropeLength
-  for i = #rope[id].points + 1, previousRopeCount do
+  params.length = ropeLength
+  for i = #params.points + 1, previousRopeCount do
   end
 
-  activeItem.setScriptedAnimationParameter(id .. "points", rope[id].points)
+  activeItem.setScriptedAnimationParameter(id .. "points", params.points)
 end
 
 function cancel()
   if self.projectileId and world.entityExists(self.projectileId) then
     world.callScriptedEntity(self.projectileId, "kill")
-    activeItem.setCursor()
   end
   for k,v in pairs(counterweights) do
     if v.projId and world.entityExists(v.projId) then

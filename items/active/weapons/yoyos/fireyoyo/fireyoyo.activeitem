@@ -62,7 +62,7 @@
   },
 
   "upgradeParameters" : {
-    "inventoryIcon" : "icon_l6.png",
+    "largeImage" : "icon_l6.png",
     "projectileType" : "fireyoyo_l6",
     "animationParts" : {
       "yoyoFullbright" : "/projectiles/activeitems/yoyo/fireyoyo/fireyoyo_l6.png"

@@ -13,7 +13,7 @@ function init()
   self.fixedAngle = config.getParameter("fixedAngle")
   self.maxTime = config.getParameter("maxTime", 5)
   radius = config.getParameter("rotateRadius")
-  rotateSpeed = config.getParameter("rotateSpeed")
+  rotateSpeed = config.getParameter("rotateSpeed") * (radius / 8)
 
   if self.fixedAngle then
     angle = self.fixedAngle
@@ -38,14 +38,22 @@ function circle(radius, points, center)
   return poly
 end
 
+function returnCounterweight()
+  if self.dieOnReturn then
+    projectile.die()
+  else
+    self.returning = true
+    mcontroller.applyParameters({collisionEnabled = false})
+  end
+end
+
 function update(dt)
   self.ownerPos = world.entityPosition(self.ownerId)
   world.debugPoly(circle(radius, 32, self.ownerPos), {0, 0, 255})
 
   self.time = self.time + (1 * dt)
   if self.time > self.maxTime or world.magnitude(mcontroller.position(), self.ownerPos) > radius +7 then
-    self.returning = true
-    mcontroller.applyParameters({collisionEnabled = false})
+    returnCounterweight()
   end
 
   angle = angle + rotateSpeed

@@ -55,9 +55,9 @@
   "projectileType" : "shadowyoyo",
   "projectileParameters" : {
     "knockback" : 4,
-    "power" : 4.2,
-    "damageRepeatTimeout" : 0.3,
-    "yoyoSpeed" : 50,
+    "power" : 4,
+    "damageRepeatTimeout" : 0.4,
+    "yoyoSpeed" : 45,
     "maxYoyoTime" : 9
   },
 

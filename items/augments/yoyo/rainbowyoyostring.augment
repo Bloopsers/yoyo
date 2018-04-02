@@ -9,10 +9,14 @@
   "shortdescription" : "Rainbow Yoyo String",
 
   "extraLength" : 2,
-  "rainbow" : true,
-  "hueCycleSpeed" : 0.5,
+
   "stringColor" : "?replace;a85636=7b7b7b;e0975c=b6b6b6;ffca8a=e6e6e6",
-  "ropeColor" : [202, 202, 202, 230],
+  
+  "rope" : {
+    "color" : [202, 202, 202, 230],
+    "rainbow" : true,
+    "hueCycleSpeed" : 0.5
+  },
 
   "scripts" : [ "/scripts/augments/yoyo.lua" ]
 }

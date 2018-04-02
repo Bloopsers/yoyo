@@ -6,11 +6,6 @@
   },
   {
     "op": "add",
-    "path": "/labels/yoyostring",
-    "value": "Yoyo Upgrade"
-  },
-  {
-    "op": "add",
     "path": "/labels/yoyoupgrade",
     "value": "Yoyo Upgrade"
   }

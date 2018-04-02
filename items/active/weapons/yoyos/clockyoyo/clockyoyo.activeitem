@@ -63,7 +63,7 @@
   },
 
   "upgradeParameters" : {
-    "inventoryIcon" : "icon_l6.png",
+    "largeImage" : "icon_l6.png",
     "projectileType" : "clockyoyo_l6",
     "animationParts" : {
       "yoyo" : "/projectiles/activeitems/yoyo/clockyoyo/clockyoyo_l6.png"

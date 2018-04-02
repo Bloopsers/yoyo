@@ -10,7 +10,10 @@
 
   "extraLength" : 2,
   "stringColor" : "?replace;a85636=af4e00;e0975c=ea9931;ffca8a=ffd495",
-  "ropeColor" : [234, 153, 49, 230],
+
+  "rope" : {
+    "color" : [234, 153, 49, 230]
+  },
 
   "scripts" : [ "/scripts/augments/yoyo.lua" ]
 }

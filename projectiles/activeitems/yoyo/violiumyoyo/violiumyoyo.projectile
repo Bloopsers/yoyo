@@ -1,9 +1,11 @@
 {
-  "projectileName" : "shadowyoyo",
-  "image" : "shadowyoyo.png",
+  "projectileName" : "violiumyoyo",
+  "image" : "violiumyoyo.png",
   "flippable" : false,
   "orientationLocked" : true,
+  "lightColor" : [ 187,71,255 ],
   "actionOnReap" : [ ],
+  "fullbright" : true,
   "statusEffects" : [ ],
   "damagePoly" : [[-4, 2], [-2, 4], [2, 4], [4, 2], [4, -2], [2, -4], [-2, -4], [-4, -2]],
   "movementSettings" : {
@@ -21,8 +23,8 @@
   "periodicActions" : [
     {
       "action" : "particle",
-      "specification" : "gravityyoyotrail",
-      "time" : 0.03,
+      "specification" : "violiumyoyotrail",
+      "time" : 0.01,
       "repeat" : true
     },
     {
@@ -31,7 +33,7 @@
       "repeat" : true,
       "specification" : {
         "type" : "ember",
-        "size" : 2,
+        "size" : 1.5,
         "position" : [0, 0],
         "destructionAction" : "shrink",
         "destructionTime" : 0.5,
@@ -44,7 +46,7 @@
           "size" : 0.5,
           "position" : [0, 0]
         },
-        "color" : [85,85,85]
+        "color" : [106,34,132]
       }
     },
     {
@@ -53,7 +55,7 @@
       "repeat" : true,
       "specification" : {
         "type" : "ember",
-        "size" : 2,
+        "size" : 1.5,
         "position" : [0, 0],
         "destructionAction" : "shrink",
         "destructionTime" : 0.5,
@@ -66,7 +68,7 @@
           "size" : 0.5,
           "position" : [0, 0]
         },
-        "color" : [96,17,25]
+        "color" : [164,81,196]
       }
     }
   ],

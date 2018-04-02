@@ -2,14 +2,18 @@
   "itemName" : "longyellowyoyostring",
   "price" : 30,
   "rarity" : "Uncommon",
-  "category" : "yoyostring",
-  "inventoryIcon" : "longyoyostring.png?replace;6f2919=a46e06;a85636=ffffa7",
-  "description" : "A long yellow yoyo string. Increases your yoyo length by 7.",
+  "category" : "yoyoupgrade",
+  "tooltipKind" : "yoyoupgrade",
+  "inventoryIcon" : "/items/augments/yoyo/longyoyostring.png?replace;a85636=a46e06;e0975c=e2c344;ffca8a=ffffa7",
+  "description" : "A long yellow yoyo string. Increases your yoyo range by 6.",
   "shortdescription" : "Long Yellow Yoyo String",
 
-  "extraLength" : 7,
-  "stringColor" : "?replace;6f2919=a46e06;a85636=ffffa7",
-  "ropeColor" : [226, 195, 68, 255],
+  "extraLength" : 6,
+  "stringColor" : "?replace;a85636=a46e06;e0975c=e2c344;ffca8a=ffffa7",
+
+  "rope" : {
+    "color" : [226, 195, 68, 255]
+  },
 
   "scripts" : [ "/scripts/augments/yoyo.lua" ]
 }

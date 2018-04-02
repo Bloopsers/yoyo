@@ -4,13 +4,16 @@
   "rarity" : "Uncommon",
   "category" : "yoyoupgrade",
   "tooltipKind" : "yoyoupgrade",
-  "inventoryIcon" : "/items/augments/yoyo/yoyostring.png?replace;a85636=247824;e0975c=51bd3b;ffca8a=b2e89d",
-  "description" : "A long green yoyo string. Increases your yoyo range by 7.",
+  "inventoryIcon" : "/items/augments/yoyo/longyoyostring.png?replace;a85636=247824;e0975c=51bd3b;ffca8a=b2e89d",
+  "description" : "A long green yoyo string. Increases your yoyo range by 6.",
   "shortdescription" : "Long Green Yoyo String",
 
-  "extraLength" : 7,
+  "extraLength" : 6,
   "stringColor" : "?replace;a85636=247824;e0975c=51bd3b;ffca8a=b2e89d",
-  "ropeColor" : [81, 189, 59, 230],
+
+  "rope" : {
+    "color" : [81, 189, 59, 230]
+  },
 
   "scripts" : [ "/scripts/augments/yoyo.lua" ]
 }

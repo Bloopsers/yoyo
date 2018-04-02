@@ -11,31 +11,14 @@ function init()
   self.maxDistance = config.getParameter("maxDistance")
   self.yoyoTime = 0
   self.maxYoyoTime = config.getParameter("maxYoyoTime", 5)
-  self.yoyoSpeed = config.getParameter("yoyoSpeed", 32)
+  self.yoyoSpeed = config.getParameter("yoyoSpeed", 50) - 10
   self.yoyoLength = 0
   self.hits = 0
-  self.variable = 0
   self.dieOnReturn = config.getParameter("dieOnReturn", false)
   self.ownerId = projectile.sourceEntity()
   self.aimPosition = mcontroller.position()
   self.hitSounds = config.getParameter("hitSounds")
   self.rotation = 0
-  self.blinkTimer = 0
-
-  self.flashParticle = {
-    action = "particle",
-    rotate = true,
-    specification = {
-      type = "textured",
-      size = 1,
-      --image = config.getParameter("image") .. "?setcolor=FFFFFFB4",
-      image = "/projectiles/activeitems/yoyo/yoyoflash.png",
-      fullbright = true,
-      layer = "front",
-      timeToLive = 0.06,
-      flippable = false
-    }
-  }
 
   mcontroller.setRotation(0)
 

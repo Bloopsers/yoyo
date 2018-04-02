@@ -2,14 +2,18 @@
   "itemName" : "longpinkyoyostring",
   "price" : 30,
   "rarity" : "Uncommon",
-  "category" : "yoyostring",
-  "inventoryIcon" : "longyoyostring.png?replace;6f2919=97276d;a85636=eab3db",
-  "description" : "A long pink yoyo string. Increases your yoyo length by 7.",
+  "category" : "yoyoupgrade",
+  "tooltipKind" : "yoyoupgrade",
+  "inventoryIcon" : "/items/augments/yoyo/longyoyostring.png?replace;a85636=97276d;e0975c=d35eae;ffca8a=eab3db",
+  "description" : "A long pink yoyo string. Increases your yoyo length by 6.",
   "shortdescription" : "Long Pink Yoyo String",
 
-  "extraLength" : 7,
-  "stringColor" : "?replace;6f2919=97276d;a85636=eab3db",
-  "ropeColor" : [234, 179, 219, 255],
+  "extraLength" : 6,
+  "stringColor" : "?replace;a85636=97276d;e0975c=d35eae;ffca8a=eab3db",
+
+  "rope" : {
+    "color" : [234, 179, 219, 255]
+  },
 
   "scripts" : [ "/scripts/augments/yoyo.lua" ]
 }

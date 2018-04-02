@@ -62,7 +62,7 @@
   },
 
   "upgradeParameters" : {
-    "inventoryIcon" : "icon_l6.png",
+    "largeImage" : "icon_l6.png",
     "projectileType" : "ufoyoyo_l6",
     "animationParts" : {
       "yoyo" : "/projectiles/activeitems/yoyo/ufoyoyo/ufoyoyo_l6.png"

@@ -2,14 +2,18 @@
   "itemName" : "longblueyoyostring",
   "price" : 30,
   "rarity" : "Uncommon",
-  "category" : "yoyostring",
-  "inventoryIcon" : "longyoyostring.png?replace;a85636=344495;e0975c=5588d4;ffca8a=96cbe7",
-  "description" : "A long blue yoyo string. Increases your yoyo length by 7.",
+  "category" : "yoyoupgrade",
+  "tooltipKind" : "yoyoupgrade",
+  "inventoryIcon" : "/items/augments/yoyo/longyoyostring.png?replace;a85636=344495;e0975c=5588d4;ffca8a=96cbe7",
+  "description" : "A long blue yoyo string. Increases your yoyo range by 6.",
   "shortdescription" : "Long Blue Yoyo String",
 
   "extraLength" : 6,
   "stringColor" : "?replace;a85636=344495;e0975c=5588d4;ffca8a=96cbe7",
-  "ropeColor" : [85, 136, 212, 230],
+
+  "rope" : {
+    "color" : [85, 136, 212, 230]
+  },
 
   "scripts" : [ "/scripts/augments/yoyo.lua" ]
 }
