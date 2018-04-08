@@ -5,7 +5,7 @@
   "rarity" : "Common",
   "maxStack" : 1,
   "description" : "It's simple, but still fun as heck!",
-  "shortdescription" : "Tungsten Drifter",
+  "shortdescription" : "Tungsten Toss",
   "largeImage" : "icon.png",
   "tooltipKind" : "yoyo",
   "category" : "yoyo",
@@ -41,9 +41,9 @@
   "usesCounterweightUpgrades" : true,
 
   "maxLength" : 8,
-  "extraLength" : 2,
+  "extraLength" : 0,
 
-  "currentStringType" : "yoyostring",
+  "currentStringType" : "",
   "stringColor" : "?replace;a85636=7b7b7b;e0975c=b6b6b6;ffca8a=e6e6e6",
 
   "counterWeightType" : "",

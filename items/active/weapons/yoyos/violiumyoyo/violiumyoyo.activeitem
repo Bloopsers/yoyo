@@ -40,10 +40,10 @@
   "usesYoyoUpgrades" : true,
   "usesCounterweightUpgrades" : true,
 
-  "maxLength" : 13,
-  "extraLength" : 2,
+  "maxLength" : 14,
+  "extraLength" : 0,
 
-  "currentStringType" : "yoyostring",
+  "currentStringType" : "",
   "stringColor" : "?replace;a85636=7b7b7b;e0975c=b6b6b6;ffca8a=e6e6e6",
 
   "counterWeightType" : "",

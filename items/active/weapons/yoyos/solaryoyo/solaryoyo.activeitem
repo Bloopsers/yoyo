@@ -39,9 +39,9 @@
     {
       "projectileType" : "yoyocounterweightearth",
       "projectileParameters" : {
-        "power" : 4,
+        "powerScale" : 1.25,
         "rotateRadius" : 4,
-        "rotateSpeed" : 0.1,
+        "rotateSpeed" : 6,
         "maxTime" : 6,
         "fixedAngle" : 0
       }
@@ -49,9 +49,9 @@
     {
       "projectileType" : "yoyocounterweightsaturn",
       "projectileParameters" : {
-        "power" : 7,
+        "powerScale" : 2,
         "rotateRadius" : 7,
-        "rotateSpeed" : 0.1,
+        "rotateSpeed" : 6,
         "maxTime" : 6,
         "fixedAngle" : 0
       }
@@ -59,9 +59,9 @@
     {
       "projectileType" : "yoyocounterweightneptune",
       "projectileParameters" : {
-        "power" : 4,
+        "powerScale" : 1.75,
         "rotateRadius" : 10,
-        "rotateSpeed" : 0.1,
+        "rotateSpeed" : 6,
         "maxTime" : 6,
         "fixedAngle" : 0
       }
@@ -71,10 +71,10 @@
   "usesYoyoUpgrades" : true,
   "usesCounterweightUpgrades" : false,
 
-  "maxLength" : 15,
-  "extraLength" : 2,
+  "maxLength" : 14.5,
+  "extraLength" : 0,
 
-  "currentStringType" : "yoyostring",
+  "currentStringType" : "",
   "stringColor" : "?replace;a85636=7b7b7b;e0975c=b6b6b6;ffca8a=e6e6e6",
 
   "counterWeightType" : "solaryoyoplanets",
@@ -89,7 +89,7 @@
     "power" : 6,
     "damageRepeatTimeout" : 0.7,
     "yoyoSpeed" : 45,
-    "maxYoyoTime" : 14.5
+    "maxYoyoTime" : 14
   },
 
   "stances" : {

@@ -1,9 +1,9 @@
 {
   "author" : "Bloopers & eralois",
-  "description" : "Adds yoyos",
+  "description" : "Adds a new weapon type (yoyos) to your game. See Steam Workshop page for more information.",
   "friendlyName" : "Yoyos",
   "includes" : [],
   "link" : "",
-  "name" : "yoyos",
+  "name" : "yoyos-eb",
   "steamContentId" : "",
   "version" : "1.0.0"}

@@ -16,7 +16,8 @@ function init()
       hueRange = {0, 360},
       hueCycleSpeed = 1,
       offset = {0, 0},
-      visualOffset = {0, 0}
+      visualOffset = {0, 0},
+      lightColor = {}
     }
   }
 
@@ -53,7 +54,7 @@ function init()
     rope["counterWeight" .. index] = ropeDefaults
     rope["counterWeight" .. index].params = util.mergeTable(ropeDefaults.params, rope.yoyo.params)
     table.insert(ropeIds, "counterWeight" .. index)
-    counterweight.projectileParameters.power = self.projectileParameters.power + (counterweight.projectileParameters.power or 0)
+    counterweight.projectileParameters.power = self.projectileParameters.power * (counterweight.projectileParameters.powerScale or 0)
   end
 
   activeItem.setScriptedAnimationParameter("ropes", ropeIds)

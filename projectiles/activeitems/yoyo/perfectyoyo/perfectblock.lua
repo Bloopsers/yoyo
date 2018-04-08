@@ -15,6 +15,8 @@ function init()
     order = "nearest"
   }
 
+  mcontroller.setVelocity({math.random(-5, 5), math.random(-5, 5)})
+
   local ttlVariance = config.getParameter("timeToLiveVariance")
   if ttlVariance then
     projectile.setTimeToLive(projectile.timeToLive() + sb.nrand(ttlVariance))
@@ -32,7 +34,7 @@ function update(dt)
   local candidates = world.entityQuery(pos, self.homingDistance, self.queryParameters)
 
   if #candidates == 0 then
-    controlTo(world.entityPosition(projectile.sourceEntity()), 0.5)
+    controlTo(world.entityPosition(self.sourceEntity))
   else
     local vel = mcontroller.velocity()
     local angle = vec2.angle(vel)

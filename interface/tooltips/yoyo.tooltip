@@ -87,6 +87,7 @@
     "position" : [14, 46.5],
     "zlevel" : 3,
     "centered" : true,
+    "minSize" : [10, 10],
     "file" : "/interface/tooltips/augment.png"
   },
   "counterWeightNameLabel" : {

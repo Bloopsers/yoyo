@@ -41,9 +41,9 @@
   "usesCounterweightUpgrades" : true,
 
   "maxLength" : 12,
-  "extraLength" : 2,
+  "extraLength" : 0,
 
-  "currentStringType" : "yoyostring",
+  "currentStringType" : "",
   "stringColor" : "?replace;a85636=7b7b7b;e0975c=b6b6b6;ffca8a=e6e6e6",
 
   "counterWeightType" : "",
@@ -63,6 +63,7 @@
 
   "upgradeParameters" : {
     "largeImage" : "icon_l6.png",
+    "inventoryIcon" : "icon_l6.png",
     "projectileType" : "frozenyoyo_l6",
     "animationParts" : {
       "yoyo" : "/projectiles/activeitems/yoyo/frozenyoyo/frozenyoyo_l6.png"

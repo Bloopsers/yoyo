@@ -22,9 +22,10 @@
     {
       "action" : "projectile",
       "type" : "perfectyoyohoming",
-      "time" : 0.15,
+      "time" : 0.25,
+      "rotate" : true,
       "repeat" : true,
-      "fuzzAngle" : 0,
+      "fuzzAngle" : 90,
       "inheritDamageFactor" : 0.1
     }
   ],

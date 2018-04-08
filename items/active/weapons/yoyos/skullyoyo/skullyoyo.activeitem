@@ -1,8 +1,8 @@
 {
   "itemName" : "skullyoyo",
-  "price" : 940,
+  "price" : 340,
   "inventoryIcon" : "icon.png",
-  "rarity" : "Uncommon",
+  "rarity" : "Common",
   "maxStack" : 1,
   "description" : "It's simple, but still fun as heck!",
   "shortdescription" : "Skull & Bones",
@@ -36,12 +36,12 @@
   },
 
   "counterweights" : [
-	{
+	  {
       "projectileType" : "yoyocounterweightbones",
       "projectileParameters" : {
-        "power" : 3,
+        "powerScale" : 1.15,
         "rotateRadius" : 5,
-        "rotateSpeed" : 0.1,
+        "rotateSpeed" : 5.5,
         "maxTime" : 4,
         "fixedAngle" : 0
       }
@@ -51,10 +51,10 @@
   "usesYoyoUpgrades" : true,
   "usesCounterweightUpgrades" : false,
 
-  "maxLength" : 11,
-  "extraLength" : 2,
+  "maxLength" : 7.5,
+  "extraLength" : 0,
 
-  "currentStringType" : "yoyostring",
+  "currentStringType" : "",
   "stringColor" : "?replace;a85636=7b7b7b;e0975c=b6b6b6;ffca8a=e6e6e6",
 
   "counterWeightType" : "boneyoyocounterweight",
@@ -67,7 +67,7 @@
   "projectileParameters" : {
     "knockback" : 3,
     "power" : 7,
-	"rotationSpeed" : 18,
+	  "rotationSpeed" : 18,
     "damageRepeatTimeout" : 0.7,
     "yoyoSpeed" : 35,
     "maxYoyoTime" : 5

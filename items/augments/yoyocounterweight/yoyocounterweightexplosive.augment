@@ -1,0 +1,25 @@
+{
+  "itemName" : "yoyocounterweightexplosive",
+  "price" : 240,
+  "rarity" : "Common",
+  "category" : "yoyoupgrade",
+  "tooltipKind" : "yoyoupgrade",
+  "inventoryIcon" : "/items/augments/yoyocounterweight/counterweightexplosive.png",
+  "description" : "An explosive counterweight for your yoyo. Explodes instead of returning after time is up.",
+  "shortdescription" : "Explosive Counterweight",
+
+  "counterweights" : [
+    {
+      "projectileType" : "yoyocounterweightexplosive",
+      "fromItem" : true,
+      "projectileParameters" : {
+        "powerScale" : 1.35,
+        "rotateRadius" : 7,
+        "rotateSpeed" : 5,
+        "maxTime" : 4
+      }
+    }
+  ],
+
+  "scripts" : [ "/scripts/augments/counterweight.lua" ]
+}

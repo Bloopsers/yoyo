@@ -10,6 +10,6 @@
     "destructionTime" : 0.025,
     "size" : 0.8,
     "layer" : "middle",
-    "timeToLive" : 0.1
+    "timeToLive" : 0.07
   }
 }

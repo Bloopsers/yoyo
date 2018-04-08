@@ -2,12 +2,11 @@ require "/scripts/vec2.lua"
 
 function update()
   localAnimator.clearDrawables()
+  localAnimator.clearLightSources()
 
   for _,ropeId in pairs(animationConfig.animationParameter("ropes")) do
     params = animationConfig.animationParameter(ropeId .. "params")
     if params then
-      local ropeParticle = params.ropeParticle
-      local ropeParticleDensity = params.ropeParticleDensity
       local points = animationConfig.animationParameter(ropeId .. "points")
 
       local lastPoint = activeItemAnimation.handPosition(params.offset)
@@ -25,14 +24,11 @@ function update()
             fullbright = params.fullbright
           }, "ForegroundTile+1")
 
-          if ropeParticle and ropeParticleDensity and ropeParticleDensity > 0 then
+          if params.lightColor and #params.lightColor > 0 then
             local segment = vec2.sub(relativeNextPoint, lastPoint)
-            local particleCount = math.ceil(ropeParticleDensity * vec2.mag(segment))
-            if particleCount > 0 then
-              for i = 1, particleCount do
-                local ppos = vec2.add(vec2.add(position, lastPoint), vec2.mul(segment, math.random()))
-                localAnimator.spawnParticle(ropeParticle, ppos)
-              end
+            for i=1,20 do
+              local ppos = vec2.add(vec2.add(position, lastPoint), vec2.mul(segment, math.random()))
+              localAnimator.addLightSource({ position = ppos, color = params.lightColor })
             end
           end
 

@@ -1,0 +1,15 @@
+{
+  "kind" : "aegisaltyoyotrail",
+  "definition" : {
+    "type": "textured",
+    "image": "/particles/yoyo/gravityyoyotrail.png?setcolor=9bba3d46",
+    "position" : [0, 0],
+    "fade" : 0.5,
+	"fullbright" : true,
+    "destructionAction" : "shrink",
+    "destructionTime" : 0.025,
+    "size" : 0.8,
+    "layer" : "middle",
+    "timeToLive" : 0.05
+  }
+}

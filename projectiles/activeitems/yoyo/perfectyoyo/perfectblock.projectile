@@ -9,6 +9,7 @@
   "actionOnReap" : [
     {
       "action" : "particle",
+      "rotate" : true,
       "specification" : "perfectblockdespawn"
     }
   ],
@@ -66,18 +67,18 @@
   "physics" : "laser",
   "bounces" : -1,
   "piercing" : true,
-  "timeToLive" : 0.8,
+  "timeToLive" : 1.2,
 
   "rotationSpeed" : 6,
 
   "controlMovement" : {
     "maxSpeed" : 8,
-    "controlForce" : 20
+    "controlForce" : 25
   },
 
   "rotationRate" : 60,
   "trackingLimit" : 20,
-  "homingDistance" : 5,
+  "homingDistance" : 6,
 
   "scripts" : [ "perfectblock.lua" ]
 }

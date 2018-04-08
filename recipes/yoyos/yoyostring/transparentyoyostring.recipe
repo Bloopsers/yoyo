@@ -1,6 +1,6 @@
 {
   "input" : [
-    { "item" : "phasematter", "count" : 10 },
+    { "item" : "phasematter", "count" : 8 },
     { "item" : "string", "count" : 12 }
   ],
   "output" : {

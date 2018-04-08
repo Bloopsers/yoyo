@@ -52,7 +52,6 @@ function returnYoyo()
     projectile.die()
   else
     self.returning = true
-    mcontroller.applyParameters({collisionEnabled = false})
   end
 end
 
@@ -66,7 +65,7 @@ function update(dt)
   self.ownerPos = world.entityPosition(self.ownerId)
   self.yoyoLength = world.magnitude(mcontroller.position(), self.ownerPos)
 
-  if self.yoyoTime >= self.maxYoyoTime or self.yoyoLength > self.maxDistance +5 or self.fireMode == "none" then
+  if self.yoyoTime >= self.maxYoyoTime or self.yoyoLength > self.maxDistance +3 or self.fireMode == "none" then
     returnYoyo()
   end
   
@@ -78,6 +77,11 @@ function update(dt)
     if self.aimPosition then
       if self.yoyoTime > 0.15 and self.returning == true then
         controlTo(self.ownerPos, self.yoyoSpeed * 2, 650)
+
+        if world.lineTileCollision(mcontroller.position(), self.ownerPos, {"Block", "Dynamic", "Null"}) then
+          mcontroller.applyParameters({collisionEnabled = false})
+        end
+
         local toTarget = world.distance(self.ownerPos, mcontroller.position())
 
         if vec2.mag(toTarget) < self.pickupDistance and self.yoyoTime > 0.15 then
@@ -85,7 +89,6 @@ function update(dt)
         end
       else
         local distToPos = world.magnitude(mcontroller.position(), self.aimPosition)
-        local cursorOutside = world.magnitude(self.ownerPos, self.aimPosition) > self.maxDistance
         
         if distToPos < 0.4 then
           controlTo(self.aimPosition, 0, 650)
@@ -112,12 +115,11 @@ end
 
 function controlTo(position, speed, controlForce)
   local offset = world.distance(position, mcontroller.position())
-  local v = vec2.sub(position, self.ownerPos)
-  v = vec2.clampMag(v, self.maxDistance)
+  local v = vec2.clampMag(vec2.sub(position, self.ownerPos), self.maxDistance)
 
-  local pos = vec2.lerp(mcontroller.position(), vec2.add(self.ownerPos, v), speed / 150)
+  local pos = vec2.approach(mcontroller.position(), vec2.add(self.ownerPos, v), speed / 60)
 
-  if world.lineCollision(mcontroller.position(), pos, {"Block", "Dynamic", "Null"}) or self.returning == true or self.yoyoLength < self.maxDistance-1 then
+  if world.pointTileCollision(pos, {"Block", "Dynamic", "Null"}) or self.returning == true then
     controlTo2(position, speed, controlForce)
   else
     mcontroller.setPosition(pos)

@@ -26,6 +26,8 @@
 
   "fireOffset" : [0, 0],
 
+  "stringImage" : "string.png",
+
   "rope" : {
     "yoyo" : {
       "width" : 0.8,
@@ -40,10 +42,10 @@
   "usesYoyoUpgrades" : true,
   "usesCounterweightUpgrades" : true,
 
-  "maxLength" : 7.5,
-  "extraLength" : 2,
+  "maxLength" : 8,
+  "extraLength" : 0,
 
-  "currentStringType" : "yoyostring",
+  "currentStringType" : "",
   "stringColor" : "?replace;a85636=7b7b7b;e0975c=b6b6b6;ffca8a=e6e6e6",
 
   "counterWeightType" : "",
@@ -58,11 +60,12 @@
     "power" : 7,
     "damageRepeatTimeout" : 0.7,
     "yoyoSpeed" : 40,
-    "maxYoyoTime" : 8
+    "maxYoyoTime" : 5.5
   },
 
   "upgradeParameters" : {
     "largeImage" : "icon_l6.png",
+    "inventoryIcon" : "icon_l6.png",
     "projectileType" : "toxicyoyo_l6",
     "animationParts" : {
       "yoyo" : "/projectiles/activeitems/yoyo/toxicyoyo/toxicyoyo_l6.png"

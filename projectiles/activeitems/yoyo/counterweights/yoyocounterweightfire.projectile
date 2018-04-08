@@ -19,8 +19,10 @@
   "timeToLive" : 100,
 
   "statusEffects" : [
-    "burning"
+    {"effect" : "burning", "duration" : 4}
   ],
+
+  "persistentAudio" : "/sfx/melee/elemental_spin_fire.ogg",
 
   "scripts" : [ "counterweight.lua" ]
 }

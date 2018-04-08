@@ -143,16 +143,27 @@ function build(directory, config, parameters, level, seed)
     config.tooltipFields.damageKindImage = "/interface/elements/"..elementalType..".png"
   end
 
-  if type(config.inventoryIcon) == "table" then
-    for _,part in pairs(config.inventoryIcon) do
-      part.image = part.image .. params.stringColor
+  local stringImage = configParameter("stringImage", "/items/active/weapons/yoyos/string.png")
+  local stringOffset = configParameter("stringOffset", {0, 0})
+
+  if parameters.inventoryIcon then
+    local iconBase = parameters.inventoryIcon
+    if type(parameters.inventoryIcon) == "table" then
+      iconBase = parameters.inventoryIcon[1].image
     end
+    parameters.inventoryIcon = {
+      { image = iconBase },
+      { image = stringImage .. params.stringColor, offset = stringOffset }
+    }
   else
-    config.inventoryIcon = config.inventoryIcon .. params.stringColor
+    config.inventoryIcon = {
+      { image = type(config.inventoryIcon) == "table" and config.inventoryIcon[1] or config.inventoryIcon },
+      { image = stringImage .. params.stringColor, offset = stringOffset }
+    }
   end
 
-  local time = configParameter("projectileParameters").maxYoyoTime
-  if time ~= nil and time > 100 then
+  local time = params.projectileParameters.maxYoyoTime
+  if time and time >= 100 then
     time = "Infinite"
   end
   config.tooltipFields.durationLabel = tostring(time)

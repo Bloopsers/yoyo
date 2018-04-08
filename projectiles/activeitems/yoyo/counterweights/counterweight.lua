@@ -6,22 +6,24 @@ function init()
   })
   mcontroller.applyParameters(config.getParameter("movementSettings", {}))
 
-  self.switchTimer = 1
   self.returning = false
   self.time = 0
   self.pickupDistance = 1
+  self.switchTimer = 0
   self.fixedAngle = config.getParameter("fixedAngle")
-  self.maxTime = config.getParameter("maxTime", 5)
-  radius = config.getParameter("rotateRadius")
-  rotateSpeed = config.getParameter("rotateSpeed") * (radius / 8)
+  self.maxTime = config.getParameter("maxTime")
+  self.radius = config.getParameter("rotateRadius", 6)
+  self.rotateSpeed = config.getParameter("rotateSpeed", 8)
+  self.dieOnReturn = config.getParameter("dieOnReturn")
 
   if self.fixedAngle then
-    angle = self.fixedAngle
+    self.angle = self.fixedAngle
   else
-    angle = math.random(360)
+    self.angle = math.random(360)
   end
 
   self.ownerId = projectile.sourceEntity()
+  self.lastSafePlace = world.entityPosition(self.ownerId)
 end
 
 function kill()
@@ -49,44 +51,42 @@ end
 
 function update(dt)
   self.ownerPos = world.entityPosition(self.ownerId)
-  world.debugPoly(circle(radius, 32, self.ownerPos), {0, 0, 255})
+  world.debugPoly(circle(self.radius, 32, self.ownerPos), {0, 0, 255})
 
   self.time = self.time + (1 * dt)
-  if self.time > self.maxTime or world.magnitude(mcontroller.position(), self.ownerPos) > radius +7 then
+
+  if self.time > self.maxTime then
     returnCounterweight()
   end
 
-  angle = angle + rotateSpeed
-
-  mcontroller.setRotation(angle)
-
-  local offset = vec2.mul({math.sin(angle), math.cos(angle)}, radius)
-
   if self.returning == true then
-    controlTo(self.ownerPos, 50, 800)
-    if world.magnitude(world.entityPosition(self.ownerId), mcontroller.position()) < self.pickupDistance then
+    controlTo2(self.ownerPos, 50, 300)
+
+    if vec2.mag(world.distance(mcontroller.position(), self.ownerPos)) < self.pickupDistance then
       projectile.die()
     end
   else
-    if world.pointCollision(vec2.add(self.ownerPos, offset), {"Block"}) then
-      self.switchTimer = self.switchTimer - 1
-      controlTo(vec2.add(self.ownerPos, offset), 30 / radius, 800)
-      if self.switchTimer == 0 then
-        rotateSpeed = -rotateSpeed
-      end
-    else
-      self.switchTimer = 1
-      controlTo(vec2.add(self.ownerPos, offset), 30, 800)
-    end
+    self.angle = self.angle + (self.rotateSpeed * dt)
+
+    mcontroller.setRotation(self.angle)
+
+    local offset = vec2.mul({math.sin(self.angle), math.cos(self.angle)}, self.radius)
+    local pos = vec2.add(self.ownerPos, offset)
+
+    mcontroller.setPosition(pos)
   end
 end
 
 function hit(entityId)
-  rotateSpeed = -rotateSpeed
+  self.rotateSpeed = -self.rotateSpeed
 end
 
 function vec2.length(vector)
   return math.sqrt(vec2.dot(vector, vector))
+end
+
+function vec2.lerp(a, b, t)
+  return {a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t}
 end
 
 function vec2.clampMag(vector, maxLength)
@@ -97,10 +97,10 @@ function vec2.clampMag(vector, maxLength)
   return vector
 end
 
-function controlTo(position, speed, controlForce)
+function controlTo2(position, speed, controlForce)
   local offset = world.distance(position, mcontroller.position())
   local v = vec2.sub(position, self.ownerPos)
-  v = vec2.clampMag(v, radius)
+  v = vec2.clampMag(v, self.radius)
   offset = world.distance(vec2.add(self.ownerPos, v), mcontroller.position())
   mcontroller.approachVelocity(vec2.mul(vec2.norm(offset), speed), controlForce)
 end

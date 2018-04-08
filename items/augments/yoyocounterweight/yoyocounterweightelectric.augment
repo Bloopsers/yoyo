@@ -1,0 +1,25 @@
+{
+  "itemName" : "yoyocounterweightelectric",
+  "price" : 240,
+  "rarity" : "Common",
+  "category" : "yoyoupgrade",
+  "tooltipKind" : "yoyoupgrade",
+  "inventoryIcon" : "/items/augments/yoyocounterweight/counterweightelectric.png",
+  "description" : "An electric counterweight for your yoyo. Shocks enemies.",
+  "shortdescription" : "Electric Counterweight",
+
+  "counterweights" : [
+    {
+      "projectileType" : "yoyocounterweightelectric",
+      "fromItem" : true,
+      "projectileParameters" : {
+        "powerScale" : 1.25,
+        "rotateRadius" : 5,
+        "rotateSpeed" : 7,
+        "maxTime" : 4
+      }
+    }
+  ],
+
+  "scripts" : [ "/scripts/augments/counterweight.lua" ]
+}
