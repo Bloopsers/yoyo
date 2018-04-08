@@ -38,15 +38,5 @@
       },
       "rarity": 0.0002
     }
-  },
-  {
-    "op": "add",
-    "path": "/basicmerchant/0/1/-",
-    "value": {
-      "item": {
-        "name": "yoyocounterweightexplosive"
-      },
-      "rarity": 0.0002
-    }
   }
 ]

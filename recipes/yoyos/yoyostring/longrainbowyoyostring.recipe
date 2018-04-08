@@ -1,0 +1,15 @@
+{
+  "input" : [
+    { "item" : "string", "count" : 12 },
+	{ "item" : "canvas", "count" : 2 },
+	{ "item" : "bluedye", "count" : 2 },
+	{ "item" : "greendye", "count" : 2 },
+	{ "item" : "orangedye", "count" : 2 },
+	{ "item" : "pinkdye", "count" : 2 },
+	{ "item" : "purpledye", "count" : 2 },
+	{ "item" : "reddye", "count" : 2 },
+	{ "item" : "yellowdye", "count" : 2 }
+  ],
+  "output" : { "item" : "longrainbowyoyostring", "count" : 1 },
+  "groups" : [ "craftingwheel2", "clothes" ]
+}
