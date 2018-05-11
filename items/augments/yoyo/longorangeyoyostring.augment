@@ -5,10 +5,10 @@
   "category" : "yoyoupgrade",
   "tooltipKind" : "yoyoupgrade",
   "inventoryIcon" : "/items/augments/yoyo/longyoyostring.png?replace;a85636=af4e00;e0975c=ea9931;ffca8a=ffd495",
-  "description" : "A long orange yoyo string. Increases your yoyo range by 6.",
+  "description" : "A long orange yoyo string. Increases your yoyo range by 4.",
   "shortdescription" : "Long Orange Yoyo String",
 
-  "extraLength" : 6,
+  "extraLength" : 4,
   "stringColor" : "?replace;a85636=af4e00;e0975c=ea9931;ffca8a=ffd495",
 
   "rope" : {

@@ -1,4 +1,5 @@
 require "/scripts/vec2.lua"
+require "/scripts/util.lua"
 
 function init()
   mcontroller.applyParameters({
@@ -10,20 +11,16 @@ function init()
   self.time = 0
   self.pickupDistance = 1
   self.switchTimer = 0
-  self.fixedAngle = config.getParameter("fixedAngle")
   self.maxTime = config.getParameter("maxTime")
-  self.radius = config.getParameter("rotateRadius", 6)
-  self.rotateSpeed = config.getParameter("rotateSpeed", 8)
   self.dieOnReturn = config.getParameter("dieOnReturn")
+  self.lastColliding = false
 
-  if self.fixedAngle then
-    self.angle = self.fixedAngle
-  else
-    self.angle = math.random(360)
-  end
+  self.maxDistance = 8
+  self.speed = config.getParameter("rotateSpeed", 60)
+  self.rotateSpeed = 0.02
+  self.angle = math.random(360)
 
   self.ownerId = projectile.sourceEntity()
-  self.lastSafePlace = world.entityPosition(self.ownerId)
 end
 
 function kill()
@@ -51,7 +48,7 @@ end
 
 function update(dt)
   self.ownerPos = world.entityPosition(self.ownerId)
-  world.debugPoly(circle(self.radius, 32, self.ownerPos), {0, 0, 255})
+  world.debugPoly(circle(self.maxDistance, 32, self.ownerPos), {0, 0, 255})
 
   self.time = self.time + (1 * dt)
 
@@ -60,35 +57,40 @@ function update(dt)
   end
 
   if self.returning == true then
-    controlTo2(self.ownerPos, 50, 300)
+    controlTo2(self.ownerPos, self.speed, 350)
 
-    if vec2.mag(world.distance(mcontroller.position(), self.ownerPos)) < self.pickupDistance then
+    if world.magnitude(mcontroller.position(), self.ownerPos) < self.pickupDistance then
       projectile.die()
     end
   else
-    self.angle = self.angle + (self.rotateSpeed * dt)
-
-    mcontroller.setRotation(self.angle)
-
-    local offset = vec2.mul({math.sin(self.angle), math.cos(self.angle)}, self.radius)
-    local pos = vec2.add(self.ownerPos, offset)
-
-    mcontroller.setPosition(pos)
+    local pos = getNextPosition()
+    if world.pointTileCollision(pos, {"Block", "Dynamic", "Null"}) and not self.lastColliding then
+      self.rotateSpeed = -self.rotateSpeed
+      pos = getNextPosition(2)
+    end
+    controlTo(pos, self.speed, 350)
+    self.lastColliding = world.pointTileCollision(pos, {"Block", "Dynamic", "Null"})
   end
+
+  mcontroller.setRotation(self.angle)
 end
 
+function getNextPosition(mod)
+  mod = mod or 1
+  self.angle = self.angle + (self.rotateSpeed * mod)
+  local offset = vec2.mul({math.sin(self.angle), math.cos(self.angle)}, self.maxDistance)
+  local pos = vec2.add(vec2.rotate(offset, self.angle * self.maxDistance), self.ownerPos)
+  return pos
+end
+  
 function hit(entityId)
   self.rotateSpeed = -self.rotateSpeed
 end
-
+  
 function vec2.length(vector)
   return math.sqrt(vec2.dot(vector, vector))
 end
-
-function vec2.lerp(a, b, t)
-  return {a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t}
-end
-
+  
 function vec2.clampMag(vector, maxLength)
   if vec2.length(vector) > maxLength then
     vector = vec2.norm(vector)
@@ -96,11 +98,29 @@ function vec2.clampMag(vector, maxLength)
   end
   return vector
 end
+  
+function controlTo(position, speed, controlForce)
+  local offset = world.distance(position, mcontroller.position())
+  local v = vec2.clampMag(vec2.sub(position, self.ownerPos), self.maxDistance)
+
+  local pos = vec2.approach(mcontroller.position(), vec2.add(self.ownerPos, v), speed / 60)
+
+  if world.lineTileCollision(mcontroller.position(), pos, {"Block", "Dynamic", "Null"}) then
+
+  end
+
+  if world.lineTileCollision(mcontroller.position(), pos, {"Block", "Dynamic", "Null"}) or self.returning == true then
+    controlTo2(position, speed, controlForce)
+  else
+    mcontroller.setPosition(pos)
+  end
+end
 
 function controlTo2(position, speed, controlForce)
   local offset = world.distance(position, mcontroller.position())
   local v = vec2.sub(position, self.ownerPos)
-  v = vec2.clampMag(v, self.radius)
+  v = vec2.clampMag(v, self.maxDistance)
   offset = world.distance(vec2.add(self.ownerPos, v), mcontroller.position())
   mcontroller.approachVelocity(vec2.mul(vec2.norm(offset), speed), controlForce)
 end
+

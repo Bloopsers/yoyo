@@ -1,0 +1,11 @@
+{
+  "input" : [
+    { "item" : "manipulatormodule", "count" : 4 },
+    { "item" : "solariumstar", "count" : 10 }
+  ],
+  "output" : {
+    "item" : "protectorateyoyo",
+    "count" : 1
+  },
+  "groups" : [ "treasuredtrophies" ]
+}

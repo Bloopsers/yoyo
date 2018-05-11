@@ -1,0 +1,75 @@
+{
+  "projectileName" : "protectoratebolt",
+  "image" : "protectoratebolt.png",
+  "flippable" : false,
+  "orientationLocked" : true,
+  "actionOnReap" : [ ],
+  "statusEffects" : [ ],
+  "damagePoly" : [[-4, 2], [-2, 4], [2, 4], [4, 2], [4, -2], [2, -4], [-2, -4], [-4, -2]],
+  "movementSettings" : {
+    "collisionPoly" : [[0.3,0],[0.212132,0.212132],[1.83697e-17,0.3],[-0.212132,0.212132],[-0.3,3.67394e-17],[-0.212132,-0.212132],[-5.51091e-17,-0.3],[0.212132,-0.212132]]
+  },
+  "power" : 5.0,
+  "speed" : 10,
+  "renderLayer" : "ForegroundTile+2",
+  "damageKind" : "plasma",
+  "physics" : "laser",
+  "bounces" : -1,
+  "piercing" : true,
+  "timeToLive" : 1.2,
+ 
+  "periodicActions" : [
+    {
+      "action": "particle",
+      "time" : 0.001,
+      "repeat" : true,
+      "specification" : {
+        "type" : "ember",
+        "size" : 1.75,
+        "position" : [0, 0],
+		    "fullbright" : true,
+        "destructionAction" : "shrink",
+        "destructionTime" : 0.5,
+        "fade" : 1,
+        "layer" : "front",
+        "timeToLive" : 0.2,
+        "color" : [0,140,217, 160]
+      }
+    },
+    {
+      "action": "particle",
+      "time" : 0.001,
+      "repeat" : true,
+      "specification" : {
+        "type" : "ember",
+        "size" : 2,
+        "position" : [0, 0],
+		    "fullbright" : true,
+        "destructionAction" : "shrink",
+        "destructionTime" : 0.5,
+        "fade" : 1,
+        "layer" : "front",
+        "timeToLive" : 0.1,
+        "light" : [96,184,234, 160],
+        "color" : [96,184,234]
+      }
+    },
+    {
+      "action": "particle",
+      "time" : 0.001,
+      "repeat" : true,
+      "specification" : {
+        "type" : "ember",
+        "size" : 2,
+        "position" : [0, 0],
+		    "fullbright" : true,
+        "destructionAction" : "shrink",
+        "destructionTime" : 0.25,
+        "fade" : 1,
+        "layer" : "front",
+        "timeToLive" : 0.05,
+        "color" : [255,255,255]
+      }
+    }
+  ]
+}

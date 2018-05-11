@@ -30,8 +30,6 @@
     "yoyo" : {
       "width" : 0.8,
       "color" : [192, 177, 124, 230],
-      "offset" : [0, 0],
-      "visualOffset" : [0, 0],
       "rainbow" : true,
       "hueCycleSpeed" : 0.5
     }
@@ -59,7 +57,7 @@
     "knockback" : 4,
     "power" : 7,
     "damageRepeatTimeout" : 0.7,
-    "yoyoSpeed" : 40,
+    "yoyoSpeed" : 35,
     "maxYoyoTime" : 5.5
   },
 

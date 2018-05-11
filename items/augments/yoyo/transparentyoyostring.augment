@@ -5,10 +5,10 @@
   "category" : "yoyoupgrade",
   "tooltipKind" : "yoyoupgrade",
   "inventoryIcon" : "/items/augments/yoyo/yoyostring.png?replace;a85636=4facb2C8;e0975c=a8e6e2C8;ffca8a=ffffffC8",
-  "description" : "A holographic yoyo string. Increases your yoyo range by 5.",
+  "description" : "A holographic yoyo string. Increases your yoyo range by 3.",
   "shortdescription" : "Holographic Yoyo String",
 
-  "extraLength" : 5,
+  "extraLength" : 3,
   "stringColor" : "?replace;a85636=4facb2C8;e0975c=a8e6e2C8;ffca8a=ffffffC8",
 
   "rope" : {

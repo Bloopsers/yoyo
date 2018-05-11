@@ -1,0 +1,12 @@
+{
+  "particleEmitters" : {
+    "confused" : {
+      "particles" : [
+        {
+          "count" : 2,
+          "particle" : "yoyoconfusion"
+		}
+      ]
+    }
+  }
+}

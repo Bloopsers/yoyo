@@ -2,123 +2,83 @@ require "/scripts/util.lua"
 require "/scripts/vec2.lua"
 require "/scripts/activeitem/stances.lua"
 
-function init()
-  self.fireOffset = config.getParameter("fireOffset")
-  rope = {}
-  ropeIds = {}
+function addProjectile(id, type, parameters, counterweight)
   local ropeDefaults = {
-    points = {},
-    length = 0,
-    params = {
-      color = {255, 255, 255, 255},
-      rainbow = false,
-      hue = 0,
-      hueRange = {0, 360},
-      hueCycleSpeed = 1,
-      offset = {0, 0},
-      visualOffset = {0, 0},
-      lightColor = {}
-    }
+    line = {},
+    color = {255, 255, 255, 255},
+    rainbow = false,
+    hue = 0,
+    hueRange = {0, 360},
+    hueCycleSpeed = 1,
+    fullbright = false
   }
+  self.projectiles[id] = {
+    type = type,
+    parameters = parameters,
+    id = nil,
+    position = {0, 0},
+    counterweight = (counterweight or false),
+    rope = sb.jsonMerge(ropeDefaults, config.getParameter("rope"))
+  }
+end
 
-  for index,params in pairs(config.getParameter("rope")) do
-    rope[index] = ropeDefaults
-    rope[index].params = util.mergeTable(ropeDefaults.params, params)
-    if params.rainbow and params.hueRange then
-      rope[index].params.hue = params.hueRange[1]
-    end
-    table.insert(ropeIds, index)
-  end
+function init()
+  self.projectiles = {}
+
+  addProjectile("yoyo", config.getParameter("projectileType"), config.getParameter("projectileParameters"))
 
   message.setHandler("hitEnemy", function(_, _, entityId)
     spawnCounterweights()
   end)
 
   self.lastFireMode = "none"
-  counterweights = config.getParameter("counterweights")
-  self.projectileType = config.getParameter("projectileType")
   self.fireMode = "none"
-  self.yoyoRotation = 0
-  self.projectileParameters = config.getParameter("projectileParameters")
+  self.fireOffset = config.getParameter("fireOffset")
   self.maxLength = config.getParameter("maxLength", 5) + config.getParameter("extraLength", 0)
   self.aimAngle = 0
   self.facingDirection = 0
-  self.projectileId = nil
-  self.projectilePosition = nil
-  self.cooldownTime = config.getParameter("cooldownTime", 0)
-  self.cooldownTimer = self.cooldownTime
+  self.counterweights = config.getParameter("counterweights", {})
 
-  self.projectileParameters.power = self.projectileParameters.power * root.evalFunction("weaponDamageLevelMultiplier", config.getParameter("level", 1))
+  self.projectiles.yoyo.parameters.power = self.projectiles.yoyo.parameters.power * root.evalFunction("weaponDamageLevelMultiplier", config.getParameter("level", 1))
 
-  for index,counterweight in pairs(counterweights) do
-    rope["counterWeight" .. index] = ropeDefaults
-    rope["counterWeight" .. index].params = util.mergeTable(ropeDefaults.params, rope.yoyo.params)
-    table.insert(ropeIds, "counterWeight" .. index)
-    counterweight.projectileParameters.power = self.projectileParameters.power * (counterweight.projectileParameters.powerScale or 0)
+  for index,counterweight in pairs(self.counterweights) do
+    counterweight.projectileParameters.power = self.projectiles.yoyo.parameters.power * (counterweight.projectileParameters.powerScale or 0)
+    addProjectile("counterWeight" .. index, counterweight.projectileType, counterweight.projectileParameters, true)
   end
-
-  activeItem.setScriptedAnimationParameter("ropes", ropeIds)
 
   initStances()
-  checkProjectiles()
-
-  if storage.projectileIds then
-    setStance("throw")
-  else
-    setStance("idle")
-  end
+  setStance("idle")
 end
 
 function uninit()
   cancel()
 end
 
+function updateRopes()
+  for index,projectile in pairs(self.projectiles) do
+    if projectile.rope.rainbow then
+      projectile.rope.hue = projectile.rope.hue + projectile.rope.hueCycleSpeed
+      if projectile.rope.hue > projectile.rope.hueRange[2] then
+        projectile.rope.hue = projectile.rope.hueRange[1]
+      end
+      projectile.rope.color = HSLtoRGB(projectile.rope.hue, 170, 170, 255)
+    end
+  end
+end
+
 function update(dt, fireMode, shiftHeld, moves)
+  activeItem.setScriptedAnimationParameter("projectiles", self.projectiles)
   self.fireMode = fireMode
 
   self.aimAngle, self.facingDirection = activeItem.aimAngleAndDirection(self.fireOffset[2], activeItem.ownerAimPosition())
   activeItem.setFacingDirection(self.facingDirection)
 
-  trackProjectile()
-
-  if self.projectileId then
-    setStance("throw")
-    if world.entityExists(self.projectileId) then
-      for id,counterweight in pairs(counterweights) do
-        if counterweight.projId and world.entityExists(counterweight.projId) then
-          counterweight.position = world.entityPosition(counterweight.projId)
-          local position = mcontroller.position()
-          local id = "counterWeight" .. id
-          local handPosition = vec2.add(position, activeItem.handPosition(rope[id].params.visualOffset))
-
-          updateRope(id, {handPosition, counterweight.position})
-        else
-          updateRope("counterWeight" .. id, {})
-        end
-      end
-      world.sendEntityMessage(self.projectileId, "updateProjectile",
-        activeItem.ownerAimPosition(),
-        self.fireMode,
-        rope.yoyo.length
-      )
-
-      local position = mcontroller.position()
-      local handPosition = vec2.add(position, activeItem.handPosition(self.ropeOffset))
-
-      updateRope("yoyo", {handPosition, self.projectilePosition})
-    else
-      cancel()
-    end
-  end
-
+  trackProjectiles()
+  updateRopes()
   updateStance(dt)
-  checkProjectiles()
 
-  self.cooldownTimer = math.max(0, self.cooldownTimer - dt)
-
-  if self.stanceName == "idle" and self.cooldownTimer == 0 then
-    if (fireMode == "primary" or fireMode == "alt") and self.lastFireMode ~= ("primary" or "alt") then
-      self.cooldownTimer = self.cooldownTime
+  if self.stanceName == "idle" then
+    if (fireMode == "primary" or fireMode == "alt") and not (self.lastFireMode == "primary" or self.lastFireMode == "alt") then
       setStance("windup")
     end
   end
@@ -126,7 +86,7 @@ function update(dt, fireMode, shiftHeld, moves)
   self.lastFireMode = fireMode
 
   if self.stanceName == "throw" then
-    if not self.projectileId then
+    if not self.projectiles.yoyo.id or not world.entityExists(self.projectiles.yoyo.id) then
       setStance("precatch")
       animator.playSound("catch")
     end
@@ -135,100 +95,61 @@ function update(dt, fireMode, shiftHeld, moves)
   updateAim()
 end
 
-function trackProjectile()
-  if self.projectileId then
-    if world.entityExists(self.projectileId) then
-      local position = mcontroller.position()
-      self.projectilePosition = vec2.add(world.distance(world.entityPosition(self.projectileId), position), position)
-    else
-      cancel()
+function trackProjectiles()
+  for index,projectile in pairs(self.projectiles) do
+    if projectile.id and world.entityExists(projectile.id) then
+      projectile.position = world.entityPosition(projectile.id)
     end
+  end
+  if self.projectiles.yoyo.id and world.entityExists(self.projectiles.yoyo.id) then
+    world.sendEntityMessage(self.projectiles.yoyo.id, "updateProjectile",
+      activeItem.ownerAimPosition(),
+      self.fireMode
+    )
+  else
+    cancel()
   end
 end
 
 function spawnCounterweights()
-  for index,counterweight in pairs(counterweights) do
-    if counterweight.projId == nil or not world.entityExists(counterweight.projId) then
-      counterweight.points = {}
-      counterweight.projId = world.spawnProjectile(
-        counterweight.projectileType,
+  for index,projectile in pairs(self.projectiles) do
+    if projectile.counterweight and (not projectile.id or not world.entityExists(projectile.id)) then
+      projectile.id = world.spawnProjectile(
+        projectile.type,
         mcontroller.position(),
         activeItem.ownerEntityId(),
         {0, 0},
         false,
-        counterweight.projectileParameters
+        projectile.parameters
       )
     end
   end
 end
 
 function fire()
-  local params = copy(self.projectileParameters)
-  params.powerMultiplier = activeItem.ownerPowerMultiplier()
-  params.ownerAimPosition = activeItem.ownerAimPosition()
-  params.maxDistance = self.maxLength
+  local parameters = copy(self.projectiles.yoyo.parameters)
+  parameters.powerMultiplier = activeItem.ownerPowerMultiplier()
+  parameters.ownerAimPosition = activeItem.ownerAimPosition()
+  parameters.maxDistance = self.maxLength
 
-  self.projectileId = world.spawnProjectile(
-    self.projectileType,
+  self.projectiles.yoyo.id = world.spawnProjectile(
+    self.projectiles.yoyo.type,
     firePosition(),
     activeItem.ownerEntityId(),
     aimVector(),
     false,
-    params
+    parameters
   )
-
-  if self.projectileId then
-    storage.projectileIds = {projectileId}
-  end
 
   animator.playSound("throw")
 end
 
-function updateRope(id, newRope)
-  local position = mcontroller.position()
-  local previousRopeCount = #rope[id].points
-  local params = rope[id]
-  local ropeLength = 0
-  params.points = newRope
-
-  if id ~= "yoyo" then params.params = rope.yoyo.params end
-
-  if params.params.rainbow == true then
-    params.params.hue = params.params.hue +(params.params.hueCycleSpeed or 1)
-    if params.params.hue > params.params.hueRange[2] then
-      params.params.hue = params.params.hueRange[1]
-    end
-    params.params.color = HSLtoRGB(params.params.hue, 170, 170, (params.params.color[4] or 255))
-  end
-
-  activeItem.setScriptedAnimationParameter(id .. "params", params.params)
-
-  for i = 2, #params.points do
-    ropeLength = ropeLength + world.magnitude(params.points[i], params.points[i - 1])
-  end
-  params.length = ropeLength
-  for i = #params.points + 1, previousRopeCount do
-  end
-
-  activeItem.setScriptedAnimationParameter(id .. "points", params.points)
-end
-
 function cancel()
-  if self.projectileId and world.entityExists(self.projectileId) then
-    world.callScriptedEntity(self.projectileId, "kill")
-  end
-  for k,v in pairs(counterweights) do
-    if v.projId and world.entityExists(v.projId) then
-      world.callScriptedEntity(v.projId, "kill")
+  for index,projectile in pairs(self.projectiles) do
+    if projectile.id and world.entityExists(projectile.id) then
+      world.callScriptedEntity(projectile.id, "kill")
     end
   end
-  self.projectileId = nil
-  self.projectilePosition = nil
-  updateRope("yoyo", {})
-  for i=1,#counterweights do
-    updateRope("counterWeight" .. i, {})
-  end
-  status.clearPersistentEffects("grapplingHook"..activeItem.hand())
 end
 
 function firePosition()
@@ -243,35 +164,17 @@ function firePosition()
   end
 end
 
-function checkProjectiles()
-  if storage.projectileIds then
-    local newProjectileIds = {}
-    for i, projectileId in ipairs(storage.projectileIds) do
-      if world.entityExists(projectileId) then
-        local updatedProjectileIds = world.callScriptedEntity(projectileId, "projectileIds")
-
-        if updatedProjectileIds then
-          for j, updatedProjectileId in ipairs(updatedProjectileIds) do
-            table.insert(newProjectileIds, updatedProjectileId)
-          end
-        end
-      end
-    end
-    storage.projectileIds = #newProjectileIds > 0 and newProjectileIds or nil
-  end
-end
-
 function HSLtoRGB(h, s, l, a)
-    if s<=0 then return l,l,l   end
-    h, s, l = h/360*6, s/255, l/255
-    local c = (1-math.abs(2*l-1))*s
-    local x = (1-math.abs(h%2-1))*c
-    local m,r,g,b = (l-.5*c), 0,0,0
-    if h < 1     then r,g,b = c,x,0
-    elseif h < 2 then r,g,b = x,c,0
-    elseif h < 3 then r,g,b = 0,c,x
-    elseif h < 4 then r,g,b = 0,x,c
-    elseif h < 5 then r,g,b = x,0,c
-    else              r,g,b = c,0,x
-    end return {(r+m)*255,(g+m)*255,(b+m)*255, a}
+  if s <= 0 then return {l, l, l, 255} end
+  h, s, l = h/360*6, s/255, l/255
+  local c = (1-math.abs(2*l-1))*s
+  local x = (1-math.abs(h%2-1))*c
+  local m,r,g,b = (l-.5*c), 0,0,0
+  if h < 1 then r,g,b = c,x,0
+  elseif h < 2 then r,g,b = x,c,0
+  elseif h < 3 then r,g,b = 0,c,x
+  elseif h < 4 then r,g,b = 0,x,c
+  elseif h < 5 then r,g,b = x,0,c
+  else r,g,b = c,0,x
+  end return {(r+m)*255,(g+m)*255,(b+m)*255, a}
 end

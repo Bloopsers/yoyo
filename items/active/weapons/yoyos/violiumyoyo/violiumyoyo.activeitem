@@ -27,12 +27,8 @@
   "fireOffset" : [0, 0],
 
   "rope" : {
-    "yoyo" : {
-      "width" : 0.8,
-      "color" : [202, 202, 202, 230],
-      "offset" : [0, 0],
-      "visualOffset" : [0, 0]
-    }
+    "width" : 0.8,
+    "color" : [202, 202, 202, 230]
   },
 
   "counterweights" : [],
@@ -40,7 +36,7 @@
   "usesYoyoUpgrades" : true,
   "usesCounterweightUpgrades" : true,
 
-  "maxLength" : 14,
+  "maxLength" : 11,
   "extraLength" : 0,
 
   "currentStringType" : "",

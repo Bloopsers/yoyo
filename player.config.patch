@@ -20,13 +20,6 @@
       "item": "titaniumyoyo"
     }
   },
-    {
-    "op": "add",
-    "path": "/defaultBlueprints/tier1/-",
-    "value": {
-      "item": "skullyoyo"
-    }
-  },
   {
     "op": "add",
     "path": "/defaultBlueprints/tier1/-",
@@ -94,13 +87,6 @@
     "op": "add",
     "path": "/defaultBlueprints/tier1/-",
     "value": {
-      "item": "pinkyoyostring"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/defaultBlueprints/tier1/-",
-    "value": {
       "item": "purpleyoyostring"
     }
   },
@@ -151,13 +137,6 @@
     "path": "/defaultBlueprints/tier1/-",
     "value": {
       "item": "longyellowyoyostring"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/defaultBlueprints/tier1/-",
-    "value": {
-      "item": "longpinkyoyostring"
     }
   },
   {

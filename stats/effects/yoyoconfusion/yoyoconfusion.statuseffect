@@ -1,0 +1,12 @@
+{
+  "name" : "yoyoconfusion",
+  "effectConfig" : {
+    "chance" : 3
+  },
+  "defaultDuration" : 5,
+
+  "scripts" : [
+    "confusion.lua"
+  ],
+  "animationConfig" : "yoyoconfusion.animation"
+}

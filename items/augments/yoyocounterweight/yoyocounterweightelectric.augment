@@ -15,7 +15,7 @@
       "projectileParameters" : {
         "powerScale" : 1.25,
         "rotateRadius" : 5,
-        "rotateSpeed" : 7,
+        "rotateSpeed" : 65,
         "maxTime" : 4
       }
     }

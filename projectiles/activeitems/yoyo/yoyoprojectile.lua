@@ -28,9 +28,7 @@ function init()
     return entity.id()
   end)
 
-  if yoyoExtra then
-    yoyoExtra:init()
-  end
+  if yoyoExtra then yoyoExtra:init() end
 end
 
 function kill()
@@ -90,15 +88,7 @@ function update(dt)
       else
         local distToPos = world.magnitude(mcontroller.position(), self.aimPosition)
         
-        if distToPos < 0.4 then
-          controlTo(self.aimPosition, 0, 650)
-        elseif distToPos < 0.6 then
-          controlTo(self.aimPosition, self.yoyoSpeed / 3, 650)
-        elseif distToPos < 1.0 then
-          controlTo(self.aimPosition, self.yoyoSpeed / 2.2, 650)
-        else
-          controlTo(self.aimPosition, self.yoyoSpeed, 650)
-        end
+        controlTo(self.aimPosition, self.yoyoSpeed, 650)
       end
     end
   else
@@ -114,6 +104,7 @@ function update(dt)
 end
 
 function controlTo(position, speed, controlForce)
+  controlForce = 350
   local offset = world.distance(position, mcontroller.position())
   local v = vec2.clampMag(vec2.sub(position, self.ownerPos), self.maxDistance)
 
@@ -138,10 +129,6 @@ function vec2.length(vector)
   return math.sqrt(vec2.dot(vector, vector))
 end
 
-function vec2.lerp(a, b, t)
-  return {a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t}
-end
-
 function vec2.clampMag(vector, maxLength)
   if vec2.length(vector) > maxLength then
     vector = vec2.norm(vector)
@@ -159,11 +146,7 @@ function hit(entityId)
     projectile.processAction({action = "sound", options = self.hitSounds})
   end
   if world.entityDamageTeam(entityId).type == "enemy" then
-    self.hits = self.hits +1
-  end
-  if self.hits >= 2 then
     world.sendEntityMessage(self.ownerId, "hitEnemy", entityId)
-    self.hits = 0
   end
   if self.yoyoTime > 0.15 then
     self.yoyoTime = self.yoyoTime +0.5

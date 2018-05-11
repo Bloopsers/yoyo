@@ -2,38 +2,24 @@ require "/scripts/vec2.lua"
 
 function update()
   localAnimator.clearDrawables()
-  localAnimator.clearLightSources()
 
-  for _,ropeId in pairs(animationConfig.animationParameter("ropes")) do
-    params = animationConfig.animationParameter(ropeId .. "params")
-    if params then
-      local points = animationConfig.animationParameter(ropeId .. "points")
+  projectiles = animationConfig.animationParameter("projectiles", {})
 
-      local lastPoint = activeItemAnimation.handPosition(params.offset)
-      if #points >= 2 then
-        for i = 2,#points do
-          local nextPoint = points[i]
+  for index,projectile in pairs(projectiles) do
+    if projectile.rope then
+      if projectile.id and world.entityExists(projectile.id) then
+        local handPosition = activeItemAnimation.handPosition({0, 0})
+        local position = activeItemAnimation.ownerPosition()
 
-          local position = activeItemAnimation.ownerPosition()
-          local relativeNextPoint = world.distance(nextPoint, position)
-          localAnimator.addDrawable({
-            position = position,
-            line = {lastPoint, relativeNextPoint},
-            width = params.width,
-            color = params.color,
-            fullbright = params.fullbright
-          }, "ForegroundTile+1")
+        --world.debugLine(vec2.add(position, handPosition), world.entityPosition(projectile.id), "yellow")
 
-          if params.lightColor and #params.lightColor > 0 then
-            local segment = vec2.sub(relativeNextPoint, lastPoint)
-            for i=1,20 do
-              local ppos = vec2.add(vec2.add(position, lastPoint), vec2.mul(segment, math.random()))
-              localAnimator.addLightSource({ position = ppos, color = params.lightColor })
-            end
-          end
-
-          lastPoint = relativeNextPoint
-        end
+        localAnimator.addDrawable({
+          position = position,
+          line = {handPosition, vec2.sub(world.entityPosition(projectile.id), position)},
+          width = projectile.rope.width,
+          color = projectile.rope.color,
+          fullbright = projectile.rope.fullbright
+        }, "ForegroundTile-1")
       end
     end
   end

@@ -5,10 +5,10 @@
   "category" : "yoyoupgrade",
   "tooltipKind" : "yoyoupgrade",
   "inventoryIcon" : "/items/augments/yoyo/longyoyostring.png?replace;a85636=344495;e0975c=5588d4;ffca8a=96cbe7",
-  "description" : "A long blue yoyo string. Increases your yoyo range by 6.",
+  "description" : "A long blue yoyo string. Increases your yoyo range by 4.",
   "shortdescription" : "Long Blue Yoyo String",
 
-  "extraLength" : 6,
+  "extraLength" : 4,
   "stringColor" : "?replace;a85636=344495;e0975c=5588d4;ffca8a=96cbe7",
 
   "rope" : {
