@@ -4,7 +4,7 @@
     { "item" : "string", "count" : 12 }
   ],
   "output" : {
-    "item" : "transparentyoyostring",
+    "item" : "holographicyoyostring",
     "count" : 1
   },
   "groups" : [ "treasuredtrophies" ]
