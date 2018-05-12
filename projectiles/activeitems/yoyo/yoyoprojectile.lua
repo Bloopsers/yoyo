@@ -4,6 +4,8 @@ function init()
   mcontroller.applyParameters({gravityEnabled = false})
   mcontroller.applyParameters(config.getParameter("movementSettings", {}))
 
+  projectile.setPower(projectile.power() * 0.75)
+
   self.rotationSpeed = config.getParameter("rotationSpeed", 25)
   self.ownerId = nil
   self.fireMode = "primary"
