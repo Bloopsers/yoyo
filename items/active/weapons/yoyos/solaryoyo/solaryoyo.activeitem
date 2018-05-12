@@ -4,7 +4,7 @@
   "inventoryIcon" : "icon.png",
   "rarity" : "Legendary",
   "maxStack" : 1,
-  "description" : "Todo/Replace me",
+  "description" : "A replica of the Sol System stuck to a piece of string.",
   "shortdescription" : "Sol Yoyo",
   "largeImage" : "icon.png",
   "tooltipKind" : "yoyo",
@@ -36,30 +36,27 @@
       "projectileType" : "yoyocounterweightearth",
       "projectileParameters" : {
         "powerScale" : 1.25,
-        "rotateRadius" : 4,
-        "rotateSpeed" : 6,
-        "maxTime" : 6,
-        "fixedAngle" : 0
+        "rotateRadius" : 5,
+        "rotateSpeed" : 50,
+        "maxTime" : 6
       }
     },
     {
       "projectileType" : "yoyocounterweightsaturn",
       "projectileParameters" : {
         "powerScale" : 2,
-        "rotateRadius" : 7,
-        "rotateSpeed" : 6,
-        "maxTime" : 6,
-        "fixedAngle" : 0
+        "rotateRadius" : 8,
+        "rotateSpeed" : 50,
+        "maxTime" : 6
       }
     },
     {
       "projectileType" : "yoyocounterweightneptune",
       "projectileParameters" : {
         "powerScale" : 1.75,
-        "rotateRadius" : 10,
-        "rotateSpeed" : 6,
-        "maxTime" : 6,
-        "fixedAngle" : 0
+        "rotateRadius" : 11,
+        "rotateSpeed" : 50,
+        "maxTime" : 6
       }
     }
   ],
@@ -67,7 +64,7 @@
   "usesYoyoUpgrades" : true,
   "usesCounterweightUpgrades" : false,
 
-  "maxLength" : 14.5,
+  "maxLength" : 10.5,
   "extraLength" : 0,
 
   "currentStringType" : "",
@@ -81,11 +78,11 @@
 
   "projectileType" : "solaryoyo",
   "projectileParameters" : {
-    "knockback" : 5,
-    "power" : 6,
+    "knockback" : 8,
+    "power" : 5,
     "damageRepeatTimeout" : 0.7,
     "yoyoSpeed" : 45,
-    "maxYoyoTime" : 14
+    "maxYoyoTime" : 13
   },
 
   "stances" : {
