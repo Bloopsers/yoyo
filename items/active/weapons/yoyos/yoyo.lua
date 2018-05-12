@@ -17,7 +17,7 @@ function addProjectile(id, type, parameters, counterweight)
     parameters = parameters,
     id = nil,
     position = {0, 0},
-    counterweight = (counterweight or false),
+    counterweight = counterweight,
     rope = sb.jsonMerge(ropeDefaults, config.getParameter("rope"))
   }
 end
@@ -38,12 +38,13 @@ function init()
   self.aimAngle = 0
   self.facingDirection = 0
   self.counterweights = config.getParameter("counterweights", {})
+  self.activeCounterweight = 1
 
   self.projectiles.yoyo.parameters.power = self.projectiles.yoyo.parameters.power * root.evalFunction("weaponDamageLevelMultiplier", config.getParameter("level", 1))
 
   for index,counterweight in pairs(self.counterweights) do
     counterweight.projectileParameters.power = self.projectiles.yoyo.parameters.power * (counterweight.projectileParameters.powerScale or 0)
-    addProjectile("counterWeight" .. index, counterweight.projectileType, counterweight.projectileParameters, true)
+    addProjectile("counterWeight" .. index, counterweight.projectileType, counterweight.projectileParameters, index)
   end
 
   initStances()
@@ -99,6 +100,13 @@ function trackProjectiles()
   for index,projectile in pairs(self.projectiles) do
     if projectile.id and world.entityExists(projectile.id) then
       projectile.position = world.entityPosition(projectile.id)
+    else
+      -- cycle counterweight after the projectile dies
+      if projectile.counterweight and (projectile.id and not world.entityExists(projectile.id)) then
+        projectile.id = nil
+        self.activeCounterweight = self.activeCounterweight +1
+        if self.activeCounterweight > #self.counterweights then self.activeCounterweight = 1 end
+      end
     end
   end
   if self.projectiles.yoyo.id and world.entityExists(self.projectiles.yoyo.id) then
@@ -112,17 +120,17 @@ function trackProjectiles()
 end
 
 function spawnCounterweights()
-  for index,projectile in pairs(self.projectiles) do
-    if projectile.counterweight and (not projectile.id or not world.entityExists(projectile.id)) then
-      projectile.id = world.spawnProjectile(
-        projectile.type,
-        mcontroller.position(),
-        activeItem.ownerEntityId(),
-        {0, 0},
-        false,
-        projectile.parameters
-      )
-    end
+  local currentCounterweight = self.projectiles["counterWeight"..self.activeCounterweight]
+  if currentCounterweight and not currentCounterweight.id then
+    local proj = self.projectiles["counterWeight"..self.activeCounterweight]
+    self.projectiles["counterWeight"..self.activeCounterweight].id = world.spawnProjectile(
+      proj.type,
+      mcontroller.position(),
+      activeItem.ownerEntityId(),
+      {0, 0},
+      false,
+      proj.parameters
+    )
   end
 end
 
