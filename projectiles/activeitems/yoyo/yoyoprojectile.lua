@@ -63,7 +63,7 @@ function update(dt)
   self.ownerPos = world.entityPosition(self.ownerId)
   self.yoyoLength = world.magnitude(mcontroller.position(), self.ownerPos)
 
-  if self.yoyoTime >= self.maxYoyoTime or self.yoyoLength > self.maxDistance +3 or self.fireMode == "none" then
+  if self.yoyoTime >= self.maxYoyoTime or self.yoyoLength > self.maxDistance +3 or self.fireMode == "none" or world.pointTileCollision(mcontroller.position(), {"Block", "Dynamic", "Null"}) then
     returnYoyo()
   end
   

@@ -15,7 +15,7 @@ function init()
   self.dieOnReturn = config.getParameter("dieOnReturn")
   self.lastColliding = false
 
-  self.maxDistance = 8
+  self.maxDistance = config.getParameter("rotateRadius", 8)
   self.speed = config.getParameter("rotateSpeed", 60)
   self.rotateSpeed = 0.02
   self.angle = math.random(360)
@@ -52,7 +52,7 @@ function update(dt)
 
   self.time = self.time + (1 * dt)
 
-  if self.time > self.maxTime then
+  if self.time > self.maxTime or world.pointTileCollision(mcontroller.position(), {"Block", "Dynamic", "Null"}) then
     returnCounterweight()
   end
 
