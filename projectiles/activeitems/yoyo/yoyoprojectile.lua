@@ -154,16 +154,5 @@ function hit(entityId)
     self.yoyoTime = self.yoyoTime +0.5
   end
 
-  --shoot out the yoyo in a random direction if we hit something
-  local directions = {
-    {2100, 2100},
-    {-2100, -2100},
-    {2100, -2100},
-    {-2100, 2100},
-    {0, 2100},
-    {0, -2100},
-    {2100, 0},
-    {-2100, 0}
-  }
-  mcontroller.force(directions[math.random(#directions)])
+  mcontroller.force(vec2.rotate({2000, 2000}, math.random(360)))
 end

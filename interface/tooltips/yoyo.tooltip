@@ -2,7 +2,7 @@
   "background" : {
     "type" : "background",
     "fileHeader" : "/interface/tooltips/header.png",
-    "fileBody" : "/interface/tooltips/bodyyoyo2.png",
+    "fileBody" : "/interface/tooltips/bodyyoyo.png",
     "fileFooter" : "/interface/tooltips/footerobject2.png"
   },
   "moneyIcon" : {
@@ -25,37 +25,37 @@
   },*/
   "lengthTitleLabel" : {
     "type" : "label",
-    "position" : [9, 39],
+    "position" : [9, 61],
     "hAnchor" : "left",
     "value" : "String Length:"
   },
   "lengthLabel" : {
     "type" : "label",
-    "position" : [130, 39],
+    "position" : [130, 61],
     "hAnchor" : "right",
     "wrapWidth" : 126
   },
   "damageTitleLabel" : {
     "type" : "label",
-    "position" : [9, 48],
+    "position" : [9, 70],
     "hAnchor" : "left",
     "value" : "Damage Per Hit:"
   },
   "damageLabel" : {
     "type" : "label",
-    "position" : [130, 48],
+    "position" : [130, 70],
     "hAnchor" : "right",
     "wrapWidth" : 126
   },
   /*"durationTitleLabel" : {
     "type" : "label",
-    "position" : [9, 39],
+    "position" : [9, 61],
     "hAnchor" : "left",
     "value" : "Duration:"
   },
   "durationLabel" : {
     "type" : "label",
-    "position" : [130, 39],
+    "position" : [130, 61],
     "hAnchor" : "right",
     "wrapWidth" : 126
   },*/
@@ -76,12 +76,12 @@
   },
   "objectImage" : {
     "type" : "image",
-    "position" : [70, 89.5],
+    "position" : [70, 108.5],
     "file" : "",
     "centered" : true,
     "maxSize" : [75, 45],
     "minSize" : [65, 35]
-  }/*,
+  },
   "counterWeightIconImage" : {
     "type" : "image",
     "position" : [14, 46.5],
@@ -94,5 +94,5 @@
     "type" : "label",
     "position" : [33, 42],
     "value" : ""
-  }*/
+  }
 }

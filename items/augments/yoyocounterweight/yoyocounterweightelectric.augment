@@ -14,7 +14,7 @@
       "fromItem" : true,
       "projectileParameters" : {
         "powerScale" : 1.25,
-        "rotateRadius" : 5,
+        "rotateRadius" : 6.5,
         "rotateSpeed" : 65,
         "maxTime" : 4
       }

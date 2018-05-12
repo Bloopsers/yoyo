@@ -36,7 +36,7 @@
       "projectileType" : "yoyocounterweightearth",
       "projectileParameters" : {
         "powerScale" : 1.25,
-        "rotateRadius" : 5,
+        "rotateRadius" : 7,
         "rotateSpeed" : 50,
         "maxTime" : 6
       }
@@ -45,7 +45,7 @@
       "projectileType" : "yoyocounterweightsaturn",
       "projectileParameters" : {
         "powerScale" : 2,
-        "rotateRadius" : 8,
+        "rotateRadius" : 7,
         "rotateSpeed" : 50,
         "maxTime" : 6
       }
@@ -54,7 +54,7 @@
       "projectileType" : "yoyocounterweightneptune",
       "projectileParameters" : {
         "powerScale" : 1.75,
-        "rotateRadius" : 11,
+        "rotateRadius" : 7,
         "rotateSpeed" : 50,
         "maxTime" : 6
       }
