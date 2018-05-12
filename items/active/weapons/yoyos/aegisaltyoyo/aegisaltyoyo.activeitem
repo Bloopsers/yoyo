@@ -36,7 +36,7 @@
   "usesYoyoUpgrades" : true,
   "usesCounterweightUpgrades" : true,
 
-  "maxLength" : 11,
+  "maxLength" : 9.5,
   "extraLength" : 0,
 
   "currentStringType" : "",

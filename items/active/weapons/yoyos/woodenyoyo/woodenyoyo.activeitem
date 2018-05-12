@@ -54,7 +54,7 @@
     "power" : 7,
     "damageRepeatTimeout" : 0.7,
     "yoyoSpeed" : 35,
-    "maxYoyoTime" : 5
+    "maxYoyoTime" : 5.5
   },
 
   "stances" : {

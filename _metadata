@@ -1,9 +1,11 @@
 {
   "author" : "Bloopers & eralois",
-  "description" : "Adds a new weapon type (yoyos) to your game. See Steam Workshop page for more information.",
-  "friendlyName" : "Yoyos",
+  "description" : "Adds a new weapon type - yoyos, to your game. See Steam Workshop page for more information.",
+  "friendlyName" : "Yoyo Weapons",
   "includes" : [],
-  "link" : "",
-  "name" : "yoyos-eb",
-  "steamContentId" : "",
-  "version" : "1.0.0"}
+  "link" : "steam://url/CommunityFilePage/1384150999",
+  "name" : "eb_yoyos",
+  "steamContentId" : "1384150999",
+  "tags" : "Crafting and Building|Weapons|Mechanics",
+  "version" : "1.0.0"
+}
