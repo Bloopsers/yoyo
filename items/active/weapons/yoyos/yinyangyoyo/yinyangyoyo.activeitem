@@ -1,5 +1,5 @@
 {
-  "itemName" : "yingyangyoyo",
+  "itemName" : "yinyangyoyo",
   "price" : 1500,
   "inventoryIcon" : "icon.png",
   "rarity" : "Legendary",
@@ -22,7 +22,7 @@
       "throw" : ["/sfx/melee/sword_spinslash.ogg"]
     }
   },
-  "animationParts" : { "yoyo" : "/projectiles/activeitems/yoyo/yingyangyoyo/yingyangyoyo.png" },
+  "animationParts" : { "yoyo" : "/projectiles/activeitems/yoyo/yinyangyoyo/yinyangyoyo.png" },
 
   "fireOffset" : [0, 0],
 
@@ -48,7 +48,7 @@
 
   "builder" : "/items/buildscripts/buildyoyo.lua",
 
-  "projectileType" : "yingyangyoyo",
+  "projectileType" : "yinyangyoyo",
   "projectileParameters" : {
     "knockback" : 5,
     "power" : 7,

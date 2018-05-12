@@ -1,6 +1,6 @@
 {
-  "projectileName" : "yingyangyoyo",
-  "image" : "yingyangyoyo.png",
+  "projectileName" : "yinyangyoyo",
+  "image" : "yinyangyoyo.png",
   "flippable" : false,
   "orientationLocked" : true,
   "actionOnReap" : [ ],
@@ -69,7 +69,7 @@
   "pickupDistance" : 2,
   "maxDistance" : 10,
   "maxYoyoTime" : 5,
-  
+
   "statusEffects" : [
     {"effect" : "yoyoconfusion", "duration" : 1.5}
   ],
