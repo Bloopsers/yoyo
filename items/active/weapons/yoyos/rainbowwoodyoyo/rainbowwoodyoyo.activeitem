@@ -27,12 +27,10 @@
   "fireOffset" : [0, 0],
 
   "rope" : {
-    "yoyo" : {
-      "width" : 0.8,
-      "color" : [192, 177, 124, 230],
-      "rainbow" : true,
-      "hueCycleSpeed" : 0.5
-    }
+    "width" : 0.8,
+    "color" : [192, 177, 124, 230],
+    "rainbow" : true,
+    "hueCycleSpeed" : 0.5
   },
 
   "counterweights" : [],
