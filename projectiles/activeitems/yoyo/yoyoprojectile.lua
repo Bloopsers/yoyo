@@ -22,6 +22,7 @@ function init()
   self.hitSounds = config.getParameter("hitSounds")
   self.rotation = 0
   self.shiftHeld = false
+  self.useShift = config.getParameter("useShift", false)
 
   mcontroller.setRotation(0)
 
@@ -60,6 +61,9 @@ end
 function update(dt)
   if yoyoExtra then
     yoyoExtra:update(dt)
+    if self.shiftHeld and self.useShift then
+      yoyoExtra:shiftHeld()
+    end
   end
 
   self.yoyoTime = self.yoyoTime + (1 * dt)
@@ -70,7 +74,7 @@ function update(dt)
   if self.yoyoTime >= self.maxYoyoTime or self.yoyoLength > self.maxDistance +3 or self.fireMode == "none" then
     returnYoyo()
   end
-  
+
   world.debugPoly(circle(self.maxDistance, 32, self.ownerPos), {255, 255, 0})
   world.debugPoly(circle(world.magnitude(mcontroller.position(), self.ownerPos), 32, self.ownerPos), {0, 255, 0})
   world.debugText("%s/%s", self.yoyoLength, self.maxDistance, self.aimPosition, {0, 255, 0})
@@ -91,14 +95,14 @@ function update(dt)
         end
       else
         local distToPos = world.magnitude(mcontroller.position(), self.aimPosition)
-        
+
         controlTo(self.aimPosition, self.yoyoSpeed, 650)
       end
     end
   else
     projectile.die()
   end
-  
+
   if self.returning == true then
     self.rotation = mcontroller.rotation() + (self.rotationSpeed * dt)
   else
