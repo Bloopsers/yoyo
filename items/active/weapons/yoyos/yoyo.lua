@@ -39,6 +39,7 @@ function init()
   self.facingDirection = 0
   self.counterweights = config.getParameter("counterweights", {})
   self.activeCounterweight = 1
+  self.shiftHeld = false
 
   self.projectiles.yoyo.parameters.power = self.projectiles.yoyo.parameters.power * root.evalFunction("weaponDamageLevelMultiplier", config.getParameter("level", 1))
 
@@ -69,7 +70,9 @@ end
 
 function update(dt, fireMode, shiftHeld, moves)
   activeItem.setScriptedAnimationParameter("projectiles", self.projectiles)
+
   self.fireMode = fireMode
+  self.shiftHeld = shiftHeld
 
   self.aimAngle, self.facingDirection = activeItem.aimAngleAndDirection(self.fireOffset[2], activeItem.ownerAimPosition())
   activeItem.setFacingDirection(self.facingDirection)
@@ -112,7 +115,8 @@ function trackProjectiles()
   if self.projectiles.yoyo.id and world.entityExists(self.projectiles.yoyo.id) then
     world.sendEntityMessage(self.projectiles.yoyo.id, "updateProjectile",
       activeItem.ownerAimPosition(),
-      self.fireMode
+      self.fireMode,
+      self.shiftHeld
     )
   else
     cancel()

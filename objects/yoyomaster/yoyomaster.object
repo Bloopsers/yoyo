@@ -1,0 +1,80 @@
+{
+  "objectName" : "yoyomaster",
+  "colonyTags" : [],
+  "rarity" : "Common",
+  "category" : "other",
+  "description" : "The coolest penguin around",
+  "shortdescription" : "Yoyo Master",
+  "race" : "generic",
+  "printable" : false,
+
+  "inventoryIcon" : "yoyomaster.png",
+  "orientations" : [
+    {
+      "imageLayers" : [ { "image" : "yoyomaster.png:<frame>" } ],
+
+      "frames" : 1,
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ]
+    }
+  ],
+
+  "scripts" : [ "yoyomaster.lua" ],
+  "scriptDelta" : 0,
+
+  "interactData" : {
+    "config" : "/interface/windowconfig/merchant.config",
+    "paneLayoutOverride" : {
+      "windowtitle" : {
+        "title" : "Yoyo Master",
+        "subtitle" : "Sells all sorts of cool yoyo gear.",
+        "icon" : {
+          "file" : "/interface/bounty/bountyicon.png"
+        }
+      }
+    },
+    "buyFactor" : 1.0,
+    "sellFactor" : 0.2,
+    "items" : []
+  },
+
+  "rotationTime" : 5,
+  //14400
+  "storeInventory" : {
+    "timed" : [
+	  {
+	    "roll" : 1,
+	    "items" : [
+	      { "item" : "woodenyoyo" },
+	      { "item" : "tungstenyoyo" },
+	      { "item" : "titaniumyoyo" }
+	    ]
+    },
+    {
+      "roll" : 2,
+      "items" : [
+        {"item": "yoyocounterweightfire"},
+        {"item": "yoyocounterweightpoison"},
+        {"item": "yoyocounterweightelectric"},
+        {"item": "yoyocounterweightice"}
+      ]
+    },
+	  {
+	    "roll" : 2,
+        "items" : [
+          {"item": "yoyostring"},
+          {"item": "redyoyostring"},
+          {"item": "greenyoyostring"},
+          {"item": "blueyoyostring"},
+          {"item": "purpleyoyostring"},
+          {"item": "yellowyoyostring"},
+          {"item": "orangeyoyostring"}
+        ]
+      }
+    ],
+    "static" : [
+      {"item": "solaryoyo"}
+	  ]
+  }
+}

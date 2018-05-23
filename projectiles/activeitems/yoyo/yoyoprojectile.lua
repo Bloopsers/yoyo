@@ -21,12 +21,14 @@ function init()
   self.aimPosition = mcontroller.position()
   self.hitSounds = config.getParameter("hitSounds")
   self.rotation = 0
+  self.shiftHeld = false
 
   mcontroller.setRotation(0)
 
-  message.setHandler("updateProjectile", function(_, _, aimPosition, fireMode)
+  message.setHandler("updateProjectile", function(_, _, aimPosition, fireMode, shiftHeld)
     self.aimPosition = aimPosition
     self.fireMode = fireMode
+    self.shiftHeld = shiftHeld
     return entity.id()
   end)
 
@@ -65,7 +67,7 @@ function update(dt)
   self.ownerPos = world.entityPosition(self.ownerId)
   self.yoyoLength = world.magnitude(mcontroller.position(), self.ownerPos)
 
-  if self.yoyoTime >= self.maxYoyoTime or self.yoyoLength > self.maxDistance +3 or self.fireMode == "none" or world.pointTileCollision(mcontroller.position(), {"Block", "Dynamic", "Null"}) then
+  if self.yoyoTime >= self.maxYoyoTime or self.yoyoLength > self.maxDistance +3 or self.fireMode == "none" then
     returnYoyo()
   end
   
