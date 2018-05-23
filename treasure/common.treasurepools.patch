@@ -1,14 +1,6 @@
 [
   {
     "op": "add",
-    "path": "/uniqueWeapon/0/1/pool/-",
-    "value": {
-      "weight": 1,
-      "item": "toxicyoyo"
-    }
-  },
-  {
-    "op": "add",
     "path": "/uniqueWeapon/1/1/pool/-",
     "value": {
       "weight": 1,
