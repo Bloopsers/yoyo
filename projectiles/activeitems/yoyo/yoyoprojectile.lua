@@ -4,7 +4,7 @@ function init()
   mcontroller.applyParameters({gravityEnabled = false})
   mcontroller.applyParameters(config.getParameter("movementSettings", {}))
 
-  projectile.setPower(projectile.power() * 0.75)
+  --projectile.setPower(projectile.power() * 0.75)
 
   self.rotationSpeed = config.getParameter("rotationSpeed", 25)
   self.ownerId = nil
@@ -156,9 +156,4 @@ function hit(entityId)
   if world.entityDamageTeam(entityId).type == "enemy" then
     world.sendEntityMessage(self.ownerId, "hitEnemy", entityId)
   end
-  if self.yoyoTime > 0.15 then
-    self.yoyoTime = self.yoyoTime +0.5
-  end
-
-  mcontroller.force(vec2.rotate({2000, 2000}, math.random(360)))
 end
