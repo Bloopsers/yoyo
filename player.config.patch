@@ -1,163 +1,163 @@
 [
-  {
-    "op": "add",
-    "path": "/defaultBlueprints/tier1/-",
-    "value": {
-      "item": "woodenyoyo"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/defaultBlueprints/tier1/-",
-    "value": {
-      "item": "tungstenyoyo"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/defaultBlueprints/tier1/-",
-    "value": {
-      "item": "titaniumyoyo"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/defaultBlueprints/tier1/-",
-    "value": {
-      "item": "aegisaltyoyo"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/defaultBlueprints/tier1/-",
-    "value": {
-      "item": "durasteelyoyo"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/defaultBlueprints/tier1/-",
-    "value": {
-      "item": "violiumyoyo"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/defaultBlueprints/tier1/-",
-    "value": {
-      "item": "feroziumyoyo"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/defaultBlueprints/tier1/-",
-    "value": {
-      "item": "yoyostring"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/defaultBlueprints/tier1/-",
-    "value": {
-      "item": "redyoyostring"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/defaultBlueprints/tier1/-",
-    "value": {
-      "item": "greenyoyostring"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/defaultBlueprints/tier1/-",
-    "value": {
-      "item": "blueyoyostring"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/defaultBlueprints/tier1/-",
-    "value": {
-      "item": "yellowyoyostring"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/defaultBlueprints/tier1/-",
-    "value": {
-      "item": "purpleyoyostring"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/defaultBlueprints/tier1/-",
-    "value": {
-      "item": "orangeyoyostring"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/defaultBlueprints/tier1/-",
-    "value": {
-      "item": "rainbowyoyostring"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/defaultBlueprints/tier1/-",
-    "value": {
-      "item": "longyoyostring"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/defaultBlueprints/tier1/-",
-    "value": {
-      "item": "longredyoyostring"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/defaultBlueprints/tier1/-",
-    "value": {
-      "item": "longgreenyoyostring"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/defaultBlueprints/tier1/-",
-    "value": {
-      "item": "longblueyoyostring"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/defaultBlueprints/tier1/-",
-    "value": {
-      "item": "longyellowyoyostring"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/defaultBlueprints/tier1/-",
-    "value": {
-      "item": "longpurpleyoyostring"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/defaultBlueprints/tier1/-",
-    "value": {
-      "item": "longorangeyoyostring"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/defaultBlueprints/tier1/-",
-    "value": {
-      "item": "longrainbowyoyostring"
-    }
-  }
+	{
+		"op": "add",
+		"path": "/defaultBlueprints/tier1/-",
+		"value": {
+			"item": "woodenyoyo"
+		}
+	},
+	{
+		"op": "add",
+		"path": "/defaultBlueprints/tier1/-",
+		"value": {
+			"item": "tungstenyoyo"
+		}
+	},
+	{
+		"op": "add",
+		"path": "/defaultBlueprints/tier1/-",
+		"value": {
+			"item": "titaniumyoyo"
+		}
+	},
+	{
+		"op": "add",
+		"path": "/defaultBlueprints/tier1/-",
+		"value": {
+			"item": "aegisaltyoyo"
+		}
+	},
+	{
+		"op": "add",
+		"path": "/defaultBlueprints/tier1/-",
+		"value": {
+			"item": "durasteelyoyo"
+		}
+	},
+	{
+		"op": "add",
+		"path": "/defaultBlueprints/tier1/-",
+		"value": {
+			"item": "violiumyoyo"
+		}
+	},
+	{
+		"op": "add",
+		"path": "/defaultBlueprints/tier1/-",
+		"value": {
+			"item": "feroziumyoyo"
+		}
+	},
+	{
+		"op": "add",
+		"path": "/defaultBlueprints/tier1/-",
+		"value": {
+			"item": "yoyostring"
+		}
+	},
+	{
+		"op": "add",
+		"path": "/defaultBlueprints/tier1/-",
+		"value": {
+			"item": "redyoyostring"
+		}
+	},
+	{
+		"op": "add",
+		"path": "/defaultBlueprints/tier1/-",
+		"value": {
+			"item": "greenyoyostring"
+		}
+	},
+	{
+		"op": "add",
+		"path": "/defaultBlueprints/tier1/-",
+		"value": {
+			"item": "blueyoyostring"
+		}
+	},
+	{
+		"op": "add",
+		"path": "/defaultBlueprints/tier1/-",
+		"value": {
+			"item": "yellowyoyostring"
+		}
+	},
+	{
+		"op": "add",
+		"path": "/defaultBlueprints/tier1/-",
+		"value": {
+			"item": "purpleyoyostring"
+		}
+	},
+	{
+		"op": "add",
+		"path": "/defaultBlueprints/tier1/-",
+		"value": {
+			"item": "orangeyoyostring"
+		}
+	},
+	{
+		"op": "add",
+		"path": "/defaultBlueprints/tier1/-",
+		"value": {
+			"item": "rainbowyoyostring"
+		}
+	},
+	{
+		"op": "add",
+		"path": "/defaultBlueprints/tier1/-",
+		"value": {
+			"item": "longyoyostring"
+		}
+	},
+	{
+		"op": "add",
+		"path": "/defaultBlueprints/tier1/-",
+		"value": {
+			"item": "longredyoyostring"
+		}
+	},
+	{
+		"op": "add",
+		"path": "/defaultBlueprints/tier1/-",
+		"value": {
+			"item": "longgreenyoyostring"
+		}
+	},
+	{
+		"op": "add",
+		"path": "/defaultBlueprints/tier1/-",
+		"value": {
+			"item": "longblueyoyostring"
+		}
+	},
+	{
+		"op": "add",
+		"path": "/defaultBlueprints/tier1/-",
+		"value": {
+			"item": "longyellowyoyostring"
+		}
+	},
+	{
+		"op": "add",
+		"path": "/defaultBlueprints/tier1/-",
+		"value": {
+			"item": "longpurpleyoyostring"
+		}
+	},
+	{
+		"op": "add",
+		"path": "/defaultBlueprints/tier1/-",
+		"value": {
+			"item": "longorangeyoyostring"
+		}
+	},
+	{
+		"op": "add",
+		"path": "/defaultBlueprints/tier1/-",
+		"value": {
+			"item": "longrainbowyoyostring"
+		}
+	}
 ]

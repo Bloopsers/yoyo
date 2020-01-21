@@ -1,42 +1,42 @@
 [
-  {
-    "op": "add",
-    "path": "/basicmerchant/0/1/-",
-    "value": {
-      "item": {
-        "name": "yoyocounterweightfire"
-      },
-      "rarity": 0.005
-    }
-  },
-  {
-    "op": "add",
-    "path": "/basicmerchant/0/1/-",
-    "value": {
-      "item": {
-        "name": "yoyocounterweightelectric"
-      },
-      "rarity": 0.005
-    }
-  },
-  {
-    "op": "add",
-    "path": "/basicmerchant/0/1/-",
-    "value": {
-      "item": {
-        "name": "yoyocounterweightice"
-      },
-      "rarity": 0.005
-    }
-  },
-  {
-    "op": "add",
-    "path": "/basicmerchant/0/1/-",
-    "value": {
-      "item": {
-        "name": "yoyocounterweightpoison"
-      },
-      "rarity": 0.005
-    }
-  }
+	{
+		"op": "add",
+		"path": "/basicmerchant/0/1/-",
+		"value": {
+			"item": {
+				"name": "yoyocounterweightfire"
+			},
+			"rarity": 0.005
+		}
+	},
+	{
+		"op": "add",
+		"path": "/basicmerchant/0/1/-",
+		"value": {
+			"item": {
+				"name": "yoyocounterweightelectric"
+			},
+			"rarity": 0.005
+		}
+	},
+	{
+		"op": "add",
+		"path": "/basicmerchant/0/1/-",
+		"value": {
+			"item": {
+				"name": "yoyocounterweightice"
+			},
+			"rarity": 0.005
+		}
+	},
+	{
+		"op": "add",
+		"path": "/basicmerchant/0/1/-",
+		"value": {
+			"item": {
+				"name": "yoyocounterweightpoison"
+			},
+			"rarity": 0.005
+		}
+	}
 ]

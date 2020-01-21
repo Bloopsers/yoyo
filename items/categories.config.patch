@@ -1,12 +1,12 @@
 [
-  {
-    "op": "add",
-    "path": "/labels/yoyo",
-    "value": "Yoyo"
-  },
-  {
-    "op": "add",
-    "path": "/labels/yoyoupgrade",
-    "value": "Yoyo Upgrade"
-  }
+	{
+		"op": "add",
+		"path": "/labels/yoyo",
+		"value": "Yoyo"
+	},
+	{
+		"op": "add",
+		"path": "/labels/yoyoupgrade",
+		"value": "Yoyo Upgrade"
+	}
 ]

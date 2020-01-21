@@ -11,7 +11,7 @@ function update()
         local handPosition = activeItemAnimation.handPosition({0, 0})
         local position = activeItemAnimation.ownerPosition()
 
-        --world.debugLine(vec2.add(position, handPosition), world.entityPosition(projectile.id), "yellow")
+        world.debugLine(handPosition, vec2.sub(world.entityPosition(projectile.id), position), "yellow")
 
         localAnimator.addDrawable({
           position = position,

@@ -1,34 +1,34 @@
 [
-  {
-    "op": "add",
-    "path": "/uniqueWeapon/1/1/pool/-",
-    "value": {
-      "weight": 1,
-      "item": "fireyoyo"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/uniqueWeapon/1/1/pool/-",
-    "value": {
-      "weight": 1,
-      "item": "frozenyoyo"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/uniqueWeapon/1/1/pool/-",
-    "value": {
-      "weight": 1,
-      "item": "shadowyoyo"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/uniqueWeapon/2/1/pool/-",
-    "value": {
-      "weight": 1,
-      "item": "yingyangyoyo"
-    }
-  }
+	{
+		"op": "add",
+		"path": "/uniqueWeapon/1/1/pool/-",
+		"value": {
+			"weight": 1,
+			"item": "fireyoyo"
+		}
+	},
+	{
+		"op": "add",
+		"path": "/uniqueWeapon/1/1/pool/-",
+		"value": {
+			"weight": 1,
+			"item": "frozenyoyo"
+		}
+	},
+	{
+		"op": "add",
+		"path": "/uniqueWeapon/1/1/pool/-",
+		"value": {
+			"weight": 1,
+			"item": "shadowyoyo"
+		}
+	},
+	{
+		"op": "add",
+		"path": "/uniqueWeapon/2/1/pool/-",
+		"value": {
+			"weight": 1,
+			"item": "yingyangyoyo"
+		}
+	}
 ]

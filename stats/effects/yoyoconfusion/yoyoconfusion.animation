@@ -1,12 +1,12 @@
 {
-  "particleEmitters" : {
-    "confused" : {
-      "particles" : [
-        {
-          "count" : 2,
-          "particle" : "yoyoconfusion"
+	"particleEmitters": {
+		"confused": {
+			"particles": [
+				{
+					"count": 2,
+					"particle": "yoyoconfusion"
+				}
+			]
 		}
-      ]
-    }
-  }
+	}
 }

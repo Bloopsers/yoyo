@@ -22,7 +22,7 @@
     {
       "action" : "particle",
       "specification" : "gravityyoyotrail",
-      "time" : 0.03,
+      "time" : 0.01,
       "repeat" : true
     },
     {

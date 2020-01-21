@@ -4,7 +4,7 @@
   "inventoryIcon" : "icon.png",
   "rarity" : "Legendary",
   "maxStack" : 1,
-  "description" : "A yoyo which was commonly used by students of the Terrene Protectorate.",
+  "description" : "Commonly used by students of the Terrene Protectorate.",
   "shortdescription" : "Protectorate Yoyo",
   "largeImage" : "icon.png",
   "tooltipKind" : "yoyo",
