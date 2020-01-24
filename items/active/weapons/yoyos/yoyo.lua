@@ -100,8 +100,7 @@ function trackProjectiles()
             projectile.position = world.entityPosition(projectile.id)
         else
             -- cycle counterweight after the projectile dies
-            if projectile.counterweight and
-                (projectile.id and not world.entityExists(projectile.id)) then
+            if projectile.counterweight and (projectile.id and not world.entityExists(projectile.id)) then
                 projectile.id = nil
                 self.activeCounterweight = self.activeCounterweight + 1
                 if self.activeCounterweight > #self.counterweights then
@@ -111,7 +110,7 @@ function trackProjectiles()
         end
     end
     if self.projectiles.yoyo.id and world.entityExists(self.projectiles.yoyo.id) then
-        world.sendEntityMessage(self.projectiles.yoyo.id, "updateProjectile", activeItem.ownerAimPosition(), self.fireMode, self.shiftHeld)
+        world.sendEntityMessage(self.projectiles.yoyo.id, "updateProjectile", activeItem.ownerAimPosition(), self.fireMode, self.shiftHeld, status.statusProperty("__yoyos_activetracker", nil))
     else
         cancel()
     end
@@ -132,6 +131,8 @@ function fire()
     parameters.maxDistance = self.maxLength
 
     self.projectiles.yoyo.id = world.spawnProjectile(self.projectiles.yoyo.type, firePosition(), activeItem.ownerEntityId(), aimVector(), false, parameters)
+    
+    status.setStatusProperty("__yoyos_activetracker", self.projectiles.yoyo.id)
 
     animator.playSound("throw")
 end

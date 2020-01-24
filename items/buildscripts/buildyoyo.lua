@@ -2,6 +2,9 @@ require "/scripts/util.lua"
 require "/scripts/staticrandom.lua"
 
 function build(directory, config, parameters, level, seed)
+    local configDefaults = root.assetJson("/items/active/weapons/yoyos/yoyodefaults.config")
+    config = sb.jsonMerge(configDefaults, config)
+
     configParameter = function(keyName, defaultValue)
         if parameters[keyName] ~= nil then
             return parameters[keyName]
@@ -12,11 +15,10 @@ function build(directory, config, parameters, level, seed)
         end
     end
 
-    config.tooltipFields = {}
-
-    self.yoyoTypes = {"light", "heavy"}
-    local yoyoType = configParameter("yoyoType", "light")
-
+    --Update old yoyo configs to the new format (so existing mods don't need to update)
+    updateToNewFormat(config)
+    
+    --Generated weapon stuff
     if configParameter("generated", false) == true then
         if level and not configParameter("fixedLevel", false) then
             parameters.level = level
@@ -143,9 +145,7 @@ function build(directory, config, parameters, level, seed)
         end
 
         if builderConfig.counterweights then
-            table.insert(config.counterweights, randomFromList(
-                             builderConfig.counterweights, seed,
-                             "counterweights"))
+            --table.insert(config.counterweights, randomFromList(builderConfig.counterweights, seed, "counterweights"))
         end
 
         local periodicActions = {}
@@ -178,74 +178,105 @@ function build(directory, config, parameters, level, seed)
             end
         end
 
-        config.price = (config.price or 0) *
-                           root.evalFunction("itemLevelPriceMultiplier",
-                                             configParameter("level", 1))
+        config.price = (config.price or 0) * root.evalFunction("itemLevelPriceMultiplier", configParameter("level", 1))
     end
+    --End generated code
 
-    local params = sb.jsonMerge(config, parameters)
+    local configParameters = sb.jsonMerge(config, parameters)
+    local yoyoConfig = configParameter("yoyoConfig")
+    local yoyoUpgrades = configParameter("yoyoUpgrades")
 
-    config.tooltipFields.lengthLabel = string.format("%s (+%s)",
-                                                     params.maxLength,
-                                                     params.extraLength)
+    --Check invalid parameters
+    --Make sure the class is light, heavy or trick (and use heavy as a default)
+    yoyoConfig.class = getOrDefault(yoyoConfig, "class", "heavy", {"light", "heavy", "trick"})
 
-    local power = params.projectileParameters.power *
-                      root.evalFunction("weaponDamageLevelMultiplier",
-                                        configParameter("level", 1))
-    config.tooltipFields.damageLabel = round(power, 1)
+    config.twoHanded = yoyoConfig.class ~= "light"
 
-    elementalType = configParameter("elementalType", "physical")
+    --Populate tooltip fields
+    config.tooltipFields = {}
+    config.tooltipFields.lengthLabel = string.format("%s (+%s)", configParameters.maxLength, configParameters.extraLength)
+
+    local power = configParameters.projectileParameters.power * root.evalFunction("weaponDamageLevelMultiplier", configParameter("level", 1))
+    config.tooltipFields.damageLabel = util.round(power, 1)
+
+    local elementalType = configParameter("elementalType", "physical")
     if elementalType ~= "physical" then
-        config.tooltipFields.damageKindImage =
-            "/interface/elements/" .. elementalType .. ".png"
+        config.tooltipFields.damageKindImage = "/interface/elements/" .. elementalType .. ".png"
     end
 
-    local stringImage = configParameter("stringImage",
-                                        "/items/active/weapons/yoyos/string.png")
+    --Adding string image to icon
+    local stringImage = configParameter("stringImage", "/items/active/weapons/yoyos/string.png")
     local stringOffset = configParameter("stringOffset", {0, 0})
 
-    if parameters.inventoryIcon then
-        local iconBase = parameters.inventoryIcon
-        if type(parameters.inventoryIcon) == "table" then
-            iconBase = parameters.inventoryIcon[1].image
-        end
-        parameters.inventoryIcon = {
-            {image = iconBase},
-            {image = stringImage .. params.stringColor, offset = stringOffset}
-        }
-    else
-        config.inventoryIcon = {
-            {
-                image = type(config.inventoryIcon) == "table" and
-                    config.inventoryIcon[1] or config.inventoryIcon
-            },
-            {image = stringImage .. params.stringColor, offset = stringOffset}
-        }
+    if parameters.inventoryIcon and type(parameters.inventoryIcon) == "table" then
+        parameters.inventoryIcon = parameters.inventoryIcon[1].image
     end
 
-    local time = params.projectileParameters.maxYoyoTime
+    local iconBase = configParameter("inventoryIcon", "/assetmissing.png")
+    local newIcon = {}
+    table.insert(newIcon, {image = (type(iconBase) == "table" and iconBase[1] or iconBase)})
+    table.insert(newIcon, {image = stringImage .. configParameters.stringColor, offset = stringOffset})
+
+    if parameters.inventoryIcon then
+        parameters.inventoryIcon = newIcon
+    else
+        config.inventoryIcon = newIcon
+    end
+
+    --Time label (currently unused)
+    local time = configParameters.projectileParameters.maxYoyoTime
     if time and time >= 100 then time = "Infinite" end
     config.tooltipFields.durationLabel = tostring(time)
 
-    local name = "^gray;No Counterweight"
-    local icon = "/interface/tooltips/counterweightbase.png"
-    if params.counterWeightName ~= "" then name = params.counterWeightName end
-    if params.counterWeightIcon ~= "" then icon = params.counterWeightIcon end
-    config.tooltipFields.counterWeightIconImage = icon
-    config.tooltipFields.counterWeightNameLabel = name
+    --Counterweight label
+    config.tooltipFields.counterWeightIconImage = getOrDefault(configParameters, "counterWeightIcon", "/interface/tooltips/counterweightbase.png")
+    config.tooltipFields.counterWeightNameLabel = getOrDefault(configParameters, "counterWeightName", "^gray;No Counterweight")
 
-    -- config.tooltipFields.stringIconImage = params.currentStringIcon
-    -- config.tooltipFields.stringNameLabel = params.currentStringName
-
-    config.twoHanded = configParameter("")
+    -- config.tooltipFields.stringIconImage = configParameters.currentStringIcon
+    -- config.tooltipFields.stringNameLabel = configParameters.currentStringName
 
     return config, parameters
 end
 
-function round(num, numDecimalPlaces)
-    if numDecimalPlaces and numDecimalPlaces > 0 then
-        local mult = 10 ^ numDecimalPlaces
-        return math.floor(num * mult + 0.5) / mult
+function getOrDefault(table, key, defaultValue, allowedValues)
+    if table[key] ~= nil then
+        local value = table[key]
+
+        --Empty strings are considered null
+        if type(value) == "string" and string.len(value) <= 0 then
+            return defaultValue
+        end
+
+        if allowedValues then
+            if not contains(allowedValues, value) then
+                return defaultValue
+            end
+        end
+
+        return value
     end
-    return math.floor(num + 0.5)
+    return defaultValue
+end
+
+function updateToNewFormat(config)
+    config.yoyoConfig = {
+        class = "heavy",
+        projectileType = configParameter("projectileType", nil),
+        projectileParameters = configParameter("projectileParameters", {}),
+        usesYoyoUpgrades = configParameter("usesYoyoUpgrades", true),
+        usesCounterweightUpgrades = configParameter("usesCounterweightUpgrades", ""),
+        rope = configParameter("rope", {
+            color = {202, 202, 202, 230},
+            width = 0.8
+        })
+    }
+    config.yoyoUpgrades = {
+        counterweights = configParameter("counterweights", {}),
+        extraLength = configParameter("extraLength", 0),
+        currentStringType = configParameter("currentStringType", ""),
+        stringColor = configParameter("stringColor", ""),
+        counterWeightType = configParameter("counterWeightType", ""),
+        counterWeightIcon = configParameter("counterWeightIcon", ""),
+        counterWeightName = configParameter("counterWeightName", "")
+    }
 end

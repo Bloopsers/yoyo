@@ -1,11 +1,11 @@
 {
-	"itemName" : "yoyos:terrarianyoyo",
+	"itemName" : "yoyos:rainbowyoyo",
 	"price" : 1000,
 	"inventoryIcon" : "icon.png",
 	"rarity" : "Legendary",
 	"maxStack" : 1,
 	"description" : "PH Description",
-	"shortdescription" : "Terrarian",
+	"shortdescription" : "Lightshow",
 	"largeImage" : "icon.png",
 	"tooltipKind" : "yoyo",
 	"category" : "yoyo",
@@ -16,7 +16,7 @@
 
 	"scripts" : ["/items/active/weapons/yoyos/yoyo.lua"],
 	"animationScripts" : ["/items/active/effects/renderyoyorope.lua"],
-	
+
 	"animation" : "/items/active/weapons/yoyos/yoyo.animation",
 	"animationCustom" : {
 		"sounds" : {

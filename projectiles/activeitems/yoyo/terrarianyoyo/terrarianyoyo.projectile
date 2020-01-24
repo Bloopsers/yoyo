@@ -22,7 +22,7 @@
   "periodicActions" : [
     {
       "action" : "particle",
-      "specification" : "aegisaltyoyotrail",
+      "specification" : "yoyos:terrariantrail",
       "time" : 0.01,
       "repeat" : true
     },
@@ -32,7 +32,7 @@
       "repeat" : true,
       "specification" : {
         "type" : "ember",
-        "size" : 1,
+        "size" : 1.5,
         "position" : [0, 0],
         "destructionAction" : "shrink",
         "destructionTime" : 0.5,
@@ -45,7 +45,7 @@
           "size" : 0.5,
           "position" : [0, 0]
         },
-        "color" : [209, 225, 96]
+        "color" : [105, 198, 164]
       }
     },
     {
@@ -54,7 +54,7 @@
       "repeat" : true,
       "specification" : {
         "type" : "ember",
-        "size" : 1,
+        "size" : 1.5,
         "position" : [0, 0],
         "destructionAction" : "shrink",
         "destructionTime" : 0.5,
@@ -67,7 +67,7 @@
           "size" : 0.5,
           "position" : [0, 0]
         },
-        "color" : [72, 131, 47]
+        "color" : [33, 84, 53]
       }
     }
   ],

@@ -1,0 +1,15 @@
+{
+	"kind" : "yoyos:terrariantrail",
+	"definition" : {
+		"type": "textured",
+		"image": "/projectiles/activeitems/yoyo/terrarianyoyo/terrarianyoyo.png",
+		"position" : [0, 0],
+		"fade" : 0.5,
+		"fullbright" : true,
+		"destructionAction" : "shrink",
+		"destructionTime" : 0.09,
+		"size" : 0.8,
+		"layer" : "middle",
+		"timeToLive" : 0.05
+	}
+}

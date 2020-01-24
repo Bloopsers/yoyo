@@ -1,60 +1,81 @@
 {
-  "itemName" : "yingyangyoyo",
-  "price" : 1500,
-  "inventoryIcon" : "icon.png",
-  "rarity" : "Legendary",
+  "itemName" : "commonyoyo",
+  "price" : 300,
+  "rarity" : "Common",
   "maxStack" : 1,
-  "description" : "Todo/Replace me",
-  "shortdescription" : "Yin Yang",
-  "largeImage" : "icon.png",
+  "description" : "It's simple, but still fun as heck!",
+  "shortdescription" : "Common Yoyo",
   "tooltipKind" : "yoyo",
   "category" : "yoyo",
   "fireTime" : 0,
   "twoHanded" : true,
   "itemTags" : ["weapon","yoyo"],
-  "level" : 6,
 
   "scripts" : ["/items/active/weapons/yoyos/yoyo.lua"],
   "animationScripts" : ["/items/active/effects/renderyoyorope.lua"],
+
   "animation" : "/items/active/weapons/yoyos/yoyo.animation",
   "animationCustom" : {
     "sounds" : {
       "throw" : ["/sfx/melee/sword_spinslash.ogg"]
     }
   },
-  "animationParts" : { "yoyo" : "/projectiles/activeitems/yoyo/yingyangyoyo/yingyangyoyo.png" },
+  "animationParts" : { },
 
   "fireOffset" : [0, 0],
 
-  "rope" : {
-    "width" : 0.8,
-    "color" : [202, 202, 202, 230]
-  },
+	"rope" : {
+		"width" : 0.8,
+		"color" : [202, 202, 202, 230]
+	},
 
   "counterweights" : [],
 
   "usesYoyoUpgrades" : true,
   "usesCounterweightUpgrades" : true,
 
-  "maxLength" : 12,
-  "extraLength" : 0,
+  "maxLength" : [8, 10],
+  "extraLength" : 2,
 
-  "currentStringType" : "",
+  "currentStringType" : "yoyostring",
   "stringColor" : "?replace;a85636=7b7b7b;e0975c=b6b6b6;ffca8a=e6e6e6",
 
   "counterWeightType" : "",
   "counterWeightIcon" : "",
   "counterWeightName" : "",
 
+  "generated" : true,
   "builder" : "/items/buildscripts/buildyoyo.lua",
+  "builderConfig" : {
+    "nameGenerator" : "yoyonames.config:nameGen",
+    "yoyoProjectilePart" : "yoyo",
+    "companies" : [
+      "Corkscrew",
+      "Dunken",
+      "Rotik",
+      "Curve"
+    ],
+    "counterweights" : [],
+    "counterweightChance" : 3,
+    "animationParts" : {
+      "yoyo" : {
+        "projectilePath" : "parts/<company>_projectile_<variant>.png",
+        "iconPath" : "parts/<company>_icon_<variant>.png",
+        "variants" : 1,
+        "paletteSwap" : true
+      }
+    },
+    "palette" : "/items/active/weapons/yoyos/generatedyoyo/yoyo.weaponcolors",
+    "iconDrawables" : ["yoyo"]
+  },
 
-  "projectileType" : "yingyangyoyo",
+  "projectileType" : "generatedyoyo",
   "projectileParameters" : {
-    "knockback" : 5,
-    "power" : 7,
-    "damageRepeatTimeout" : 0.7,
-    "yoyoSpeed" : 50,
-    "maxYoyoTime" : 15.5
+    "knockback" : [1, 3],
+    "power" : [7.3, 7.6],
+    "damageRepeatTimeout" : [5, 7.5],
+    "yoyoSpeed" : [33, 45],
+    "maxYoyoTime" : [4, 7]
   },
 
   "stances" : {

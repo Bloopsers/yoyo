@@ -6,7 +6,7 @@ function init()
 
   --projectile.setPower(projectile.power() * 0.75)
 
-  self.rotationSpeed = config.getParameter("rotationSpeed", 25)
+  self.rotationSpeed = config.getParameter("rotationSpeed", 15)
   self.ownerId = nil
   self.fireMode = "primary"
   self.pickupDistance = config.getParameter("pickupDistance", 2)
@@ -23,13 +23,15 @@ function init()
   self.rotation = 0
   self.shiftHeld = false
   self.useShift = config.getParameter("useShift", false)
+  self.latestYoyoId = nil
 
   mcontroller.setRotation(0)
 
-  message.setHandler("updateProjectile", function(_, _, aimPosition, fireMode, shiftHeld)
+  message.setHandler("updateProjectile", function(_, _, aimPosition, fireMode, shiftHeld, latestYoyoId)
     self.aimPosition = aimPosition
     self.fireMode = fireMode
     self.shiftHeld = shiftHeld
+    self.latestYoyoId = latestYoyoId
     return entity.id()
   end)
 
@@ -78,6 +80,7 @@ function update(dt)
   world.debugPoly(circle(self.maxDistance, 32, self.ownerPos), {255, 255, 0})
   world.debugPoly(circle(world.magnitude(mcontroller.position(), self.ownerPos), 32, self.ownerPos), {0, 255, 0})
   world.debugText("%s/%s", self.yoyoLength, self.maxDistance, self.aimPosition, {0, 255, 0})
+  world.debugText("latestYoyoId = %s", self.latestYoyoId and self.latestYoyoId or "none", vec2.sub(self.aimPosition, {0, 1}), {0, 255, 0})
 
   if self.ownerId and world.entityExists(self.ownerId) then
     if self.aimPosition then
@@ -94,9 +97,15 @@ function update(dt)
           projectile.die()
         end
       else
-        local distToPos = world.magnitude(mcontroller.position(), self.aimPosition)
+        local distToPos = world.distance(mcontroller.position(), self.aimPosition)
 
-        controlTo(self.aimPosition, self.yoyoSpeed, 650)
+        if self.latestYoyoId and self.latestYoyoId ~= entity.id() and world.entityExists(self.latestYoyoId) then
+          world.debugPoint(world.entityPosition(self.latestYoyoId), {255, 255, 0})
+
+          controlTo(vec2.add(world.entityPosition(self.latestYoyoId), {math.cos(self.rotation), math.sin(self.rotation)}), self.yoyoSpeed, 650, true)
+        else
+          controlTo(self.aimPosition, self.yoyoSpeed, 650, false)
+        end
       end
     end
   else
@@ -111,10 +120,13 @@ function update(dt)
   mcontroller.setRotation(self.rotation)
 end
 
-function controlTo(position, speed, controlForce)
+function controlTo(position, speed, controlForce, ignoreMaxRange)
   controlForce = 350
   local offset = world.distance(position, mcontroller.position())
-  local v = vec2.clampMag(vec2.sub(position, self.ownerPos), self.maxDistance)
+  local v = vec2.sub(position, self.ownerPos)
+  if not ignoreMaxRange then
+    v = vec2.clampMag(v, self.maxDistance)
+  end
 
   local pos = vec2.approach(mcontroller.position(), vec2.add(self.ownerPos, v), speed / 60)
 
