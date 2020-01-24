@@ -1,7 +1,7 @@
 {
 	"name": "yoyoconfusion",
 	"effectConfig": {
-		"chance": 3
+		"chance": 2
 	},
 	"defaultDuration": 5,
 	"scripts": [

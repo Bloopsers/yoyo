@@ -71,7 +71,7 @@
   "maxYoyoTime" : 5,
   
   "statusEffects" : [
-    {"effect" : "yoyoconfusion", "duration" : 1.5}
+    {"effect" : "yoyoconfusion", "duration" : 1.8}
   ],
 
   "scripts" : [ "/projectiles/activeitems/yoyo/yoyoprojectile.lua" ]

@@ -6,13 +6,16 @@ function init()
 		effect.expire()
 	end
 
-	if math.random(1, config.getParameter("chance", 1)) ~= 1 then
+	if math.random(1, config.getParameter("chance", 1)) > 1 then
 		effect.expire()
 	end
 
 	script.setUpdateDelta(0)
 	local baseParameters = sb.jsonMerge({runSpeed = 0, walkSpeed = 0}, mcontroller.baseParameters())
-	mcontroller.controlParameters({runSpeed=-baseParameters.runSpeed, walkSpeed=-baseParameters.walkSpeed})
+	mcontroller.controlParameters({
+		runSpeed= -baseParameters.runSpeed,
+		walkSpeed=-baseParameters.walkSpeed
+	})
 
 	animator.setParticleEmitterOffsetRegion("confused", mcontroller.boundBox())
 	animator.burstParticleEmitter("confused")
