@@ -1,35 +1,33 @@
 {
-  "projectileName" : "frozenyoyo",
-  "image" : "frozenyoyo.png",
-  "flippable" : false,
-  "orientationLocked" : true,
-  "actionOnReap" : [ ],
-  "damagePoly" : [[-4, 2], [-2, 4], [2, 4], [4, 2], [4, -2], [2, -4], [-2, -4], [-4, -2]],
-  "movementSettings" : {
-    "collisionPoly" : [[0.3,0],[0.212132,0.212132],[1.83697e-17,0.3],[-0.212132,0.212132],[-0.3,3.67394e-17],[-0.212132,-0.212132],[-5.51091e-17,-0.3],[0.212132,-0.212132]]
-  },
-  "power" : 5.0,
-  "speed" : 0,
-  "renderLayer" : "ForegroundTile+2",
-  "damageKind" : "icespear",
-  "physics" : "hover",
-  "bounces" : -1,
-  "piercing" : true,
-  "timeToLive" : 100,
+	"projectileName": "yoyos:frozenyoyo",
+	"image": "frozenyoyo.png",
 
-  "emitters" : ["iceshockwave"],
+	"orientationLocked": true,
+	"damagePoly": [[-4, 2], [-2, 4], [2, 4], [4, 2], [4, -2], [2, -4], [-2, -4], [-4, -2]],
+	"speed": 0,
+	"renderLayer": "ForegroundTile+2",
+	"damageKind": "yoyos:yoyo",
+	"physics": "yoyos:yoyo",
+	"bounces": -1,
+	"piercing": true,
 
-  "periodicActions" : [],
+	"emitters": ["iceshockwave"],
+	"hitSounds": [
+		"/sfx/projectiles/ice_barrier_break1.ogg",
+		"/sfx/projectiles/ice_barrier_break2.ogg",
+		"/sfx/projectiles/ice_barrier_break3.ogg",
+		"/sfx/projectiles/ice_barrier_break4.ogg",
+		"/sfx/projectiles/ice_barrier_break5.ogg",
+		"/sfx/projectiles/ice_barrier_break6.ogg",
+		"/sfx/projectiles/ice_barrier_break7.ogg",
+		"/sfx/projectiles/ice_barrier_break8.ogg",
+		"/sfx/projectiles/ice_barrier_break9.ogg",
+		"/sfx/projectiles/ice_barrier_break10.ogg"
+	],
 
-  "hitSounds" : [ "/sfx/projectiles/ice_barrier_break1.ogg", "/sfx/projectiles/ice_barrier_break2.ogg", "/sfx/projectiles/ice_barrier_break3.ogg", "/sfx/projectiles/ice_barrier_break4.ogg", "/sfx/projectiles/ice_barrier_break5.ogg", "/sfx/projectiles/ice_barrier_break6.ogg", "/sfx/projectiles/ice_barrier_break7.ogg", "/sfx/projectiles/ice_barrier_break8.ogg", "/sfx/projectiles/ice_barrier_break9.ogg", "/sfx/projectiles/ice_barrier_break10.ogg" ],
+	"statusEffects": [
+		{"effect": "frostslow", "duration": 1}
+	],
 
-  "pickupDistance" : 2,
-  "maxDistance" : 10,
-  "maxYoyoTime" : 5,
-
-  "statusEffects" : [
-    {"effect" : "frostslow", "duration" : 1}
-  ],
-
-  "scripts" : [ "/projectiles/activeitems/yoyo/yoyoprojectile.lua" ]
+	"scripts": ["/projectiles/activeitems/yoyo/yoyoprojectile.lua"]
 }

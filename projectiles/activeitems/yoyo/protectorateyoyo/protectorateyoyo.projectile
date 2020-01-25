@@ -1,40 +1,30 @@
 {
-  "projectileName" : "protectorateyoyo",
-  "image" : "protectorateyoyo.png",
-  "flippable" : false,
-  "orientationLocked" : true,
-  "fullbright" : true,
-  "lightColor" : [96,184,234],
-  "actionOnReap" : [ ],
-  "statusEffects" : [ ],
-  "damagePoly" : [[-4, 2], [-2, 4], [2, 4], [4, 2], [4, -2], [2, -4], [-2, -4], [-4, -2]],
-  "movementSettings" : {
-    "collisionPoly" : [[0.3,0],[0.212132,0.212132],[1.83697e-17,0.3],[-0.212132,0.212132],[-0.3,3.67394e-17],[-0.212132,-0.212132],[-5.51091e-17,-0.3],[0.212132,-0.212132]]
-  },
-  "power" : 5.0,
-  "speed" : 0,
-  "renderLayer" : "ForegroundTile+2",
-  "damageKind" : "yoyo",
-  "physics" : "hover",
-  "bounces" : -1,
-  "piercing" : true,
-  "timeToLive" : 100,
-  
-  "periodicActions" : [
-    {
-      "action" : "projectile",
-      "type" : "protectoratebolt",
-	  "rotate" : true,
-      "time" : 0.25,
-      "repeat" : true,
-      "fuzzAngle" : 90,
-      "inheritDamageFactor" : 0.5
-    }
-],
+	"projectileName": "yoyos:protectorateyoyo",
+	"image": "protectorateyoyo.png",
 
-  "pickupDistance" : 2,
-  "maxDistance" : 10,
-  "maxYoyoTime" : 5,
+	"lightColor": [96, 184, 234],
+	"fullbright": true,
 
-  "scripts" : [ "/projectiles/activeitems/yoyo/yoyoprojectile.lua" ]
+	"orientationLocked": true,
+	"damagePoly": [[-4, 2], [-2, 4], [2, 4], [4, 2], [4, -2], [2, -4], [-2, -4], [-4, -2]],
+	"speed": 0,
+	"renderLayer": "ForegroundTile+2",
+	"damageKind": "yoyos:yoyo",
+	"physics": "yoyos:yoyo",
+	"bounces": -1,
+	"piercing": true,
+	
+	"periodicActions": [
+		{
+			"action": "projectile",
+			"type": "protectoratebolt",
+			"rotate": true,
+			"time": 0.25,
+			"repeat": true,
+			"fuzzAngle": 90,
+			"inheritDamageFactor": 0.5
+		}
+	],
+
+	"scripts": ["/projectiles/activeitems/yoyo/yoyoprojectile.lua"]
 }

@@ -1,0 +1,50 @@
+[
+	{
+		"op": "add",
+		"path": "/yoyos:yoyo",
+		"value": {
+			"mass": 1,
+			"gravityMultiplier": 0,
+			"maxMovementPerStep": 0.4,
+			"collisionPoly": [
+				[
+					0.3,
+					0
+				],
+				[
+					0.212132,
+					0.212132
+				],
+				[
+					1.83697e-17,
+					0.3
+				],
+				[
+					-0.212132,
+					0.212132
+				],
+				[
+					-0.3,
+					3.67394e-17
+				],
+				[
+					-0.212132,
+					-0.212132
+				],
+				[
+					-5.51091e-17,
+					-0.3
+				],
+				[
+					0.212132,
+					-0.212132
+				]
+			],
+			"ignorePlatformCollision": true,
+			"airFriction": 2.5,
+			"liquidFriction": 1,
+			"groundFriction": 1,
+			"maximumCorrection": 0.75
+		}
+	}
+]

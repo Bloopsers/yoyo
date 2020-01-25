@@ -1,20 +1,20 @@
 {
-  "itemName" : "holographicyoyostring",
-  "price" : 100,
-  "rarity" : "Uncommon",
-  "category" : "yoyoupgrade",
-  "tooltipKind" : "yoyoupgrade",
-  "inventoryIcon" : "/items/augments/yoyo/yoyostring.png?replace;a85636=4facb2C8;e0975c=a8e6e2C8;ffca8a=ffffffC8",
-  "description" : "A holographic yoyo string. Increases your yoyo range by 3.",
-  "shortdescription" : "Holographic Yoyo String",
+	"itemName" : "holographicyoyostring",
+	"price" : 100,
+	"rarity" : "Uncommon",
+	"category" : "yoyoupgrade",
+	"tooltipKind" : "yoyoupgrade",
+	"inventoryIcon" : "/items/augments/yoyo/yoyostring.png?replace;a85636=4facb2C8;e0975c=a8e6e2C8;ffca8a=ffffffC8",
+	"description" : "A holographic yoyo string. Increases your yoyo range by 3.",
+	"shortdescription" : "Holographic Yoyo String",
 
-  "extraLength" : 3,
-  "stringColor" : "?replace;a85636=4facb2C8;e0975c=a8e6e2C8;ffca8a=ffffffC8",
+	"extraLength" : 3,
+	"stringColor" : "?replace;a85636=4facb2C8;e0975c=a8e6e2C8;ffca8a=ffffffC8",
 
-  "rope" : {
-    "color" : [168, 230, 226, 80],
-	"fullbright" : true
-  },
+	"rope" : {
+		"color" : [168, 230, 226, 80],
+		"fullbright" : true
+	},
 
-  "scripts" : [ "/scripts/augments/yoyo.lua" ]
+	"scripts" : ["/scripts/augments/yoyo.lua"]
 }

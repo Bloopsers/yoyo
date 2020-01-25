@@ -1,25 +1,25 @@
 {
-  "itemName" : "yoyocounterweightfire",
-  "price" : 240,
-  "rarity" : "Common",
-  "category" : "yoyoupgrade",
-  "tooltipKind" : "yoyoupgrade",
-  "inventoryIcon" : "/items/augments/yoyocounterweight/counterweightfire.png",
-  "description" : "A fiery counterweight for your yoyo. Sets enemies on fire.",
-  "shortdescription" : "Fiery Counterweight",
+	"itemName" : "yoyocounterweightfire",
+	"price" : 240,
+	"rarity" : "Common",
+	"category" : "yoyoupgrade",
+	"tooltipKind" : "yoyoupgrade",
+	"inventoryIcon" : "/items/augments/yoyocounterweight/counterweightfire.png",
+	"description" : "A fiery counterweight for your yoyo. Sets enemies on fire.",
+	"shortdescription" : "Fiery Counterweight",
 
-  "counterweights" : [
-    {
-      "projectileType" : "yoyocounterweightfire",
-      "fromItem" : true,
-      "projectileParameters" : {
-        "powerScale" : 1.25,
-        "rotateRadius" : 7,
-        "rotateSpeed" : 50,
-        "maxTime" : 4.5
-      }
-    }
-  ],
+	"counterweights" : [
+		{
+			"projectileType" : "yoyocounterweightfire",
+			"fromItem" : true,
+			"projectileParameters" : {
+				"powerScale" : 1.25,
+				"rotateRadius" : 7,
+				"rotateSpeed" : 50,
+				"maxTime" : 4.5
+			}
+		}
+	],
 
-  "scripts" : [ "/scripts/augments/counterweight.lua" ]
+	"scripts" : ["/scripts/augments/counterweight.lua"]
 }

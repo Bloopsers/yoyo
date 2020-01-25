@@ -1,5 +1,5 @@
 {
-	"kind": "perfectblockdespawn",
+	"kind": "yoyos:perfectblockdespawn",
 	"definition": {
 		"type": "textured",
 		"image": "/particles/yoyo/perfectblockdespawn.png",
@@ -13,7 +13,7 @@
 		"fullbright": true,
 		"timeToLive": 0.05,
 		"layer": "front",
-		"angularVelocity" : 0,
+		"angularVelocity": 0,
 		"collidesForeground": false
 	}
 }

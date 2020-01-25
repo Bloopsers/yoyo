@@ -1,137 +1,73 @@
 {
-  "itemName" : "solaryoyo",
-  "price" : 1500,
-  "inventoryIcon" : "icon.png",
-  "rarity" : "Legendary",
-  "maxStack" : 1,
-  "description" : "A replica of the Sol System stuck to a piece of string.",
-  "shortdescription" : "Sol Yoyo",
-  "largeImage" : "icon.png",
-  "tooltipKind" : "yoyo",
-  "category" : "yoyo",
-  "fireTime" : 0,
-  "twoHanded" : true,
-  "itemTags" : ["weapon","yoyo"],
-  "level" : 6,
+	"itemName": "solaryoyo",
+	"price": 1500,
+	"inventoryIcon": "icon.png",
+	"rarity": "Legendary",
+	"maxStack": 1,
+	"description": "A replica of the Sol System stuck to a piece of string.",
+	"shortdescription": "Sol Yoyo",
+	"largeImage": "icon.png",
+	"itemTags": ["weapon", "yoyo"],
+	"level": 6,
 
-  "scripts" : ["/items/active/weapons/yoyos/yoyo.lua"],
-  "animationScripts" : ["/items/active/effects/renderyoyorope.lua"],
-  "animation" : "/items/active/weapons/yoyos/yoyo.animation",
-  "animationCustom" : {
-    "sounds" : {
-      "throw" : ["/sfx/melee/sword_spinslash.ogg"]
-    }
-  },
-  "animationParts" : { "yoyoFullbright" : "/projectiles/activeitems/yoyo/solaryoyo/solaryoyo.png" },
+	"scripts": ["/items/active/weapons/yoyos/yoyo.lua"],
+	"animationScripts": ["/items/active/effects/renderyoyorope.lua"],
 
-  "fireOffset" : [0, 0],
+	"animation": "/items/active/weapons/yoyos/yoyo.animation",
+	"animationCustom": {
+		"sounds": {
+			"throw": ["/sfx/melee/sword_spinslash.ogg"]
+		}
+	},
+	"animationParts": {"yoyoFullbright": "/projectiles/activeitems/yoyo/solaryoyo/solaryoyo.png"},
+	"fireOffset": [0, 0],
 
-  "rope" : {
-    "width" : 0.8,
-    "color" : [202, 202, 202, 230]
-  },
+	"counterweights": [
+		{
+			"projectileType": "yoyocounterweightearth",
+			"projectileParameters": {
+				"powerScale": 1.25,
+				"rotateRadius": 7,
+				"rotateSpeed": 50,
+				"maxTime": 6
+			}
+		},
+		{
+			"projectileType": "yoyocounterweightsaturn",
+			"projectileParameters": {
+				"powerScale": 2,
+				"rotateRadius": 7,
+				"rotateSpeed": 50,
+				"maxTime": 6
+			}
+		},
+		{
+			"projectileType": "yoyocounterweightneptune",
+			"projectileParameters": {
+				"powerScale": 1.75,
+				"rotateRadius": 7,
+				"rotateSpeed": 50,
+				"maxTime": 6
+			}
+		}
+	],
 
-  "counterweights" : [
-    {
-      "projectileType" : "yoyocounterweightearth",
-      "projectileParameters" : {
-        "powerScale" : 1.25,
-        "rotateRadius" : 7,
-        "rotateSpeed" : 50,
-        "maxTime" : 6
-      }
-    },
-    {
-      "projectileType" : "yoyocounterweightsaturn",
-      "projectileParameters" : {
-        "powerScale" : 2,
-        "rotateRadius" : 7,
-        "rotateSpeed" : 50,
-        "maxTime" : 6
-      }
-    },
-    {
-      "projectileType" : "yoyocounterweightneptune",
-      "projectileParameters" : {
-        "powerScale" : 1.75,
-        "rotateRadius" : 7,
-        "rotateSpeed" : 50,
-        "maxTime" : 6
-      }
-    }
-  ],
+	"usesCounterweightUpgrades": false,
 
-  "usesYoyoUpgrades" : true,
-  "usesCounterweightUpgrades" : false,
+	"maxLength": 10.5,
 
-  "maxLength" : 10.5,
-  "extraLength" : 0,
+	"counterWeightType": "solaryoyoplanets",
+	"counterWeightIcon": "/items/active/weapons/yoyos/solaryoyo/earthicon.png",
+	"counterWeightName": "^red;Planet Counterweights^reset;",
 
-  "currentStringType" : "",
-  "stringColor" : "?replace;a85636=7b7b7b;e0975c=b6b6b6;ffca8a=e6e6e6",
+	"projectileType": "yoyos:solaryoyo",
+	"projectileParameters": {
+		"knockback": 8,
+		"power": 5,
+		"damageRepeatTimeout": 0.7,
+		"yoyoSpeed": 45,
+		"maxYoyoTime": 13
+	},
 
-  "counterWeightType" : "solaryoyoplanets",
-  "counterWeightIcon" : "/items/active/weapons/yoyos/solaryoyo/earthicon.png",
-  "counterWeightName" : "^red;Planet Counterweights^reset;",
-
-  "builder" : "/items/buildscripts/buildyoyo.lua",
-
-  "projectileType" : "solaryoyo",
-  "projectileParameters" : {
-    "knockback" : 8,
-    "power" : 5,
-    "damageRepeatTimeout" : 0.7,
-    "yoyoSpeed" : 45,
-    "maxYoyoTime" : 13
-  },
-
-  "stances" : {
-    "idle" : {
-      "armRotation" : 0,
-      "animationState" : {
-        "weapon" : "visible"
-      },
-      "allowRotate" : true,
-      "allowFlip" : true
-    },
-    "windup" : {
-      "duration" : 0.2,
-      "transition" : "throw",
-      "transitionFunction" : "fire",
-      "armRotation" : 35,
-      "animationState" : {
-        "weapon" : "visible"
-      },
-      "allowRotate" : false,
-      "allowFlip" : false
-    },
-    "throw" : {
-      "armRotation" : 0,
-      "animationState" : {
-        "weapon" : "hidden"
-      },
-      "allowRotate" : true,
-      "allowFlip" : true
-    },
-	  "precatch" : {
-      "duration" : 0.1,
-      "transition" : "catch",
-      "armRotation" : -15,
-      "animationState" : {
-        "weapon" : "hidden"
-      },
-      "allowRotate" : false,
-      "allowFlip" : true
-    },
-    "catch" : {
-      "duration" : 0.1,
-      "transition" : "idle",
-      "armRotation" : -35,
-      "animationState" : {
-        "weapon" : "visible"
-      },
-      "allowRotate" : false,
-      "allowFlip" : true
-    }
-  }
+	"builder": "/items/buildscripts/buildyoyo.lua"
 }

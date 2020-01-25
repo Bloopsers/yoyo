@@ -1,8 +1,8 @@
 {
-  "input" : [
-    { "item" : "refinedferozium", "count" : 6 },
-    { "item" : "climbingrope", "count" : 8 }
-  ],
-  "output" : { "item" : "feroziumyoyo", "count" : 1 },
-  "groups" : [ "craftingmanipulator", "weapons", "all" ]
+	"input": [
+		{"item": "refinedferozium", "count": 6},
+		{"item": "climbingrope", "count": 8}
+	],
+	"output": {"item": "feroziumyoyo", "count": 1},
+	"groups": ["craftingmanipulator", "weapons", "all"]
 }

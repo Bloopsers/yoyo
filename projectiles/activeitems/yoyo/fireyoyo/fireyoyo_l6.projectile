@@ -1,35 +1,24 @@
 {
-  "projectileName" : "fireyoyo_l6",
-  "image" : "fireyoyo_l6.png",
-  "flippable" : false,
-  "orientationLocked" : true,
-  "lightColor" : [221,73,0],
-  "actionOnReap" : [ ],
-  "damagePoly" : [[-4, 2], [-2, 4], [2, 4], [4, 2], [4, -2], [2, -4], [-2, -4], [-4, -2]],
-  "movementSettings" : {
-    "collisionPoly" : [[0.3,0],[0.212132,0.212132],[1.83697e-17,0.3],[-0.212132,0.212132],[-0.3,3.67394e-17],[-0.212132,-0.212132],[-5.51091e-17,-0.3],[0.212132,-0.212132]]
-  },
-  "power" : 5.0,
-  "speed" : 0,
-  "renderLayer" : "ForegroundTile+2",
-  "physics" : "hover",
-  "bounces" : -1,
-  "piercing" : true,
-  "fullbright" : true,
-  "timeToLive" : 100,
+	"projectileName": "fireyoyo_l6",
+	"image": "fireyoyo_l6.png",
+	
+	"lightColor": [221, 73, 0],
+	"fullbright": true,
 
-  "persistentAudio" : "/sfx/melee/elemental_spin_fire.ogg",
+	"orientationLocked": true,
+	"damagePoly": [[-4, 2], [-2, 4], [2, 4], [4, 2], [4, -2], [2, -4], [-2, -4], [-4, -2]],
+	"speed": 0,
+	"renderLayer": "ForegroundTile+2",
+	"damageKind": "firespear",
+	"physics": "yoyos:yoyo",
+	"bounces": -1,
+	"piercing": true,
+	"emitters": ["flamesfast"],
+	"persistentAudio": "/sfx/melee/elemental_spin_fire.ogg",
 
-  "pickupDistance" : 2,
-  "maxDistance" : 10,
-  "maxYoyoTime" : 5,
+	"statusEffects": [
+		{"effect": "burning", "duration": 3}
+	],
 
-  "statusEffects" : [
-    {"effect" : "burning", "duration" : 3}
-  ],
-
-  "damageKind" : "firespear",
-  "emitters" : [ "flamesfast" ],
-
-  "scripts" : [ "/projectiles/activeitems/yoyo/yoyoprojectile.lua" ]
+	"scripts": ["/projectiles/activeitems/yoyo/yoyoprojectile.lua"]
 }

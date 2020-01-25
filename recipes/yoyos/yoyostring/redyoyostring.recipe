@@ -1,8 +1,0 @@
-{
-  "input" : [
-    { "item" : "string", "count" : 12 },
-	{ "item" : "reddye", "count" : 2 }
-  ],
-  "output" : { "item" : "redyoyostring", "count" : 1 },
-  "groups" : [ "craftingwheel", "clothes" ]
-}

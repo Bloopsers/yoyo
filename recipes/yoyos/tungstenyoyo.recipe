@@ -1,8 +1,8 @@
 {
-  "input" : [
-    { "item" : "tungstenbar", "count" : 6 },
-    { "item" : "climbingrope", "count" : 8 }
-  ],
-  "output" : { "item" : "tungstenyoyo", "count" : 1 },
-  "groups" : [ "craftinganvil", "weapons", "all" ]
+	"input":	[
+		{"item": "tungstenbar", "count": 6},
+		{"item": "climbingrope", "count": 8}
+	],
+	"output": {"item":	"tungstenyoyo", "count": 1},
+	"groups": ["craftinganvil", "weapons", "all"]
 }

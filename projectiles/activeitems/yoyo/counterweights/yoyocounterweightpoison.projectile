@@ -1,28 +1,28 @@
 {
-  "projectileName" : "yoyocounterweightpoison",
-  "image" : "counterweightpoison.png",
-  "emitters" : [ "poisonthrowertrail" ],
-  "renderLayer" : "ForegroundTile+2",
+	"projectileName": "yoyocounterweightpoison",
+	"image": "counterweightpoison.png",
+	"emitters": ["poisonthrowertrail"],
+	"renderLayer": "ForegroundTile+2",
 
-  "flippable" : true,
-  "orientationLocked" : false,
-  "damagePoly" : [[-4, 2], [-2, 4], [2, 4], [4, 2], [4, -2], [2, -4], [-2, -4], [-4, -2]],
-  "movementSettings" : {
-    "collisionPoly" : [[0.3,0],[0.212132,0.212132],[1.83697e-17,0.3],[-0.212132,0.212132],[-0.3,3.67394e-17],[-0.212132,-0.212132],[-5.51091e-17,-0.3],[0.212132,-0.212132]]
-  },
-  "power" : 5.0,
-  "speed" : 0,
-  "damageKind" : "yoyo",
-  "physics" : "hover",
-  "bounces" : -1,
-  "piercing" : true,
-  "timeToLive" : 100,
+	"flippable": true,
+	"orientationLocked": false,
+	"damagePoly": [[-4, 2], [-2, 4], [2, 4], [4, 2], [4, -2], [2, -4], [-2, -4], [-4, -2]],
+	"movementSettings": {
+		"collisionPoly": [[0.3,0], [0.212132,0.212132], [1.83697e-17,0.3], [-0.212132,0.212132], [-0.3,3.67394e-17], [-0.212132,-0.212132], [-5.51091e-17,-0.3], [0.212132,-0.212132]]
+	},
+	"power": 5.0,
+	"speed": 0,
+	"damageKind": "yoyos:yoyo",
+	"physics": "hover",
+	"bounces": -1,
+	"piercing": true,
+	"timeToLive": 100,
 
-  "statusEffects" : [
-    {"effect" : "weakpoison", "duration" : 3}
-  ],
+	"statusEffects": [
+		{"effect": "weakpoison", "duration": 3}
+	],
 
-  "persistentAudio" : "/sfx/melee/elemental_spin_poison.ogg",
+	"persistentAudio": "/sfx/melee/elemental_spin_poison.ogg",
 
-  "scripts" : [ "counterweight.lua" ]
+	"scripts": ["counterweight.lua"]
 }

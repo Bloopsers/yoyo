@@ -1,8 +1,0 @@
-{
-  "input" : [
-    { "item" : "string", "count" : 12 },
-	{ "item" : "greendye", "count" : 2 }
-  ],
-  "output" : { "item" : "greenyoyostring", "count" : 1 },
-  "groups" : [ "craftingwheel", "clothes" ]
-}

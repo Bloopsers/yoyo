@@ -1,5 +1,5 @@
 {
-	"objectName": "yoyomaster",
+	"objectName": "yoyos:yoyomaster",
 	"colonyTags": [],
 	"rarity": "Common",
 	"category": "other",
@@ -11,11 +11,11 @@
 	"orientations": [
 		{
 			"imageLayers": [
-				{ "image": "yoyomaster.png:<frame>" }
+				{"image": "yoyomaster.png:<frame>"}
 			],
 			"frames": 1,
 			"spaceScan": 0.1,
-			"anchors": [ "bottom" ]
+			"anchors": ["bottom"]
 		}
 	],
 	"scripts": [
@@ -43,35 +43,35 @@
 			{
 				"roll": 1,
 				"items": [
-					{ "item": "woodenyoyo" },
-					{ "item": "tungstenyoyo" },
-					{ "item": "titaniumyoyo" }
+					{"item": "woodenyoyo"},
+					{"item": "tungstenyoyo"},
+					{"item": "titaniumyoyo"}
 				]
 			},
 			{
 				"roll": 2,
 				"items": [
-					{ "item": "yoyocounterweightfire" },
-					{ "item": "yoyocounterweightpoison" },
-					{ "item": "yoyocounterweightelectric" },
-					{ "item": "yoyocounterweightice" }
+					{"item": "yoyocounterweightfire"},
+					{"item": "yoyocounterweightpoison"},
+					{"item": "yoyocounterweightelectric"},
+					{"item": "yoyocounterweightice"}
 				]
 			},
 			{
 				"roll": 2,
 				"items": [
-					{ "item": "yoyostring" },
-					{ "item": "redyoyostring" },
-					{ "item": "greenyoyostring" },
-					{ "item": "blueyoyostring" },
-					{ "item": "purpleyoyostring" },
-					{ "item": "yellowyoyostring" },
-					{ "item": "orangeyoyostring" }
+					{"item": "yoyostring"},
+					{"item": "redyoyostring"},
+					{"item": "greenyoyostring"},
+					{"item": "blueyoyostring"},
+					{"item": "purpleyoyostring"},
+					{"item": "yellowyoyostring"},
+					{"item": "orangeyoyostring"}
 				]
 			}
 		],
 		"static": [
-			{ "item": "solaryoyo" }
+			{"item": "solaryoyo"}
 		]
 	}
 }

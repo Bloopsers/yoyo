@@ -1,9 +1,9 @@
 {
-  "input" : [
-    { "item" : "copperbar", "count" : 3 },
-    { "item" : "climbingrope", "count" : 8 },
-    { "item" : "darkwoodmaterial", "count" : 30 }
-  ],
-  "output" : { "item" : "woodenyoyo", "count" : 1 },
-  "groups" : [ "craftinganvil", "weapons", "all" ]
+	"input": [
+		{"item": "copperbar", "count": 3},
+		{"item": "climbingrope", "count": 8},
+		{"item": "darkwoodmaterial", "count": 30}
+	],
+	"output": {"item": "woodenyoyo", "count": 1},
+	"groups": ["craftinganvil", "weapons", "all"]
 }

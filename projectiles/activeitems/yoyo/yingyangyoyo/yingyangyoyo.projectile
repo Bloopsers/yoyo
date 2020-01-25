@@ -1,78 +1,68 @@
 {
-  "projectileName" : "yingyangyoyo",
-  "image" : "yingyangyoyo.png",
-  "flippable" : false,
-  "orientationLocked" : true,
-  "actionOnReap" : [ ],
-  "damagePoly" : [[-4, 2], [-2, 4], [2, 4], [4, 2], [4, -2], [2, -4], [-2, -4], [-4, -2]],
-  "movementSettings" : {
-    "collisionPoly" : [[0.3,0],[0.212132,0.212132],[1.83697e-17,0.3],[-0.212132,0.212132],[-0.3,3.67394e-17],[-0.212132,-0.212132],[-5.51091e-17,-0.3],[0.212132,-0.212132]]
-  },
-  "power" : 5.0,
-  "speed" : 0,
-  "renderLayer" : "ForegroundTile+2",
-  "damageKind" : "yoyo",
-  "physics" : "hover",
-  "bounces" : -1,
-  "piercing" : true,
-  "timeToLive" : 100,
+	"projectileName": "yoyos:yingyangyoyo",
+	"image": "yingyangyoyo.png",
+	
+	"orientationLocked": true,
+	"damagePoly": [[-4, 2], [-2, 4], [2, 4], [4, 2], [4, -2], [2, -4], [-2, -4], [-4, -2]],
+	"speed": 0,
+	"renderLayer": "ForegroundTile+2",
+	"damageKind": "yoyos:yoyo",
+	"physics": "yoyos:yoyo",
+	"bounces": -1,
+	"piercing": true,
 
-  "periodicActions" : [
-    {
-      "action" : "particle",
-      "specification" : "violiumyoyotrail",
-      "time" : 0.01,
-      "repeat" : true
-    },
-    {
-      "action": "particle",
-      "time" : 0.2,
-      "repeat" : true,
-      "specification" : {
-        "type" : "ember",
-        "size" : 1,
-        "position" : [0, 0],
-        "destructionAction" : "shrink",
-        "destructionTime" : 0.5,
-        "fade" : 1,
-        "layer" : "middle",
-        "timeToLive" : 0.5,
-        "variance" : {
-          "initialVelocity" : [-2.0, -2.0],
-          "position" : [0, 0]
-        },
-        "color" : [0, 0, 0]
-      }
-    },
-    {
-      "action": "particle",
-      "time" : 0.2,
-      "repeat" : true,
-      "specification" : {
-        "type" : "ember",
-        "size" : 1,
-        "position" : [0, 0],
-        "destructionAction" : "shrink",
-        "destructionTime" : 0.5,
-        "fade" : 1,
-        "layer" : "middle",
-        "timeToLive" : 0.5,
-        "variance" : {
-          "initialVelocity" : [2.0, 2.0],
-          "position" : [0, 0]
-        },
-        "color" : [255, 255, 255]
-      }
-    }
-  ],
+	"periodicActions": [
+		{
+			"action": "particle",
+			"specification": "yoyos:violiumyoyotrail",
+			"time": 0.01,
+			"repeat": true
+		},
+			{
+			"action": "particle",
+					"time": 0.2,
+					"repeat": true,
+					"specification": {
+						"type": "ember",
+						"size": 1,
+						"position": [0, 0],
+						"destructionAction": "shrink",
+						"destructionTime": 0.5,
+						"fade": 1,
+						"layer": "middle",
+						"timeToLive": 0.5,
+						"variance": {
+					"initialVelocity": [-2.0, -2.0],
+					"position": [0, 0]
+						},
+						"color": [0, 0, 0]
+					}
+			},
+			{
+					"action": "particle",
+					"time": 0.2,
+					"repeat": true,
+					"specification": {
+						"type": "ember",
+						"size": 1,
+						"position": [0, 0],
+						"destructionAction": "shrink",
+						"destructionTime": 0.5,
+						"fade": 1,
+						"layer": "middle",
+						"timeToLive": 0.5,
+						"variance": {
+								"initialVelocity": [2.0, 2.0],
+								"position": [0, 0]
+						},
+				"color": [255, 255, 255]
+			}
+		}
+	],
+	
+	"statusEffects": [
+		{"effect": "yoyoconfusion", "duration": 1.8}
+	],
 
-  "pickupDistance" : 2,
-  "maxDistance" : 10,
-  "maxYoyoTime" : 5,
-  
-  "statusEffects" : [
-    {"effect" : "yoyoconfusion", "duration" : 1.8}
-  ],
-
-  "scripts" : [ "/projectiles/activeitems/yoyo/yoyoprojectile.lua" ]
+	"scripts": ["/projectiles/activeitems/yoyo/yoyoprojectile.lua"]
 }

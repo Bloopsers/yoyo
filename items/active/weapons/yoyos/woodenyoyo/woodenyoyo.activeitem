@@ -1,109 +1,37 @@
 {
-  "itemName" : "woodenyoyo",
-  "price" : 50,
-  "inventoryIcon" : "woodenyoyoicon.png",
-  "rarity" : "Common",
-  "maxStack" : 1,
-  "description" : "It's simple, but still fun as heck!",
-  "shortdescription" : "Wooden Yoyo",
-  "largeImage" : "woodenyoyoicon.png",
-  "tooltipKind" : "yoyo",
-  "category" : "yoyo",
-  "fireTime" : 0,
-  "twoHanded" : true,
-  "itemTags" : ["weapon","yoyo"],
-  "level" : 1,
+	"itemName": "woodenyoyo",
+	"price": 50,
+	"inventoryIcon": "woodenyoyoicon.png",
+	"rarity": "Common",
+	"maxStack": 1,
+	"description": "It's simple, but still fun as heck!",
+	"shortdescription": "Wooden Yoyo",
+	"largeImage": "woodenyoyoicon.png",
+	"itemTags": ["weapon","yoyo"],
+	"level": 1,
 
-  "scripts" : ["/items/active/weapons/yoyos/yoyo.lua"],
-  "animationScripts" : ["/items/active/effects/renderyoyorope.lua"],
-  "animation" : "/items/active/weapons/yoyos/yoyo.animation",
-  "animationCustom" : {
-    "sounds" : {
-      "throw" : ["/sfx/melee/sword_spinslash.ogg"]
-    }
-  },
-  "animationParts" : { "yoyo" : "/projectiles/activeitems/yoyo/woodenyoyo/woodenyoyo.png" },
+	"scripts": ["/items/active/weapons/yoyos/yoyo.lua"],
+	"animationScripts": ["/items/active/effects/renderyoyorope.lua"],
 
-  "fireOffset" : [0, 0],
+	"animation": "/items/active/weapons/yoyos/yoyo.animation",
+	"animationCustom": {
+		"sounds": {
+			"throw": ["/sfx/melee/sword_spinslash.ogg"]
+		}
+	},
+	"animationParts": {"yoyo": "/projectiles/activeitems/yoyo/woodenyoyo/woodenyoyo.png"},
+	"fireOffset": [0, 0],
 
-  "rope" : {
-    "width" : 0.8,
-    "color" : [202, 202, 202, 230]
-  },
+	"maxLength": 7,
 
-  "counterweights" : [],
+	"projectileType": "yoyos:woodenyoyo",
+	"projectileParameters": {
+		"knockback": 2,
+		"power": 7,
+		"damageRepeatTimeout": 0.7,
+		"yoyoSpeed": 35,
+		"maxYoyoTime": 5.5
+	},
 
-  "usesYoyoUpgrades" : true,
-  "usesCounterweightUpgrades" : true,
-
-  "maxLength" : 7,
-  "extraLength" : 0,
-
-  "currentStringType" : "",
-  "stringColor" : "?replace;a85636=7b7b7b;e0975c=b6b6b6;ffca8a=e6e6e6",
-
-  "counterWeightType" : "",
-  "counterWeightIcon" : "",
-  "counterWeightName" : "",
-
-  "builder" : "/items/buildscripts/buildyoyo.lua",
-
-  "projectileType" : "woodenyoyo",
-  "projectileParameters" : {
-    "knockback" : 2,
-    "power" : 7,
-    "damageRepeatTimeout" : 0.7,
-    "yoyoSpeed" : 35,
-    "maxYoyoTime" : 5.5
-  },
-
-  "stances" : {
-    "idle" : {
-      "armRotation" : 0,
-      "animationState" : {
-        "weapon" : "visible"
-      },
-      "allowRotate" : true,
-      "allowFlip" : true
-    },
-    "windup" : {
-      "duration" : 0.2,
-      "transition" : "throw",
-      "transitionFunction" : "fire",
-      "armRotation" : 35,
-      "animationState" : {
-        "weapon" : "visible"
-      },
-      "allowRotate" : false,
-      "allowFlip" : false
-    },
-    "throw" : {
-      "armRotation" : 0,
-      "animationState" : {
-        "weapon" : "hidden"
-      },
-      "allowRotate" : true,
-      "allowFlip" : true
-    },
-	  "precatch" : {
-      "duration" : 0.1,
-      "transition" : "catch",
-      "armRotation" : -15,
-      "animationState" : {
-        "weapon" : "hidden"
-      },
-      "allowRotate" : false,
-      "allowFlip" : true
-    },
-    "catch" : {
-      "duration" : 0.1,
-      "transition" : "idle",
-      "armRotation" : -35,
-      "animationState" : {
-        "weapon" : "visible"
-      },
-      "allowRotate" : false,
-      "allowFlip" : true
-    }
-  }
+	"builder": "/items/buildscripts/buildyoyo.lua"
 }

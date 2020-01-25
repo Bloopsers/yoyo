@@ -1,8 +1,8 @@
 {
-  "input" : [
-    { "item" : "rainbowwood", "count" : 50 },
-    { "item" : "climbingrope", "count" : 8 }
-  ],
-  "output" : { "item" : "rainbowwoodyoyo", "count" : 1 },
-  "groups" : [ "craftinganvil", "weapons", "all" ]
+	"input": [
+		{"item": "rainbowwood", "count": 50},
+		{"item": "climbingrope", "count": 8}
+	],
+	"output": {"item": "rainbowwoodyoyo", "count": 1},
+	"groups": ["craftinganvil", "weapons", "all"]
 }

@@ -1,14 +1,14 @@
 {
-	"kind" : "gravityyoyotrail",
-	"definition" : {
+	"kind": "yoyos:gravityyoyotrail",
+	"definition": {
 		"type": "textured",
-		"image": "/particles/yoyo/gravityyoyotrail.png",
-		"position" : [0, 0],
-		"fade" : 0.5,
-		"destructionAction" : "shrink",
-		"destructionTime" : 0.025,
-		"size" : 0.8,
-		"layer" : "middle",
-		"timeToLive" : 0.1
+		"image": "/particles/yoyo/trails/gravityyoyotrail.png",
+		"position": [0, 0],
+		"fade": 0.5,
+		"destructionAction": "shrink",
+		"destructionTime": 0.025,
+		"size": 0.8,
+		"layer": "middle",
+		"timeToLive": 0.1
 	}
 }

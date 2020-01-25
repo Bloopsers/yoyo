@@ -16,10 +16,7 @@
 			"yoyo": {
 				"properties": {
 					"centered": true,
-					"offset": [
-						0.375,
-						0.0
-					],
+					"offset": [0.375, 0.0],
 					"transformationGroups": [
 						"weapon"
 					]
@@ -43,10 +40,7 @@
 				"properties": {
 					"centered": true,
 					"fullbright": true,
-					"offset": [
-						0.375,
-						0.0
-					],
+					"offset": [0.375, 0.0],
 					"transformationGroups": [
 						"weapon"
 					]

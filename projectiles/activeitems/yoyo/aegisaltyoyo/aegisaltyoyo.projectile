@@ -1,81 +1,71 @@
 {
-  "projectileName" : "aegisaltyoyo",
-  "image" : "aegisaltyoyo.png",
-  "flippable" : false,
-  "orientationLocked" : true,
-  "lightColor" : [209, 225, 96],
-  "actionOnReap" : [ ],
-  "fullbright" : true,
-  "statusEffects" : [ ],
-  "damagePoly" : [[-4, 2], [-2, 4], [2, 4], [4, 2], [4, -2], [2, -4], [-2, -4], [-4, -2]],
-  "movementSettings" : {
-    "collisionPoly" : [[0.3,0],[0.212132,0.212132],[1.83697e-17,0.3],[-0.212132,0.212132],[-0.3,3.67394e-17],[-0.212132,-0.212132],[-5.51091e-17,-0.3],[0.212132,-0.212132]]
-  },
-  "power" : 5.0,
-  "speed" : 0,
-  "renderLayer" : "ForegroundTile+2",
-  "damageKind" : "yoyo",
-  "physics" : "hover",
-  "bounces" : -1,
-  "piercing" : true,
-  "timeToLive" : 100,
+	"projectileName": "yoyos:aegisaltyoyo",
+	"image": "aegisaltyoyo.png",
 
-  "periodicActions" : [
-    {
-      "action" : "particle",
-      "specification" : "aegisaltyoyotrail",
-      "time" : 0.01,
-      "repeat" : true
-    },
-    {
-      "action": "particle",
-      "time" : 0.3,
-      "repeat" : true,
-      "specification" : {
-        "type" : "ember",
-        "size" : 1,
-        "position" : [0, 0],
-        "destructionAction" : "shrink",
-        "destructionTime" : 0.5,
-        "fade" : 1,
-        "layer" : "middle",
-        "fullbright" : true,
-        "timeToLive" : 0.5,
-        "variance" : {
-          "initialVelocity" : [2.0, 2.0],
-          "size" : 0.5,
-          "position" : [0, 0]
-        },
-        "color" : [209, 225, 96]
-      }
-    },
-    {
-      "action": "particle",
-      "time" : 0.4,
-      "repeat" : true,
-      "specification" : {
-        "type" : "ember",
-        "size" : 1,
-        "position" : [0, 0],
-        "destructionAction" : "shrink",
-        "destructionTime" : 0.5,
-        "fade" : 1,
-        "layer" : "middle",
-        "fullbright" : true,
-        "timeToLive" : 0.5,
-        "variance" : {
-          "initialVelocity" : [2.0, 2.0],
-          "size" : 0.5,
-          "position" : [0, 0]
-        },
-        "color" : [72, 131, 47]
-      }
-    }
-  ],
+	"lightColor": [209, 225, 96],
+	"fullbright": true,
 
-  "pickupDistance" : 2,
-  "maxDistance" : 10,
-  "maxYoyoTime" : 5,
+	"orientationLocked": true,
+	"damagePoly": [[-4, 2], [-2, 4], [2, 4], [4, 2], [4, -2], [2, -4], [-2, -4], [-4, -2]],
+	"speed": 0,
+	"renderLayer": "ForegroundTile+2",
+	"damageKind": "yoyos:yoyo",
+	"physics": "yoyos:yoyo",
+	"bounces": -1,
+	"piercing": true,
 
-  "scripts" : [ "/projectiles/activeitems/yoyo/yoyoprojectile.lua" ]
+	"periodicActions": [
+		{
+			"action": "particle",
+			"specification": "yoyos:aegisaltyoyotrail",
+			"time": 0.01,
+			"repeat": true
+		},
+		{
+			"action": "particle",
+			"time": 0.3,
+			"repeat": true,
+			"specification": {
+				"type": "ember",
+				"size": 1,
+				"position": [0, 0],
+				"destructionAction": "shrink",
+				"destructionTime": 0.5,
+				"fade": 1,
+				"layer": "middle",
+				"fullbright": true,
+				"timeToLive": 0.5,
+				"variance": {
+					"initialVelocity": [2.0, 2.0],
+					"size": 0.5,
+					"position": [0, 0]
+				},
+				"color": [209, 225, 96]
+			}
+		},
+		{
+			"action": "particle",
+			"time": 0.4,
+			"repeat": true,
+			"specification": {
+				"type": "ember",
+				"size": 1,
+				"position": [0, 0],
+				"destructionAction": "shrink",
+				"destructionTime": 0.5,
+				"fade": 1,
+				"layer": "middle",
+				"fullbright": true,
+				"timeToLive": 0.5,
+				"variance": {
+					"initialVelocity": [2.0, 2.0],
+					"size": 0.5,
+					"position": [0, 0]
+				},
+				"color": [72, 131, 47]
+			}
+		}
+	],
+
+	"scripts": ["/projectiles/activeitems/yoyo/yoyoprojectile.lua"]
 }

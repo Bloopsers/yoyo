@@ -1,89 +1,35 @@
 {
-	"itemName" : "yoyos:rainbowyoyo",
-	"price" : 1000,
-	"inventoryIcon" : "icon.png",
-	"rarity" : "Legendary",
-	"maxStack" : 1,
-	"description" : "PH Description",
-	"shortdescription" : "Lightshow",
-	"largeImage" : "icon.png",
-	"tooltipKind" : "yoyo",
-	"category" : "yoyo",
-	"fireTime" : 0,
-	"twoHanded" : true,
-	"itemTags" : ["weapon", "yoyo"],
-	"level" : 5,
+	"itemName": "yoyos:rainbowyoyo",
+	"price": 1000,
+	"inventoryIcon": "icon.png",
+	"rarity": "Legendary",
+	"maxStack": 1,
+	"description": "PH Description",
+	"shortdescription": "Lightshow",
+	"largeImage": "icon.png",
+	"itemTags": ["weapon", "yoyo"],
+	"level": 5,
 
-	"scripts" : ["/items/active/weapons/yoyos/yoyo.lua"],
-	"animationScripts" : ["/items/active/effects/renderyoyorope.lua"],
+	"scripts": ["/items/active/weapons/yoyos/yoyo.lua"],
+	"animationScripts": ["/items/active/effects/renderyoyorope.lua"],
 
-	"animation" : "/items/active/weapons/yoyos/yoyo.animation",
-	"animationCustom" : {
-		"sounds" : {
-			"throw" : ["/sfx/melee/sword_spinslash.ogg"]
+	"animation": "/items/active/weapons/yoyos/yoyo.animation",
+	"animationCustom": {
+		"sounds": {
+			"throw": ["/sfx/melee/sword_spinslash.ogg"]
 		}
 	},
-	"animationParts" : { "yoyo" : "/projectiles/activeitems/yoyo/terrarianyoyo/terrarianyoyo.png" },
-	"fireOffset" : [0, 0],
+	"animationParts": {"yoyo": "/projectiles/activeitems/yoyo/rainbowyoyo/rainbowyoyo.png"},
+	"fireOffset": [0, 0],
 
-	"projectileType" : "terrarianyoyo",
-	"projectileParameters" : {
-		"knockback" : 4,
-		"power" : 7,
-		"damageRepeatTimeout" : 0.7,
-		"yoyoSpeed" : 55,
-		"maxYoyoTime" : 12
+	"projectileType": "yoyos:rainbowyoyo",
+	"projectileParameters": {
+		"knockback": 4,
+		"power": 7,
+		"damageRepeatTimeout": 0.7,
+		"yoyoSpeed": 55,
+		"maxYoyoTime": 12
 	},
 
-	"builder" : "/items/buildscripts/buildyoyo.lua",
-
-	"stances" : {
-		"idle" : {
-			"armRotation" : 0,
-			"animationState" : {
-				"weapon" : "visible"
-			},
-			"allowRotate" : true,
-			"allowFlip" : true
-		},
-		"windup" : {
-			"duration" : 0.2,
-			"transition" : "throw",
-			"transitionFunction" : "fire",
-			"armRotation" : 35,
-			"animationState" : {
-				"weapon" : "visible"
-			},
-			"allowRotate" : false,
-			"allowFlip" : false
-		},
-		"throw" : {
-			"armRotation" : 0,
-			"animationState" : {
-				"weapon" : "hidden"
-			},
-			"allowRotate" : true,
-			"allowFlip" : true
-		},
-		"precatch" : {
-			"duration" : 0.1,
-			"transition" : "catch",
-			"armRotation" : -15,
-			"animationState" : {
-				"weapon" : "hidden"
-			},
-			"allowRotate" : false,
-			"allowFlip" : true
-		},
-		"catch" : {
-			"duration" : 0.1,
-			"transition" : "idle",
-			"armRotation" : -35,
-			"animationState" : {
-				"weapon" : "visible"
-			},
-			"allowRotate" : false,
-			"allowFlip" : true
-		}
-	}
+	"builder": "/items/buildscripts/buildyoyo.lua"
 }

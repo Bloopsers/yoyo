@@ -1,19 +1,19 @@
 {
-  "itemName" : "longorangeyoyostring",
-  "price" : 30,
-  "rarity" : "Uncommon",
-  "category" : "yoyoupgrade",
-  "tooltipKind" : "yoyoupgrade",
-  "inventoryIcon" : "/items/augments/yoyo/longyoyostring.png?replace;a85636=af4e00;e0975c=ea9931;ffca8a=ffd495",
-  "description" : "A long orange yoyo string. Increases your yoyo range by 4.",
-  "shortdescription" : "Long Orange Yoyo String",
+	"itemName" : "longorangeyoyostring",
+	"price" : 30,
+	"rarity" : "Uncommon",
+	"category" : "yoyoupgrade",
+	"tooltipKind" : "yoyoupgrade",
+	"inventoryIcon" : "/items/augments/yoyo/longyoyostring.png?replace;a85636=af4e00;e0975c=ea9931;ffca8a=ffd495",
+	"description" : "A long orange yoyo string. Increases your yoyo range by 4.",
+	"shortdescription" : "Long Orange Yoyo String",
 
-  "extraLength" : 4,
-  "stringColor" : "?replace;a85636=af4e00;e0975c=ea9931;ffca8a=ffd495",
+	"extraLength" : 4,
+	"stringColor" : "?replace;a85636=af4e00;e0975c=ea9931;ffca8a=ffd495",
 
-  "rope" : {
-    "color" : [234, 153, 49, 255]
-  },
+	"rope" : {
+		"color" : [234, 153, 49, 255]
+	},
 
-  "scripts" : [ "/scripts/augments/yoyo.lua" ]
+	"scripts" : ["/scripts/augments/yoyo.lua"]
 }

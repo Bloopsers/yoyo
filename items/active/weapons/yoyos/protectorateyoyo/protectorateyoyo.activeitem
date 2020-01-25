@@ -1,109 +1,37 @@
 {
-  "itemName" : "protectorateyoyo",
-  "price" : 1500,
-  "inventoryIcon" : "icon.png",
-  "rarity" : "Legendary",
-  "maxStack" : 1,
-  "description" : "Commonly used by students of the Terrene Protectorate.",
-  "shortdescription" : "Protector's Yoyo",
-  "largeImage" : "icon.png",
-  "tooltipKind" : "yoyo",
-  "category" : "yoyo",
-  "fireTime" : 0,
-  "twoHanded" : true,
-  "itemTags" : ["weapon","yoyo"],
-  "level" : 6,
+	"itemName": "protectorateyoyo",
+	"price": 1500,
+	"inventoryIcon": "icon.png",
+	"rarity": "Legendary",
+	"maxStack": 1,
+	"description": "Commonly used by students of the Terrene Protectorate.",
+	"shortdescription": "Protector's Yoyo",
+	"largeImage": "icon.png",
+	"itemTags": ["weapon", "yoyo"],
+	"level": 6,
 
-  "scripts" : ["/items/active/weapons/yoyos/yoyo.lua"],
-  "animationScripts" : ["/items/active/effects/renderyoyorope.lua"],
-  "animation" : "/items/active/weapons/yoyos/yoyo.animation",
-  "animationCustom" : {
-    "sounds" : {
-      "throw" : ["/sfx/melee/sword_spinslash.ogg"]
-    }
-  },
-  "animationParts" : { "yoyo" : "/projectiles/activeitems/yoyo/protectorateyoyo/protectorateyoyo.png", "yoyoFullbright" : "protectorateyoyolit.png" },
+	"scripts": ["/items/active/weapons/yoyos/yoyo.lua"],
+	"animationScripts": ["/items/active/effects/renderyoyorope.lua"],
 
-  "fireOffset" : [0, 0],
+	"animation": "/items/active/weapons/yoyos/yoyo.animation",
+	"animationCustom": {
+		"sounds": {
+			"throw": ["/sfx/melee/sword_spinslash.ogg"]
+		}
+	},
+	"animationParts": {"yoyo": "/projectiles/activeitems/yoyo/protectorateyoyo/protectorateyoyo.png", "yoyoFullbright": "protectorateyoyolit.png"},
+	"fireOffset": [0, 0],
 
-  "rope" : {
-    "width" : 0.8,
-    "color" : [202, 202, 202, 230]
-  },
+	"maxLength": 13.5,
 
-  "counterweights" : [],
+	"projectileType": "yoyos:protectorateyoyo",
+	"projectileParameters": {
+		"knockback": 5,
+		"power": 7,
+		"damageRepeatTimeout": 0.7,
+		"yoyoSpeed": 50,
+		"maxYoyoTime": 15
+	},
 
-  "usesYoyoUpgrades" : true,
-  "usesCounterweightUpgrades" : true,
-
-  "maxLength" : 13.5,
-  "extraLength" : 0,
-
-  "currentStringType" : "",
-  "stringColor" : "?replace;a85636=7b7b7b;e0975c=b6b6b6;ffca8a=e6e6e6",
-
-  "counterWeightType" : "",
-  "counterWeightIcon" : "",
-  "counterWeightName" : "",
-
-  "builder" : "/items/buildscripts/buildyoyo.lua",
-
-  "projectileType" : "protectorateyoyo",
-  "projectileParameters" : {
-    "knockback" : 5,
-    "power" : 7,
-    "damageRepeatTimeout" : 0.7,
-    "yoyoSpeed" : 50,
-    "maxYoyoTime" : 15
-  },
-
-  "stances" : {
-    "idle" : {
-      "armRotation" : 0,
-      "animationState" : {
-        "weapon" : "visible"
-      },
-      "allowRotate" : true,
-      "allowFlip" : true
-    },
-    "windup" : {
-      "duration" : 0.2,
-      "transition" : "throw",
-      "transitionFunction" : "fire",
-      "armRotation" : 35,
-      "animationState" : {
-        "weapon" : "visible"
-      },
-      "allowRotate" : false,
-      "allowFlip" : false
-    },
-    "throw" : {
-      "armRotation" : 0,
-      "animationState" : {
-        "weapon" : "hidden"
-      },
-      "allowRotate" : true,
-      "allowFlip" : true
-    },
-	  "precatch" : {
-      "duration" : 0.1,
-      "transition" : "catch",
-      "armRotation" : -15,
-      "animationState" : {
-        "weapon" : "hidden"
-      },
-      "allowRotate" : false,
-      "allowFlip" : true
-    },
-    "catch" : {
-      "duration" : 0.1,
-      "transition" : "idle",
-      "armRotation" : -35,
-      "animationState" : {
-        "weapon" : "visible"
-      },
-      "allowRotate" : false,
-      "allowFlip" : true
-    }
-  }
+	"builder": "/items/buildscripts/buildyoyo.lua"
 }
