@@ -4,7 +4,6 @@ require "/scripts/yoyoutils.lua"
 function init()
 	mcontroller.applyParameters(config.getParameter("movementSettings", {}))
 	mcontroller.setRotation(0)
-	projectile.setTimeToLive(1000)
 
 	--Yoyo properties
 	self.rotationSpeed = config.getParameter("rotationSpeed", 15)
@@ -15,6 +14,7 @@ function init()
 	self.yoyoSpeed = config.getParameter("yoyoSpeed", 50) - 10
 	self.useShift = config.getParameter("useShift", false)
 	self.hitSounds = config.getParameter("hitSounds")
+	self.defaultPower = config.getParameter("power", 0)
 
 	self.fireMode = "primary"
 	self.yoyoTime = 0
@@ -23,19 +23,24 @@ function init()
 	self.aimPosition = mcontroller.position()
 	self.rotation = 0
 	self.shiftHeld = false
-	self.latestYoyoId = nil
+	
+	self.dualWieldingAnchorId = nil
+	self.dualWieldingAnchorReturning = false
 
 	--Constants
 	self.forceReturnDistance = self.maxDistance + 3
 	self.durationBeforeReturnable = 0.15
+	self.anchorDistance = 1.5
 
-	message.setHandler("updateProjectile", function(_, _, aimPosition, fireMode, shiftHeld, latestYoyoId)
+	message.setHandler("updateProjectile", function(_, _, aimPosition, fireMode, shiftHeld, dualWieldingAnchorId)
 		self.aimPosition = aimPosition
 		self.fireMode = fireMode
 		self.shiftHeld = shiftHeld
-		self.latestYoyoId = latestYoyoId
+		self.dualWieldingAnchorId = dualWieldingAnchorId
 		return entity.id()
 	end)
+
+	projectile.setTimeToLive(self.maxYoyoTime + 10)
   
 	if yoyoExtra then yoyoExtra:init() end
 end
@@ -56,10 +61,16 @@ function update(dt)
 		returnYoyo()
 	end
 
+	if self.dualWieldingAnchorId and self.dualWieldingAnchorId ~= entity.id() and world.entityExists(self.dualWieldingAnchorId) then
+		projectile.setPower(self.defaultPower * 0.3)
+	else
+		projectile.setPower(self.defaultPower)
+	end
+
 	world.debugPoly(yoyoUtils.circlePoly(self.maxDistance, 32, self.ownerPos), {255, 255, 0})
 	world.debugPoly(yoyoUtils.circlePoly(world.magnitude(mcontroller.position(), self.ownerPos), 32, self.ownerPos), {0, 255, 0})
 	world.debugText("%s/%s", self.yoyoLength, self.maxDistance, self.aimPosition, {0, 255, 0})
-	world.debugText("latestYoyoId = %s", self.latestYoyoId and self.latestYoyoId or "none", vec2.sub(self.aimPosition, {0, 1}), {0, 255, 0})
+	world.debugText("anchorReturning = %s", self.dualWieldingAnchorReturning, vec2.add(self.aimPosition, 2), {255, 255, 0})
 
 	if self.ownerId and world.entityExists(self.ownerId) then
 		if self.aimPosition then
@@ -72,17 +83,17 @@ function update(dt)
 				end
 
 				local toTarget = world.distance(self.ownerPos, mcontroller.position())
-				if vec2.mag(toTarget) < self.pickupDistance and self.yoyoTime > self.durationBeforeReturnable then
+				if vec2.mag(toTarget) <= self.pickupDistance and self.yoyoTime > self.durationBeforeReturnable then
 					kill()
 				end
 			else
 				--Normal behavior
 				local distToPos = world.distance(mcontroller.position(), self.aimPosition)
 
-				if self.latestYoyoId and self.latestYoyoId ~= entity.id() and world.entityExists(self.latestYoyoId) then
-					world.debugPoint(world.entityPosition(self.latestYoyroId), {255, 255, 0})
+				if not self.dualWieldingAnchorReturning and self.dualWieldingAnchorId and self.dualWieldingAnchorId ~= entity.id() and world.entityExists(self.dualWieldingAnchorId) then
+					world.debugPoint(world.entityPosition(self.dualWieldingAnchorId), {255, 255, 0})
 
-					controlTo(vec2.add(world.entityPosition(self.latestYoyoId), {math.cos(self.rotation), math.sin(self.rotation)}), self.yoyoSpeed, 650, true)
+					controlTo(vec2.add(world.entityPosition(self.dualWieldingAnchorId), vec2.mul({math.cos(self.rotation), math.sin(self.rotation)}, self.anchorDistance)), self.yoyoSpeed, 650, true)
 				else
 					controlTo(self.aimPosition, self.yoyoSpeed, 650, false)
 				end
@@ -94,7 +105,8 @@ function update(dt)
 
   -- 1 for counterclockwise, -1 for clockwise
   local direction = self.returning and 1 or -1
-  mcontroller.setRotation(mcontroller.rotation() + ((self.rotationSpeed * dt) * direction))
+  self.rotation = mcontroller.rotation() + ((self.rotationSpeed * dt) * direction)
+  mcontroller.setRotation(self.rotation)
 end
 
 function controlTo(position, speed, controlForce, ignoreMaxRange)
@@ -131,7 +143,7 @@ function hit(entityId)
 		projectile.processAction({action = "sound", options = self.hitSounds})
 	end
 	if world.entityDamageTeam(entityId).type == "enemy" then
-		world.sendEntityMessage(self.ownerId, "hitEnemy", entityId)
+		world.sendEntityMessage(self.ownerId, "yoyos:hitEnemy", entityId)
 	end
 end
 
@@ -140,7 +152,15 @@ function returnYoyo()
 		kill()
 	else
 		self.returning = true
+		if self.dualWieldingAnchorId and self.dualWieldingAnchorId == entity.id() then
+			world.sendEntityMessage(self.ownerId, "yoyos:syncState/primary", entity.id(), self.returning)
+			world.sendEntityMessage(self.ownerId, "yoyos:syncState/alt", entity.id(), self.returning)
+		end
 	end
+end
+
+function syncAnchorState(returning)
+	self.dualWieldingAnchorReturning = returning
 end
 
 function kill()

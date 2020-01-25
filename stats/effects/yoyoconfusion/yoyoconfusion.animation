@@ -4,7 +4,7 @@
 			"particles": [
 				{
 					"count": 2,
-					"particle": "yoyoconfusion"
+					"particle": "yoyos:yoyoconfusion"
 				}
 			]
 		}

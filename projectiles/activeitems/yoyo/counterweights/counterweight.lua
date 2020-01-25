@@ -24,6 +24,8 @@ function init()
 	--Constants
 	self.pickupDistance = 1
 	self.rotateSpeed = 0.02
+
+	projectile.setTimeToLive(self.maxTime + 10)
 end
 
 function update(dt)

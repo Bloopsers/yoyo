@@ -225,8 +225,11 @@ function build(directory, config, parameters, level, seed)
 
     --Time label (currently unused)
     local time = configParameters.projectileParameters.maxYoyoTime
-    if time and time >= 100 then time = "Infinite" end
-    config.tooltipFields.durationLabel = tostring(time)
+    local label = ""
+    if time then
+        if time >= 100 then label = "Infinite" else label = tostring(time) .. "s" end
+    end
+    config.tooltipFields.durationLabel = label
 
     --Counterweight label
     config.tooltipFields.counterWeightIconImage = getOrDefault(configParameters, "counterWeightIcon", "/interface/tooltips/counterweightbase.png")

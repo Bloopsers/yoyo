@@ -67,7 +67,6 @@
 	},
 	"sounds": {
 		"throw": [],
-		"secondaryShoot": [],
 		"catch": []
 	}
 }

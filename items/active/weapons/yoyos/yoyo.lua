@@ -18,27 +18,29 @@ function addProjectile(id, type, parameters, counterweight)
         parameters = parameters,
         id = nil,
         position = {0, 0},
-        counterweight = counterweight,
+        counterweight = counterweight ~= nil and counterweight or false,
         rope = sb.jsonMerge(ropeDefaults, config.getParameter("rope"))
     }
 end
 
 function init()
     self.projectiles = {}
-
     addProjectile("yoyo", config.getParameter("projectileType"), config.getParameter("projectileParameters"))
 
-    message.setHandler("hitEnemy", function(_, _, entityId) spawnCounterweights() end)
+    --Yoyo properties
+    self.counterweights = config.getParameter("counterweights", {})
+    self.fireOffset = config.getParameter("fireOffset")
+    self.maxLength = config.getParameter("maxLength", 5) + config.getParameter("extraLength", 0)
 
     self.lastFireMode = "none"
     self.fireMode = "none"
-    self.fireOffset = config.getParameter("fireOffset")
-    self.maxLength = config.getParameter("maxLength", 5) + config.getParameter("extraLength", 0)
     self.aimAngle = 0
     self.facingDirection = 0
-    self.counterweights = config.getParameter("counterweights", {})
     self.activeCounterweight = 1
     self.shiftHeld = false
+    self.dualWielding = false
+    self.dualWieldingAnchorId = nil
+    self.active = false
 
     self.projectiles.yoyo.parameters.power = self.projectiles.yoyo.parameters.power * root.evalFunction("weaponDamageLevelMultiplier", config.getParameter("level", 1))
 
@@ -47,35 +49,47 @@ function init()
         addProjectile("counterWeight" .. index, counterweight.projectileType, counterweight.projectileParameters, index)
     end
 
+    message.setHandler("yoyos:hitEnemy", function(_, _, entityId) spawnCounterweights() end)
+    message.setHandler("yoyos:syncState/" .. activeItem.hand(), function(_, _, id, returning)
+        for index, projectile in pairs(self.projectiles) do
+            sb.logInfo(sb.print(projectile))
+            if world.entityExists(projectile.id) and not projectile.counterweight then
+                world.callScriptedEntity(projectile.id, "syncAnchorState", returning)
+            end
+        end
+    end)
+
     initStances()
     setStance("idle")
 end
 
 function uninit() cancel() end
 
-function updateRopes()
-    for index, projectile in pairs(self.projectiles) do
-        if projectile.rope.rainbow then
-            projectile.rope.hue = projectile.rope.hue + projectile.rope.hueCycleSpeed
-            if projectile.rope.hue > projectile.rope.hueRange[2] then
-                projectile.rope.hue = projectile.rope.hueRange[1]
-            end
-            projectile.rope.color = yoyoUtils.hslToRgb(projectile.rope.hue, 170, 170, 255)
-        end
-    end
+function setAnchorId(id)
+    self.dualWieldingAnchorId = id
 end
 
 function update(dt, fireMode, shiftHeld, moves)
     activeItem.setScriptedAnimationParameter("projectiles", self.projectiles)
+
+    local tags = activeItem.hand() == "alt" and player.primaryHandItemTags() or player.altHandItemTags()
+    if not config.getParameter("twoHanded", true) then
+        if tags then
+            if contains(tags, "yoyo") then
+                self.dualWielding = true
+            end
+        end
+    end
 
     self.fireMode = fireMode
     self.shiftHeld = shiftHeld
     self.aimAngle, self.facingDirection = activeItem.aimAngleAndDirection(self.fireOffset[2], activeItem.ownerAimPosition())
     activeItem.setFacingDirection(self.facingDirection)
 
-    trackProjectiles()
-    updateRopes()
-    updateStance(dt)
+    if self.active then
+        trackProjectiles()
+        updateRopes()
+    end
 
     if self.stanceName == "idle" then
         if (fireMode == "primary" or fireMode == "alt") and not (self.lastFireMode == "primary" or self.lastFireMode == "alt") then
@@ -92,7 +106,22 @@ function update(dt, fireMode, shiftHeld, moves)
         end
     end
 
+    updateStance(dt)
     updateAim()
+end
+
+function updateRopes()
+    for index, projectile in pairs(self.projectiles) do
+        local rope = projectile.rope
+        if rope.rainbow then
+            rope.hue = rope.hue + (rope.hueCycleSpeed * 2)
+            if rope.hue > rope.hueRange[2] then
+                rope.hue = rope.hueRange[1]
+            end
+            rope.color = yoyoUtils.hslToRgb(rope.hue, 170, 170, 255)
+        end
+        projectile.rope = rope
+    end
 end
 
 function trackProjectiles()
@@ -110,10 +139,15 @@ function trackProjectiles()
             end
         end
     end
-    if self.projectiles.yoyo.id and world.entityExists(self.projectiles.yoyo.id) then
-        world.sendEntityMessage(self.projectiles.yoyo.id, "updateProjectile", activeItem.ownerAimPosition(), self.fireMode, self.shiftHeld, status.statusProperty("__yoyos_activetracker", nil))
-    else
+    if not anyYoyoProjectile() then
         cancel()
+    else
+        if self.dualWielding and not self.dualWieldingAnchorId then
+            self.dualWieldingAnchorId = self.projectiles.yoyo.id
+            activeItem.callOtherHandScript("setAnchorId", self.dualWieldingAnchorId)
+        end
+
+        world.sendEntityMessage(self.projectiles.yoyo.id, "updateProjectile", activeItem.ownerAimPosition(), self.fireMode, self.shiftHeld, self.dualWieldingAnchorId)
     end
 end
 
@@ -132,16 +166,36 @@ function fire()
     parameters.maxDistance = self.maxLength
 
     self.projectiles.yoyo.id = world.spawnProjectile(self.projectiles.yoyo.type, firePosition(), activeItem.ownerEntityId(), aimVector(), false, parameters)
-    
-    status.setStatusProperty("__yoyos_activetracker", self.projectiles.yoyo.id)
+    if not self.dualWieldingAnchorId and self.dualWielding then
+        self.dualWieldingAnchorId = self.projectiles.yoyo.id
+        activeItem.callOtherHandScript("setAnchorId", self.dualWieldingAnchorId)
+    end
 
+    self.active = true
     animator.playSound("throw")
 end
 
 function cancel()
+    self.active = false
+
     for index, projectile in pairs(self.projectiles) do
         if projectile.id and world.entityExists(projectile.id) then
             world.callScriptedEntity(projectile.id, "kill")
+        end
+    end
+
+    if self.dualWielding then
+        self.dualWieldingAnchorId = nil
+        activeItem.callOtherHandScript("setAnchorId", nil)
+    end
+end
+
+function anyYoyoProjectile()
+    for index, projectile in pairs(self.projectiles) do
+        if not projectile.counterweight then
+            if projectile.id and world.entityExists(projectile.id) then
+                return projectile
+            end
         end
     end
 end

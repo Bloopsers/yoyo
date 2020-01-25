@@ -1,5 +1,5 @@
 {
-	"projectileName": "yoyocounterweightearth",
+	"projectileName": "yoyos:counterweightearth",
 	"image": "counterweightearth.png",
 	"emitters": [],
 	"renderLayer": "ForegroundTile+2",
@@ -16,10 +16,9 @@
 	"physics": "hover",
 	"bounces": -1,
 	"piercing": true,
-	"timeToLive": 100,
 
 	"statusEffects": [
-	{"effect": "weakpoison", "duration": 3}
+		{"effect": "weakpoison", "duration": 3}
 	],
 
 	"scripts": ["counterweight.lua"]

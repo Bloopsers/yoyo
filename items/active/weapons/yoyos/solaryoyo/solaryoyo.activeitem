@@ -4,7 +4,7 @@
 	"inventoryIcon": "icon.png",
 	"rarity": "Legendary",
 	"maxStack": 1,
-	"description": "A replica of the Sol System stuck to a piece of string.",
+	"description": "A star stuck to a piece of string, what could go wrong?",
 	"shortdescription": "Sol Yoyo",
 	"largeImage": "icon.png",
 	"itemTags": ["weapon", "yoyo"],
@@ -24,7 +24,7 @@
 
 	"counterweights": [
 		{
-			"projectileType": "yoyocounterweightearth",
+			"projectileType": "yoyos:counterweightearth",
 			"projectileParameters": {
 				"powerScale": 1.25,
 				"rotateRadius": 7,
@@ -33,7 +33,7 @@
 			}
 		},
 		{
-			"projectileType": "yoyocounterweightsaturn",
+			"projectileType": "yoyos:counterweightsaturn",
 			"projectileParameters": {
 				"powerScale": 2,
 				"rotateRadius": 7,
@@ -42,7 +42,7 @@
 			}
 		},
 		{
-			"projectileType": "yoyocounterweightneptune",
+			"projectileType": "yoyos:counterweightneptune",
 			"projectileParameters": {
 				"powerScale": 1.75,
 				"rotateRadius": 7,
@@ -57,7 +57,7 @@
 	"maxLength": 10.5,
 
 	"counterWeightType": "solaryoyoplanets",
-	"counterWeightIcon": "/items/active/weapons/yoyos/solaryoyo/earthicon.png",
+	"counterWeightIcon": "/items/active/weapons/yoyos/solaryoyo/planeticon.png",
 	"counterWeightName": "^red;Planet Counterweights^reset;",
 
 	"projectileType": "yoyos:solaryoyo",

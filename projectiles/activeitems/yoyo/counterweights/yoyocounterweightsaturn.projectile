@@ -1,5 +1,5 @@
 {
-	"projectileName": "yoyocounterweightsaturn",
+	"projectileName": "yoyos:counterweightsaturn",
 	"image": "counterweightsaturn.png",
 	"emitters": [],
 	"renderLayer": "ForegroundTile+2",
