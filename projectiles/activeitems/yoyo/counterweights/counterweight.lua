@@ -13,6 +13,7 @@ function init()
 	self.speed = config.getParameter("rotateSpeed", 60)
 	self.maxTime = config.getParameter("maxTime")
 	self.dieOnReturn = config.getParameter("dieOnReturn")
+	self.forceDisableCollision = config.getParameter("forceDisableCollision", false)
 
 	self.returning = false
 	self.time = 0
@@ -31,7 +32,7 @@ function update(dt)
 
 	self.time = self.time + (1 * dt)
 
-	if self.time > self.maxTime or world.pointTileCollision(mcontroller.position(), {"Block", "Dynamic", "Null"}) then
+	if self.time > self.maxTime or (not self.forceDisableCollision and world.pointTileCollision(mcontroller.position(), {"Block", "Dynamic", "Null"})) then
 		returnCounterweight()
 	end
 
@@ -43,7 +44,7 @@ function update(dt)
 		end
 	else
 		local pos = predictNextPosition()
-		if world.pointTileCollision(pos, {"Block", "Dynamic", "Null"}) and not self.lastColliding then
+		if not self.forceDisableCollision and world.pointTileCollision(pos, {"Block", "Dynamic", "Null"}) and not self.lastColliding then
 			self.rotateSpeed = -self.rotateSpeed
 			pos = predictNextPosition(2)
 		end
@@ -84,7 +85,7 @@ function controlTo(position, speed, controlForce)
 	local v = yoyoUtils.clampMag(vec2.sub(position, self.ownerPos), self.maxDistance)
 	local pos = vec2.approach(mcontroller.position(), vec2.add(self.ownerPos, v), speed / 60)
 
-	if world.lineTileCollision(mcontroller.position(), pos, {"Block", "Dynamic", "Null"}) or self.returning then
+	if (not self.forceDisableCollision and world.lineTileCollision(mcontroller.position(), pos, {"Block", "Dynamic", "Null"})) or self.returning then
 		controlToApproach(position, speed, controlForce)
 	else
 		mcontroller.setPosition(pos)

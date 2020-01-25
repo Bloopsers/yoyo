@@ -1,0 +1,25 @@
+{
+	"itemName": "yoyos:counterweightphase",
+	"price": 240,
+	"rarity": "Common",
+	"category": "yoyoupgrade",
+	"tooltipKind": "yoyoupgrade",
+	"inventoryIcon": "/items/augments/yoyocounterweight/counterweightice.png",
+	"description": "A ghostly counterweight for your yoyo. Phases through blocks!",
+	"shortdescription": "Ghostly Counterweight",
+
+	"counterweights": [
+		{
+			"projectileType": "yoyos:counterweightphase",
+			"fromItem": true,
+			"projectileParameters": {
+				"powerScale": 1.4,
+				"rotateRadius": 6.5,
+				"rotateSpeed": 45,
+				"maxTime": 500
+			}
+		}
+	],
+
+	"scripts": ["/scripts/augments/counterweight.lua"]
+}
