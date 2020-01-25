@@ -1,25 +1,25 @@
 {
-	"itemName" : "yoyocounterweightice",
-	"price" : 240,
-	"rarity" : "Common",
-	"category" : "yoyoupgrade",
-	"tooltipKind" : "yoyoupgrade",
-	"inventoryIcon" : "/items/augments/yoyocounterweight/counterweightice.png",
-	"description" : "An icy counterweight for your yoyo. Freezes enemies.",
-	"shortdescription" : "Icy Counterweight",
+	"itemName": "yoyocounterweightice",
+	"price": 240,
+	"rarity": "Common",
+	"category": "yoyoupgrade",
+	"tooltipKind": "yoyoupgrade",
+	"inventoryIcon": "/items/augments/yoyocounterweight/counterweightice.png",
+	"description": "An icy counterweight for your yoyo. Freezes enemies.",
+	"shortdescription": "Icy Counterweight",
 
-	"counterweights" : [
+	"counterweights": [
 		{
-			"projectileType" : "yoyocounterweightice",
-			"fromItem" : true,
-			"projectileParameters" : {
-				"powerScale" : 1.4,
-				"rotateRadius" : 6.5,
-				"rotateSpeed" : 45,
-				"maxTime" : 5.5
+			"projectileType": "yoyocounterweightice",
+			"fromItem": true,
+			"projectileParameters": {
+				"powerScale": 1.4,
+				"rotateRadius": 6.5,
+				"rotateSpeed": 45,
+				"maxTime": 5.5
 			}
 		}
 	],
 
-	"scripts" : [ "/scripts/augments/counterweight.lua" ]
+	"scripts": ["/scripts/augments/counterweight.lua"]
 }

@@ -1,21 +1,21 @@
 {
-	"itemName" : "longrainbowyoyostring",
-	"price" : 50,
-	"rarity" : "Uncommon",
-	"category" : "yoyoupgrade",
-	"tooltipKind" : "yoyoupgrade",
-	"inventoryIcon" : "/items/augments/yoyo/rainbowyoyostring.png",
-	"description" : "Cycles through the rainbow! Increases your yoyo range by 4.",
-	"shortdescription" : "Long Rainbow Yoyo String",
+	"itemName": "longrainbowyoyostring",
+	"price": 50,
+	"rarity": "Uncommon",
+	"category": "yoyoupgrade",
+	"tooltipKind": "yoyoupgrade",
+	"inventoryIcon": "/items/augments/yoyo/rainbowyoyostring.png",
+	"description": "Cycles through the rainbow! Increases your yoyo range by 4.",
+	"shortdescription": "Long Rainbow Yoyo String",
 
-	"extraLength" : 4,
-	"stringColor" : "?replace;a85636=7b7b7b;e0975c=b6b6b6;ffca8a=e6e6e6",
+	"extraLength": 4,
+	"stringColor": "?replace;a85636=7b7b7b;e0975c=b6b6b6;ffca8a=e6e6e6",
 	
-	"rope" : {
-		"color" : [202, 202, 202, 230],
-		"rainbow" : true,
-		"hueCycleSpeed" : 0.5
+	"rope": {
+		"color": [202, 202, 202, 230],
+		"rainbow": true,
+		"hueCycleSpeed": 0.5
 	},
 
-	"scripts" : ["/scripts/augments/yoyo.lua"]
+	"scripts": ["/scripts/augments/yoyo.lua"]
 }

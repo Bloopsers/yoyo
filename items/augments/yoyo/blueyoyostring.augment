@@ -1,19 +1,19 @@
 {
-	"itemName" : "blueyoyostring",
-	"price" : 15,
-	"rarity" : "Common",
-	"category" : "yoyoupgrade",
-	"tooltipKind" : "yoyoupgrade",
-	"inventoryIcon" : "/items/augments/yoyo/yoyostring.png?replace;a85636=344495;e0975c=5588d4;ffca8a=96cbe7",
-	"description" : "A blue yoyo string. Increases your yoyo range by 2.",
-	"shortdescription" : "Blue Yoyo String",
+	"itemName": "blueyoyostring",
+	"price": 15,
+	"rarity": "Common",
+	"category": "yoyoupgrade",
+	"tooltipKind": "yoyoupgrade",
+	"inventoryIcon": "/items/augments/yoyo/yoyostring.png?replace;a85636=344495;e0975c=5588d4;ffca8a=96cbe7",
+	"description": "A blue yoyo string. Increases your yoyo range by 2.",
+	"shortdescription": "Blue Yoyo String",
 
-	"extraLength" : 2,
-	"stringColor" : "?replace;a85636=344495;e0975c=5588d4;ffca8a=96cbe7",
+	"extraLength": 2,
+	"stringColor": "?replace;a85636=344495;e0975c=5588d4;ffca8a=96cbe7",
 
-	"rope" : {
-		"color" : [85, 136, 212, 230]
+	"rope": {
+		"color": [85, 136, 212, 230]
 	},
 
-	"scripts" : ["/scripts/augments/yoyo.lua"]
+	"scripts": ["/scripts/augments/yoyo.lua"]
 }

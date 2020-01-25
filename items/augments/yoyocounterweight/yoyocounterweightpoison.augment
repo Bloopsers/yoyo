@@ -1,25 +1,25 @@
 {
-	"itemName" : "yoyocounterweightpoison",
-	"price" : 240,
-	"rarity" : "Common",
-	"category" : "yoyoupgrade",
-	"tooltipKind" : "yoyoupgrade",
-	"inventoryIcon" : "/items/augments/yoyocounterweight/counterweightpoison.png",
-	"description" : "A poison counterweight for your yoyo. Poisons enemies.",
-	"shortdescription" : "Poison Counterweight",
+	"itemName": "yoyocounterweightpoison",
+	"price": 240,
+	"rarity": "Common",
+	"category": "yoyoupgrade",
+	"tooltipKind": "yoyoupgrade",
+	"inventoryIcon": "/items/augments/yoyocounterweight/counterweightpoison.png",
+	"description": "A poison counterweight for your yoyo. Poisons enemies.",
+	"shortdescription": "Poison Counterweight",
 
-	"counterweights" : [
+	"counterweights": [
 		{
-			"projectileType" : "yoyocounterweightpoison",
-			"fromItem" : true,
-			"projectileParameters" : {
-				"powerScale" : 1.55,
-				"rotateRadius" : 6,
-				"rotateSpeed" : 50,
-				"maxTime" : 5
+			"projectileType": "yoyocounterweightpoison",
+			"fromItem": true,
+			"projectileParameters": {
+				"powerScale": 1.55,
+				"rotateRadius": 6,
+				"rotateSpeed": 50,
+				"maxTime": 5
 			}
 		}
 	],
 
-	"scripts" : ["/scripts/augments/counterweight.lua"]
+	"scripts": ["/scripts/augments/counterweight.lua"]
 }
